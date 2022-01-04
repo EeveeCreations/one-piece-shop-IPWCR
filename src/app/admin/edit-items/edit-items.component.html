@@ -1,0 +1,21 @@
+<article class="col-xs-12">
+  <section class="col-sm-6">
+    <ul class="list-group">
+      <li class=" itemDetails list-group-item background col-xs-12"
+          *ngFor="let item of shopItems">
+        <div class="col-xs-8">
+          <h3>{{item.name}} - {{item.price}}</h3>
+          <p>{{item.description}} </p>
+        </div>
+        <div class="col-xs-4">
+          <figure>
+            <img [src]="item.imagePath" [alt]="item.description"/>
+          </figure>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <section class="col-sm-6">
+    <app-edit-item></app-edit-item>
+  </section>
+</article>

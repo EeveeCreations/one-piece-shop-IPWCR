@@ -1,0 +1,63 @@
+<section class="col-xs-12">
+  <form class="editItemForm" [formGroup]="editItemForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-xs-12">
+        <button [disabled]="!editItemForm.valid"  type="submit" class="btn btn-success">Save</button>
+        <button  (click)="onDelete()" type="button" class="btn btn-danger">Delete</button>
+      </div>
+      <div class=" row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name Recipe</label>
+            <input
+              formControlName="name"
+              type="text"
+              id="name"
+              class="form-control"/>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input
+              formControlName="imagePath"
+              type="text"
+              id="imagePath"
+              class="form-control"/>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="category">Category's (split by ,)</label>
+            <input
+              formControlName="category"
+              type="text"
+              id="category"
+              class="form-control"/>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <img [src]="editItemForm.get('imagePath').value"
+                 class="img-responsive"/>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">description</label>
+            <textarea
+              formControlName="description"
+              id="description"
+              rows="6"
+              class="form-control"></textarea>
+          </div>
+          <div class="row">
+            <div class="col-xs-12"
+                 formControlName="category">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

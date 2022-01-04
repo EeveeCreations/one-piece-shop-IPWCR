@@ -1,0 +1,20 @@
+<article class="container col-xs-12">
+  <section class="container-fluid">
+    <section class="container-fluid">
+      <h1>Here are the placed orders</h1>
+      <p>please press the button next to them to complete it.</p>
+    </section>
+    <section class="container-fluid">
+      <div>
+        <h3>Orders</h3>
+      </div>
+      <ul>
+        <app-order
+          *ngFor="let iorder of Orders; let i = index;"
+          [order]="iorder"
+          [index]="i">
+        </app-order>
+      </ul>
+    </section>
+  </section>
+</article>

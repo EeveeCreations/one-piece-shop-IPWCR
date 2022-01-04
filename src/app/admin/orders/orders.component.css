@@ -1,0 +1,7 @@
+h1,h3{
+  color: var(--master_primairy_color);
+}
+
+p{
+  color: var(--master_color);
+}
