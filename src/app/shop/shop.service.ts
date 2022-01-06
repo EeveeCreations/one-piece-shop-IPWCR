@@ -16,7 +16,7 @@ export class ShopService{
   private getAllItemsOfShop() {
     //TODO:  Chaneg this to HTTP request of  server
     // this.allItemsOfShop = this.requestService.getShopItems();
-    this.allItemsOfShop = this.itemService.getAllProducts();
+    this.allItemsOfShop = this.itemService.getAllItems();
   }
 
   GiveAlertAboutItem(product: Product) {

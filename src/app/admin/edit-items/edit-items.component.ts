@@ -12,7 +12,7 @@ export class EditItemsComponent implements OnInit {
   @Input() shopItems: Product[];
 
   constructor(private itemService: ItemService) {
-    this.shopItems = itemService.getAllProducts()
+    this.shopItems = itemService.getAllItems()
   }
 
   ngOnInit(): void {

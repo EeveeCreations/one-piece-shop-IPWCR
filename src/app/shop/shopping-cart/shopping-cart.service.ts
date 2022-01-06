@@ -12,8 +12,8 @@ export class ShoppingCartService {
   shoppingCartEvent: Subject<CartItem[]> = new Subject<CartItem[]>();
 
   constructor(private itemSc: ItemService) {
-    console.log(itemSc.getAllProducts())
-    for(let prod of itemSc.getAllProducts()){
+    console.log(itemSc.getAllItems())
+    for(let prod of itemSc.getAllItems()){
       const newItem: CartItem = new CartItem(this.shoppingCart,prod,1)
       this.shoppingCartItems.push(newItem);
     }
@@ -44,5 +44,11 @@ export class ShoppingCartService {
   seeIfItemInCart(item: CartItem): boolean {
     return (this.shoppingCartItems.indexOf(item) !== -1);
 
+  }
+
+  setShoppingCart(cart: ShoppingCart) {
+    this.shoppingCart = cart;
+    this.shoppingCartItems = this.shoppingCart.cartItems
+    this.shoppingCartEvent.next(this.shoppingCartItems.slice())
   }
 }

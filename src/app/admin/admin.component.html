@@ -1,7 +1,7 @@
 <nav class="adminNav navbar-default nav background navbar">
   <ul>
-    <li class="navbar-collapse"><a [routerLink]="['orders']">Open Orders</a></li>
-    <li class="navbar-collapse"><a [routerLink]="['editShop']">Edit ShopItems</a></li>
+    <li class="navbar-collapse" (click)="openOrders()"><a [routerLink]="['orders']">Open Orders</a></li>
+    <li class="navbar-collapse" (click)="editShop()"><a [routerLink]="['editShop']">Edit ShopItems</a></li>
   </ul></nav>
 <article class="cssSelections">
   <section class="col-xs-12 cssSelection"></section>

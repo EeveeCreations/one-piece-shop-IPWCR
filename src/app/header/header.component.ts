@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ActivePerfRecorder} from "@angular/compiler-cli/src/ngtsc/perf";
+import {RequestService} from "../shared/Requests/request.service";
 
 @Component({
   selector: 'app-header',
@@ -10,10 +11,13 @@ import {ActivePerfRecorder} from "@angular/compiler-cli/src/ngtsc/perf";
 export class HeaderComponent implements OnInit {
 
   constructor(private router: Router,
-              private activeRoute: ActivatedRoute) {}
+              private requestService: RequestService) {}
 
   ngOnInit(): void {
   }
 
 
+  OnOpenShop() {
+    this.requestService.requestOfProduct("all","get", null);
+  }
 }

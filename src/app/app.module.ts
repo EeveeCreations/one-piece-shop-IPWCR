@@ -21,6 +21,7 @@ import {OrderComponent} from './admin/orders/order/order.component';
 import {PaymentComponent} from "./shop/alert/payment/payment.component";
 import {CompleteComponent} from "./shop/alert/payment/complete/complete.component";
 import {ItemService} from "./shared/item.service";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {ItemService} from "./shared/item.service";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule
