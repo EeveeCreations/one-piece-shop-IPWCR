@@ -1,12 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {ShopService} from "../../shop/shop.service";
-import {tap} from "rxjs";
-import {OrderService} from "../../admin/orders/order.service";
-import {ProductService} from "../product.service";
 import {User} from "../models/user.model";
 import {ShoppingCart} from "../../shop/shopping-cart/shopping-cart.model";
-import {ShoppingCartService} from "../../shop/shopping-cart/shopping-cart.service";
 import {Order} from "../../admin/orders/order.model";
 import {Product} from "../../shop/item/product.model";
 
@@ -19,7 +14,7 @@ export class RequestService {
   }
 
   prepareURL(model: string, specific: string) {
-    this.url = "http://localhost:8080/" + model;
+    this.url = "https://localhost:7004/" + model;
     if (specific !== "") {
       this.url = (this.url + "/" + specific);
     }
@@ -27,7 +22,7 @@ export class RequestService {
 
   prepareHeader() {
     const headerOfRequest: HttpHeaders = new HttpHeaders();
-    headerOfRequest.set("AdminNumber", this.user.name);
+    headerOfRequest.set("AdminNumber", "1");
     return headerOfRequest
 
 

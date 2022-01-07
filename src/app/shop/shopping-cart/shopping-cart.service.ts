@@ -3,7 +3,6 @@ import {ShoppingCart} from "./shopping-cart.model";
 import {ItemService} from "../../shared/item.service";
 import {Subject} from "rxjs";
 import {CartItem} from "./cart-item.model";
-import {ShopService} from "../shop.service";
 
 @Injectable()
 export class ShoppingCartService {
@@ -12,12 +11,13 @@ export class ShoppingCartService {
   shoppingCartEvent: Subject<CartItem[]> = new Subject<CartItem[]>();
 
   constructor(private itemSc: ItemService) {
-    console.log(itemSc.getAllItems())
     for(let prod of itemSc.getAllItems()){
       const newItem: CartItem = new CartItem(this.shoppingCart,prod,1)
       this.shoppingCartItems.push(newItem);
     }
-    this.shoppingCart = new ShoppingCart(this.shoppingCartItems.length,this.shoppingCartItems.slice(),200,false);
+    this.shoppingCart = new ShoppingCart(
+      this.shoppingCartItems.length,this.shoppingCartItems.slice()
+      ,200,false);
   }
 
   returnCart() {

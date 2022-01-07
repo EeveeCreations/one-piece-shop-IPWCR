@@ -18,6 +18,6 @@ export class HeaderComponent implements OnInit {
 
 
   OnOpenShop() {
-    this.requestService.requestOfProduct("all","get", null);
+    this.requestService.requestOfProduct("all","get", null)
   }
 }
