@@ -5,7 +5,7 @@ import {RequestService} from "../../shared/Requests/request.service";
 import {Product} from "../../shop/item/product.model";
 import {ProductService} from "../../shared/product.service";
 @Injectable({providedIn: 'root'})
-export class ShopResolverService implements Resolve<Product[]>{
+export class ProductResolver implements Resolve<Product[]>{
   constructor(private requestService: RequestService,
               private productService: ProductService) {
   }

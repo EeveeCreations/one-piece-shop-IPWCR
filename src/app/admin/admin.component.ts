@@ -21,15 +21,15 @@ export class AdminComponent implements OnInit {
   }
 
   private getProductItems() {
-    this.shopItems = this.shopService.getAllShopItems()
+    this.shopItems = this.shopService.getAllShopItems();
 
   }
 
   openOrders() {
-      this.requestService.requestOfOrder("all", "get",null)
+      this.requestService.requestOfOrder("all", "get",null).subscribe();
   }
 
   editShop() {
-    this.requestService.requestOfProduct("all", "get",null)
+     this.requestService.requestOfProduct("all", "get",null).subscribe();
   }
 }

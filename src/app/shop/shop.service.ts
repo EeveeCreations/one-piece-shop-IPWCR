@@ -1,46 +1,46 @@
-import {Component, Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {ShoppingCartService} from "./shopping-cart/shopping-cart.service";
 import {Product} from "./item/product.model";
-import {CartItem} from "./shopping-cart/cart-item.model";
-import {ItemService} from "../shared/item.service";
+import {ProductService} from "../shared/product.service";
 
 @Injectable()
 export class ShopService{
   allItemsOfShop: Product[];
 
   constructor(private shoppingCartService: ShoppingCartService,
-              private itemService: ItemService) {
+              private productService: ProductService) {
     this.getAllItemsOfShop();
   }
 
   private getAllItemsOfShop() {
-    this.allItemsOfShop = this.itemService.getAllItems();
+    this.allItemsOfShop = this.productService.getProducts();
   }
 
   GiveAlertAboutItem(product: Product) {
-    const potentialCartItem = new CartItem(this.shoppingCartService.shoppingCart,product,1);
-    if(this.shoppingCartService.seeIfItemInCart(potentialCartItem)){
-      this.giveAlertToDelete(potentialCartItem);
-
-    }else {
-      this.giveAlertToAdd(potentialCartItem);
+    if (this.shoppingCartService.seeIfItemInCart(product)) {
+      this.giveAlertToDelete(product);
+    } else {
+      this.giveAlertToAdd(product);
     }
-}
-
-  private giveAlertToDelete(item: CartItem) {
-    if(confirm("Do you want to Delete this Item from the Cart")){
-      this.shoppingCartService.DeleteItemFromCart(item);
-    }
-
   }
 
-  private giveAlertToAdd(item: CartItem) {
-    confirm("Do you want to Delete this Item from the Cart");
-    this.shoppingCartService.AddItemToCart(item);
+  private giveAlertToDelete(product: Product) {
+    if (confirm("Do you want to Delete this Item from the Cart")) {
+      this.shoppingCartService.DeleteItemFromCart(product);
+    }
+  }
+
+  private giveAlertToAdd(product: Product) {
+    confirm("Do you want to Add this Item to the Cart");
+    this.shoppingCartService.AddItemToCart(product);
 
   }
 
   getAllShopItems(): Product[] {
     return this.allItemsOfShop;
+  }
+
+  setItemsOfShop(newItems: Product[]) {
+    this.allItemsOfShop = newItems;
   }
 }

@@ -26,5 +26,5 @@ figcaption.desc{
 }
 /*Added classes*/
 .added{
-  border-color: var(--master_primairy_color_light);
+  border: 5px solid var(--master_primairy_color_light);
 }

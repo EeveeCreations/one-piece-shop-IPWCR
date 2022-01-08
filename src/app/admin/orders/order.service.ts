@@ -4,9 +4,8 @@ import {Order} from "./order.model";
 import {Product} from "../../shop/item/product.model";
 import {CartItem} from "../../shop/shopping-cart/cart-item.model";
 import {ShoppingCart} from "../../shop/shopping-cart/shopping-cart.model";
-import {RequestService} from "../../shared/Requests/request.service";
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class OrderService {
   orders:Order[];
   orderEvent: Subject<Order[]>
@@ -18,7 +17,6 @@ export class OrderService {
 
 
   constructor(
-    private requestService: RequestService
   ) {
     // TODO:Delete these
     this.ranProduct = new Product(BigInt('2'), 'testProduct', ' THis is a product for in teh Order', 22.50, 'mug,Luffy', "https://st4.depositphotos.com/1833357/21353/i/600/depositphotos_213534652-stock-photo-happy-bride-take-selfie-her.jpg")
@@ -29,7 +27,7 @@ export class OrderService {
 
   updateOrder(order: Order){
     const index = this.orders.indexOf(order);
-    this.requestService.requestOfOrder(index.toString(),"put",order);
+    // this.requestService.requestOfOrder(index.toString(),"put",order);
     this.orders.splice(index, 1);
     this.orderEvent.next(this.orders.slice());
   }

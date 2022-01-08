@@ -1,8 +1,5 @@
-.itemDetails{
-  border: 1px solid var(--master_third_color);
+li{
+  margin: 0;
+  border: 2px solid var(--master_third_color);
   color: var(--master_third_color_darker);
-}
-.itemDetails> figure{
-   height: 50px;
-  width: 50px;
 }

@@ -1,24 +1,26 @@
 import {Injectable} from "@angular/core";
 import {Product} from "../shop/item/product.model";
 import {Subject} from "rxjs";
-import {RequestService} from "./Requests/request.service";
 
 @Injectable()
 export class ProductService {
   private products: Product[] = [];
-  private productEvent: Subject<Product[]>
+  productEvent: Subject<Product[]> = new Subject<Product[]>();
 
-  constructor(private requestService: RequestService) {
+  constructor() {
   }
 
-  addProduct(){
+  addProduct(product: Product){
+    this.products.push(product);
+    this.productEvent.next(this.products.slice());
 
 
   }
   updateProduct(){
 
   }
-  deleteProduct(){
+  deleteProduct(id: number){
+    this.products.splice( id,1)
 
   }
 
@@ -26,10 +28,12 @@ export class ProductService {
     return this.products.slice();
   }
 
-
   setProducts(newProducts: Product[]): void {
     this.products = newProducts;
     this.productEvent.next(this.products.slice());
+  }
 
+  getProduct(id: number): Product {
+    return this.products[id];
   }
 }

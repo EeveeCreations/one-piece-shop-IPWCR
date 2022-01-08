@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ItemComponent} from "../../shop/item/item.component";
 import {Product} from "../../shop/item/product.model";
-import {ItemService} from "../../shared/item.service";
+import {ProductService} from "../../shared/product.service";
 
 @Component({
   selector: 'app-edit-items',
@@ -10,9 +9,10 @@ import {ItemService} from "../../shared/item.service";
 })
 export class EditItemsComponent implements OnInit {
   @Input() shopItems: Product[];
+  isEditing: boolean = false;
 
-  constructor(private itemService: ItemService) {
-    this.shopItems = itemService.getAllItems()
+  constructor(private productService: ProductService) {
+    this.shopItems = productService.getProducts();
   }
 
   ngOnInit(): void {
@@ -20,4 +20,7 @@ export class EditItemsComponent implements OnInit {
   }
 
 
+  onEditItem(item: Product) {
+    this.isEditing = true;
+  }
 }

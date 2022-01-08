@@ -4,13 +4,18 @@ import {User} from "../models/user.model";
 import {ShoppingCart} from "../../shop/shopping-cart/shopping-cart.model";
 import {Order} from "../../admin/orders/order.model";
 import {Product} from "../../shop/item/product.model";
+import {tap} from "rxjs";
+import {ProductService} from "../product.service";
+import {OrderService} from "../../admin/orders/order.service";
 
 @Injectable({providedIn: 'root'})
 export class RequestService {
   private url: string = "";
   private user: User;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private productService:ProductService,
+              private orderService:OrderService) {
   }
 
   prepareURL(model: string, specific: string) {
@@ -47,7 +52,10 @@ export class RequestService {
         body: order,
         headers: this.prepareHeader()
       })
-      .pipe();
+      .pipe(
+        tap(orders =>{
+        this.orderService.setOrders(orders);
+      }));
   }
 
   requestOfProduct(specific: string, duty: string, product: Product) {
@@ -57,7 +65,10 @@ export class RequestService {
       {
         body: product,
         headers: this.prepareHeader()
-      })
-      .pipe();
+      }).pipe(
+        tap(products =>{
+        this.productService.setProducts(products)
+        }));
+
   }
 }

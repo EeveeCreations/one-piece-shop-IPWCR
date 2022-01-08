@@ -20,8 +20,10 @@ import {OrdersComponent} from './admin/orders/orders.component';
 import {OrderComponent} from './admin/orders/order/order.component';
 import {PaymentComponent} from "./shop/alert/payment/payment.component";
 import {CompleteComponent} from "./shop/alert/payment/complete/complete.component";
-import {ItemService} from "./shared/item.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {ProductService} from "./shared/product.service";
+import {ShoppingCartService} from "./shop/shopping-cart/shopping-cart.service";
+import { ProductComponent } from './admin/edit-items/product/product.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     EditItemComponent,
     AlertComponent,
     OrdersComponent,
-    OrderComponent
+    OrderComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [ItemService],
+  providers: [ProductService,ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

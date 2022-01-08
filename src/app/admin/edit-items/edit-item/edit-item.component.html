@@ -2,8 +2,8 @@
   <form class="editItemForm" [formGroup]="editItemForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-xs-12">
-        <button [disabled]="!editItemForm.valid"  type="submit" class="btn btn-success">Save</button>
-        <button  (click)="onDelete()" type="button" class="btn btn-danger">Delete</button>
+        <button [disabled]="!editItemForm.valid"  type="submit" class="btn btn-success">{{isEditing? 'Save':'Add'}}</button>
+        <button  (click)="onDelete()" type="button" class="btn btn-danger">{{isEditing? 'Remove':'Clear'}}</button>
       </div>
       <div class=" row">
         <div class="col-xs-12">
@@ -46,7 +46,7 @@
           <div class="form-group">
             <label for="description">description</label>
             <textarea
-              formControlName="description"
+              formControlName="desc"
               id="description"
               rows="6"
               class="form-control"></textarea>

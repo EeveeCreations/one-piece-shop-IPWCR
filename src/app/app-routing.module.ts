@@ -9,19 +9,22 @@ import {OrdersComponent} from "./admin/orders/orders.component";
 import {PaymentComponent} from "./shop/alert/payment/payment.component";
 import {CompleteComponent} from "./shop/alert/payment/complete/complete.component";
 import {EditItemComponent} from "./admin/edit-items/edit-item/edit-item.component";
+import {ProductResolver} from "./admin/edit-items/product-resolver.services";
+import {OrdersResolver} from "./admin/orders/orders-resolver.service";
 
 const routes: Routes = [
   {path: '', component: StartPageComponent},
   {
-    path: 'shop', component: ShopComponent, children: [
+    path: 'shop', component: ShopComponent,resolve: [ProductResolver], children: [
       {
         path: 'payment', component: PaymentComponent, children: [
           {path: ':cartId', component: CompleteComponent}
         ]}
     ]},
   {path: 'admin', component: AdminComponent, children: [
-      {path: 'orders', component: OrdersComponent},
-      {path: 'editShop', component: EditItemsComponent, children: [
+      {path: '',redirectTo: 'orders', pathMatch: 'full'},
+      {path: 'orders', component: OrdersComponent, resolve:[OrdersResolver]},
+      {path: 'editShop', component: EditItemsComponent,resolve:[ProductResolver], children: [
           {path: ':id/edit', component: EditItemComponent}
         ]}
     ]},
