@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../../../shop/item/product.model";
+import {Product} from "../../../shared/product/product.model";
 
 @Component({
   selector: 'app-product',
@@ -8,6 +8,7 @@ import {Product} from "../../../shop/item/product.model";
 })
 export class ProductComponent implements OnInit {
   @Input('item') product: Product;
+  @Input()index: number;
   routeId: number;
   constructor() {
     // console.log(this.product.id)

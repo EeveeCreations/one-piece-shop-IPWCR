@@ -1,8 +1,7 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {Product} from "./item/product.model";
+import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Product} from "../shared/product/product.model";
 import {ShoppingCartService} from "./shopping-cart/shopping-cart.service";
-import {CartItem} from "./shopping-cart/cart-item.model";
-import {ProductService} from "../shared/product.service";
+import {ProductService} from "../shared/product/product.service";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -12,8 +11,9 @@ import {Subscription} from "rxjs";
   providers:[ShoppingCartService]
 })
 export class ShopComponent implements OnInit , OnDestroy{
-  shopProducts: Product[];
-  subscriptionOfProducts: Subscription;
+  public shopProducts: Product[];
+  private subscriptionOfProducts: Subscription;
+  public isInPayMode:boolean = true;
 
   constructor(private shoppingCartService: ShoppingCartService,
               private productService: ProductService) { }
@@ -23,12 +23,15 @@ export class ShopComponent implements OnInit , OnDestroy{
     }
 
   ngOnInit(): void {
-    this.shopProducts = this.productService.getProducts()
-    this.subscriptionOfProducts = this.productService.productEvent.subscribe(
-      (products: Product[]) => {
-        this.shopProducts = products;
-      }
-    );
+    this.shopProducts = this.productService.getProducts();
+    // this.subscriptionOfProducts = this.productService.productEvent.subscribe(
+    //   (products: Product[]) => {
+    //     this.shopProducts = products;
+    //   }
+    // );
   }
 
+  startPayment(event: boolean) {
+    this.isInPayMode =event;
+  }
 }

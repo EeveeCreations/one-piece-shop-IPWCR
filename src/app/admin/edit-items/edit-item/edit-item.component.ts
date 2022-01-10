@@ -1,32 +1,34 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../../../shop/item/product.model";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Product} from "../../../shared/product/product.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {ProductService} from "../../../shared/product.service";
+import {ProductService} from "../../../shared/product/product.service";
 import {Subscription} from "rxjs";
+import {RequestService} from "../../../shared/requests/request.service";
 
 @Component({
   selector: 'app-edit-item',
   templateUrl: './edit-item.component.html',
   styleUrls: ['./edit-item.component.css']
 })
-export class EditItemComponent implements OnInit {
+export class EditItemComponent implements OnInit, OnDestroy {
   editItemForm: FormGroup;
   editSubscription: Subscription;
   isEditing: boolean = false;
-  currentId: bigint;
+  currentId: number;
   product: Product;
 
   constructor(private route: Router,
               private activeRoute: ActivatedRoute,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private requestService:RequestService) {
   }
 
   ngOnInit(): void {
     this.initForm();
     this.editSubscription = this.activeRoute.params.subscribe(
       (params: Params) => {
-        this.currentId = BigInt(+params['id']);
+        this.currentId = params['id'];
         this.isEditing = !isNaN(+params['id']);
         this.initForm();
       }
@@ -39,13 +41,12 @@ export class EditItemComponent implements OnInit {
     let category = '';
     let imagePath = '';
     if (this.isEditing) {
-      this.product = this.productService.getProduct(Number(this.currentId));
+      this.product = this.productService.getProduct(this.currentId);
       name = this.product.name;
       description = this.product.description;
       price = this.product.price;
       category = this.product.category;
       imagePath = this.product.imagePath;
-      this.currentId = this.product.id
     }
     this.editItemForm = new FormGroup({
       'name': new FormControl(name, Validators.required),
@@ -58,18 +59,35 @@ export class EditItemComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.isEditing) {
+      this.productService.addProduct(this.product);
+      this.saveChanges('put')
+    } else {
+      this.productService.updateProduct(Number(this.currentId), this.product);
+      this.saveChanges('post')
 
-    this.redirect()
+    }
+    this.redirect();
+  }
+
+  private saveChanges(duty:string) {
+    const id = this.currentId.toString();
+    this.requestService.requestOfProduct(id,duty,this.product);
   }
 
   onDelete() {
     this.productService.deleteProduct(Number(this.currentId));
-    this.redirect()
+    this.saveChanges('delete');
+    this.redirect();
   }
 
   redirect() {
     this.editItemForm.reset();
     this.isEditing = false;
-    this.route.navigate(['../'], {relativeTo: this.activeRoute});
+    this.route.navigate(['../editshop'], {relativeTo: this.activeRoute});
+  }
+
+  ngOnDestroy(): void {
+    this.editSubscription.unsubscribe();
   }
 }

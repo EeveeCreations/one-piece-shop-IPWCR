@@ -1,11 +1,10 @@
 <article class="col-xs-12">
   <section class="col-sm-6">
     <ul class="list-group">
-      <li *ngFor="let item of shopItems;"
-          class=" itemDetails list-group-item background col-xs-12">
-        <app-product
-          [item]="item"></app-product>
-      </li>
+      <app-product *ngFor="let item of shopItems; let i = index"
+          [item]="item"
+          [index]="i"
+          ></app-product>
     </ul>
   </section>
   <section class="col-sm-6">

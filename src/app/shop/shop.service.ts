@@ -1,14 +1,16 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnInit} from "@angular/core";
 import {ShoppingCartService} from "./shopping-cart/shopping-cart.service";
-import {Product} from "./item/product.model";
-import {ProductService} from "../shared/product.service";
+import {Product} from "../shared/product/product.model";
+import {ProductService} from "../shared/product/product.service";
 
 @Injectable()
-export class ShopService{
+export class ShopService implements OnInit{
   allItemsOfShop: Product[];
 
   constructor(private shoppingCartService: ShoppingCartService,
               private productService: ProductService) {
+  }
+  ngOnInit(): void {
     this.getAllItemsOfShop();
   }
 
@@ -26,14 +28,14 @@ export class ShopService{
 
   private giveAlertToDelete(product: Product) {
     if (confirm("Do you want to Delete this Item from the Cart")) {
-      this.shoppingCartService.DeleteItemFromCart(product);
+      this.shoppingCartService.updateCart(product);
     }
   }
 
   private giveAlertToAdd(product: Product) {
-    confirm("Do you want to Add this Item to the Cart");
-    this.shoppingCartService.AddItemToCart(product);
-
+    if(confirm("Do you want to Add this Item to the Cart")) {
+      this.shoppingCartService.updateCart(product);
+    }
   }
 
   getAllShopItems(): Product[] {
@@ -43,4 +45,5 @@ export class ShopService{
   setItemsOfShop(newItems: Product[]) {
     this.allItemsOfShop = newItems;
   }
+
 }

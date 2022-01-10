@@ -8,8 +8,7 @@ import {ShopComponent} from "./shop/shop.component";
 import {OrdersComponent} from "./admin/orders/orders.component";
 import {PaymentComponent} from "./shop/alert/payment/payment.component";
 import {CompleteComponent} from "./shop/alert/payment/complete/complete.component";
-import {EditItemComponent} from "./admin/edit-items/edit-item/edit-item.component";
-import {ProductResolver} from "./admin/edit-items/product-resolver.services";
+import {ProductResolver} from "./shared/product/product-resolver.services";
 import {OrdersResolver} from "./admin/orders/orders-resolver.service";
 
 const routes: Routes = [
@@ -22,11 +21,10 @@ const routes: Routes = [
         ]}
     ]},
   {path: 'admin', component: AdminComponent, children: [
-      {path: '',redirectTo: 'orders', pathMatch: 'full'},
-      {path: 'orders', component: OrdersComponent, resolve:[OrdersResolver]},
-      {path: 'editShop', component: EditItemsComponent,resolve:[ProductResolver], children: [
-          {path: ':id/edit', component: EditItemComponent}
-        ]}
+      {path: '', redirectTo: 'orders', pathMatch: 'full'},
+      {path: 'orders', component: OrdersComponent, resolve: [OrdersResolver]},
+      {path: 'editShop', component: EditItemsComponent, resolve: [ProductResolver]},
+      {path: ':id', component: EditItemsComponent, resolve: [ProductResolver]}
     ]},
   {path: '**', component: ErrorPageComponent},
 ];

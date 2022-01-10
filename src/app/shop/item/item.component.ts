@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "./product.model";
+import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Product} from "../../shared/product/product.model";
 import {ShoppingCartService} from "../shopping-cart/shopping-cart.service";
 import {ShopService} from "../shop.service";
 
@@ -8,15 +8,21 @@ import {ShopService} from "../shop.service";
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit {
-  @Input('product')  product: Product;
+export class ItemComponent implements OnInit, OnChanges {
+  @Input('product') product: Product;
   @Input('i') index: number;
+  @ViewChild('element') element: ElementRef;
+  private inCart: boolean = true;
 
-  constructor(private shoppingCartService:ShoppingCartService,
-              private shopService:ShopService) { }
+  constructor(private shoppingCartService: ShoppingCartService,
+              private shopService: ShopService) {
+  }
 
   ngOnInit(): void {
-
+    this.inCart = this.shoppingCartService.seeIfItemInCart(this.product)
+    if (this.inCart) {
+      this.element.nativeElement.classList.add('added');
+    }
   }
 
   alertToEvent() {
@@ -30,7 +36,15 @@ export class ItemComponent implements OnInit {
   }
 
   isInCart(): boolean {
-    console.log(this.shoppingCartService.seeIfItemInCart(this.product));
-    return this.shoppingCartService.seeIfItemInCart(this.product);
+
+    return this.inCart;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.inCart = this.shoppingCartService.seeIfItemInCart(this.product)
+    if (this.inCart) {
+      this.element.nativeElement.className = 'added';
+
+    }
   }
 }

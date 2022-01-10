@@ -27,9 +27,12 @@
   color: var(--white);
   text-transform: capitalize;
 }
-a.ng-active{
+ng-reflect{
   font-weight: 900;
   color: var(--master_primairy_color);
+}
+li.ng-reflect{
+  background: transparent;
 }
 
 @media only screen and (min-width: 350px) and (max-width: 800px) {

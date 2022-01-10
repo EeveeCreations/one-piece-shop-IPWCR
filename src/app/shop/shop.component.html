@@ -38,7 +38,8 @@
       </div>
     </div>
   </section>
- <app-shopping-cart></app-shopping-cart>
+  <app-payment *ngIf="isInPayMode"></app-payment>
+ <app-shopping-cart (startPayment)="startPayment($event)"></app-shopping-cart>
   <section class="shopSection col-xs-12">
     <ul class="col-xs-12">
       <app-item *ngFor="let product of shopProducts;let i = index"

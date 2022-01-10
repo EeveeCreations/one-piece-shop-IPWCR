@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Product} from "../shop/item/product.model";
+import {Product} from "./product.model";
 import {Subject} from "rxjs";
 
 @Injectable()
@@ -16,8 +16,9 @@ export class ProductService {
 
 
   }
-  updateProduct(){
-
+  updateProduct(index: number, newProduct: Product){
+    this.products[index] = newProduct;
+    this.productEvent.next(this.products.slice());
   }
   deleteProduct(id: number){
     this.products.splice( id,1)

@@ -1,5 +1,10 @@
-img{
+figure{
   border: 2px solid var(--master_primairy_color);
-  max-height: 250px;
-  max-width: 250px;
+  height: 150px;
 }
+li{
+  margin: 0;
+  border: 2px solid var(--master_third_color);
+  color: var(--master_third_color_darker);
+}
+

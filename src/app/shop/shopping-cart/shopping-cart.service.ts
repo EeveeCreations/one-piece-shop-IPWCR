@@ -2,51 +2,67 @@ import {Injectable} from "@angular/core";
 import {ShoppingCart} from "./shopping-cart.model";
 import {Subject} from "rxjs";
 import {CartItem} from "./cart-item.model";
-import {ProductService} from "../../shared/product.service";
-import {Product} from "../item/product.model";
+import {ProductService} from "../../shared/product/product.service";
+import {Product} from "../../shared/product/product.model";
+import {OrderService} from "../../admin/orders/order.service";
 
 @Injectable()
 export class ShoppingCartService {
-  shoppingCartItems: CartItem[] = [];
-  shoppingCart: ShoppingCart;
-  shoppingCartEvent:  Subject<ShoppingCart>= new Subject<ShoppingCart>();
+  private shoppingCart: ShoppingCart;
+  shoppingCartEvent: Subject<ShoppingCart> = new Subject<ShoppingCart>();
   cartItemsEvent: Subject<CartItem[]> = new Subject<CartItem[]>();
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+              private orderService: OrderService) {
     this.shoppingCart = new ShoppingCart(0, [], 0, false)
   }
 
   returnCart() {
-    return this.shoppingCartItems.slice();
+    return this.shoppingCart;
+  }
+
+  returnCartItems() {
+    return this.shoppingCart.cartItems.slice();
+  }
+
+  private calculatePrice() : number{
+    let totalPrice: number = 0;
+    for (const item of this.shoppingCart.cartItems) {
+      totalPrice += item.product.price;
+    }
+    return totalPrice;
+  }
+
+  updateCart(product: Product) {
+    if (this.seeIfItemInCart(product)) {
+      this.DeleteItemFromCart(product);
+    } else {
+      this.AddItemToCart(product);
+    }
+    this.shoppingCart.amountOfProducts = this.shoppingCart.cartItems.length;
+    this.shoppingCart.totalPrice = this.calculatePrice();
+    console.log(this.shoppingCart)
+    this.shoppingCartEvent.next(this.shoppingCart);
   }
 
   AddItemToCart(product: Product) {
     const item: CartItem = new CartItem(this.shoppingCart, product, 1)
-    this.shoppingCartItems.push(item);
-    this.shoppingCart.amountOfProducts ++;
-    this.shoppingCartEvent.next(this.shoppingCart);
-    // this.cartItemsEvent.next(this.shoppingCartItems.slice());
+    this.shoppingCart.cartItems.push(item);
   }
 
   DeleteItemFromCart(product: Product) {
     const item = this.findProductInCart(product);
-    const index = this.shoppingCartItems.indexOf(item);
-    this.shoppingCartItems.splice(index, 1);
-    this.shoppingCart.amountOfProducts --;
-    this.shoppingCartEvent.next(this.shoppingCart);
-    // this.cartItemsEvent.next(this.shoppingCartItems.slice());
+    const index = this.shoppingCart.cartItems.indexOf(item);
+    this.shoppingCart.cartItems.splice(index, 1);
   }
 
   private findProductInCart(product: Product): CartItem {
-    for(let cartItem of this.shoppingCartItems) {
-      if(cartItem.product == product){
-        console.log(cartItem);
+    for (let cartItem of this.shoppingCart.cartItems) {
+      if (cartItem.product == product) {
         return cartItem;
       }
-      else {
-        return undefined;
-      }
     }
+    return undefined;
   }
 
   buyTheCart(cart: ShoppingCart) {
@@ -60,7 +76,12 @@ export class ShoppingCartService {
 
   setShoppingCart(cart: ShoppingCart) {
     this.shoppingCart = cart;
-    this.shoppingCartItems = this.shoppingCart.cartItems
-    this.cartItemsEvent.next(this.shoppingCartItems.slice())
+    // this.shoppingCartItems = this.shoppingCart.cartItems;
+    this.cartItemsEvent.next(this.shoppingCart.cartItems.slice());
+  }
+  putCartToOrders(){
+    this.shoppingCart.isOrdered = true;
+    this.orderService.addToOrders(this.shoppingCart);
+
   }
 }

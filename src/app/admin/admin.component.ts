@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {OrderService} from "./orders/order.service";
-import {Product} from "../shop/item/product.model";
+import {Product} from "../shared/product/product.model";
 import {ShopService} from "../shop/shop.service";
-import {RequestService} from "../shared/Requests/request.service";
+import {RequestService} from "../shared/requests/request.service";
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
-  providers: [OrderService]
 })
 export class AdminComponent implements OnInit {
   shopItems: Product[];
@@ -26,10 +25,6 @@ export class AdminComponent implements OnInit {
   }
 
   openOrders() {
-      this.requestService.requestOfOrder("all", "get",null).subscribe();
-  }
-
-  editShop() {
-     this.requestService.requestOfProduct("all", "get",null).subscribe();
+      // this.requestService.requestOfOrder("all", "get",null).subscribe();
   }
 }

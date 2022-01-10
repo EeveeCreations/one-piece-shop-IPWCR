@@ -1,5 +1,5 @@
 export class Product {
-  private _id: bigint;
+  private _id: number;
   private _name: string;
   private _description: string;
   private _price: number;
@@ -7,7 +7,7 @@ export class Product {
   private _imagePath: string;
 
 
-  constructor(id: bigint, name: string, description: string, price: number, category: string, imagePath: string) {
+  constructor(id: number, name: string, description: string, price: number, category: string, imagePath: string) {
     this._id = id;
     this._name = name;
     this._description = description;
@@ -17,11 +17,11 @@ export class Product {
   }
 
 
-  get id(): bigint {
+  get id(): number {
     return this._id;
   }
 
-  set id(value: bigint) {
+  set id(value: number) {
     this._id = value;
   }
 

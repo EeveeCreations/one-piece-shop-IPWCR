@@ -3,9 +3,9 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../models/user.model";
 import {ShoppingCart} from "../../shop/shopping-cart/shopping-cart.model";
 import {Order} from "../../admin/orders/order.model";
-import {Product} from "../../shop/item/product.model";
+import {Product} from "../product/product.model";
 import {tap} from "rxjs";
-import {ProductService} from "../product.service";
+import {ProductService} from "../product/product.service";
 import {OrderService} from "../../admin/orders/order.service";
 
 @Injectable({providedIn: 'root'})

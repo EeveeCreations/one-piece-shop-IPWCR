@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ActivePerfRecorder} from "@angular/compiler-cli/src/ngtsc/perf";
-import {RequestService} from "../shared/Requests/request.service";
+import {RequestService} from "../shared/requests/request.service";
 
 @Component({
   selector: 'app-header',
@@ -18,6 +18,5 @@ export class HeaderComponent implements OnInit {
 
 
   OnOpenShop() {
-    this.requestService.requestOfProduct("all","get", null).subscribe()
   }
 }
