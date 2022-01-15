@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Order} from './order.model'
-import {ShoppingCart} from "../../shop/shopping-cart/shopping-cart.model";
-import {CartItem} from "../../shop/shopping-cart/cart-item.model";
-import {Product} from "../../shared/product/product.model";
-import {OrderService} from "./order.service";
 import {RequestService} from "../../shared/requests/request.service";
+import {OrderHandelingService} from "../../shared/services/order-handeling.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-orders',
@@ -12,16 +10,22 @@ import {RequestService} from "../../shared/requests/request.service";
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  Orders: Order[];
+  ordersSubscription: Subscription;
+  orders: Order[];
 
   constructor(
-    private orderService: OrderService,
+    private orderHandlingService: OrderHandelingService,
     private requestService: RequestService
   ){
   }
 
   ngOnInit(): void {
-    this.Orders = this.orderService.getAllOrders()
+    this.orders = this.orderHandlingService.getAllOrders();
+    this.ordersSubscription = this.orderHandlingService.orderEvent.subscribe(newOrders => {
+        this.orders = newOrders;
+      }
+    );
+    console.log(this.orders);
 
     }
 

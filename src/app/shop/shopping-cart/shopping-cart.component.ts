@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ShoppingCartService} from "./shopping-cart.service";
-import {ShoppingCart} from "./shopping-cart.model";
+import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
+import {ShoppingCart} from "../../shared/models/shopping-cart.model";
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 
@@ -10,7 +10,6 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  @Output('startPayment') payCart: EventEmitter<boolean> = new EventEmitter<boolean>();
   public cart: ShoppingCart;
   private cartSubscription: Subscription;
 
@@ -21,14 +20,12 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartSubscription = this.shoppingCartService.shoppingCartEvent.subscribe(cart =>{
-      console.log(cart);
       this.cart = cart;}
     )
   }
 
   onBuyCart() {
-    this.payCart.emit(true);
-    // this.shoppingCartService.buyTheCart(this.cart);
+    this.shoppingCartService.buyTheCart(true);
   }
 
 

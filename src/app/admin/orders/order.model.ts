@@ -1,4 +1,4 @@
-import {ShoppingCart} from "../../shop/shopping-cart/shopping-cart.model";
+import {ShoppingCart} from "../../shared/models/shopping-cart.model";
 
 export class Order {
   private _cart: ShoppingCart;

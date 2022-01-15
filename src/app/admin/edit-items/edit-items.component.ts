@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../../shared/product/product.model";
-import {ProductService} from "../../shared/product/product.service";
-import {RequestService} from "../../shared/requests/request.service";
+import {Product} from "../../shared/models/product.model";
+import {ProductService} from "../../shared/services/product.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-edit-items',
@@ -9,18 +9,21 @@ import {RequestService} from "../../shared/requests/request.service";
   styleUrls: ['./edit-items.component.css']
 })
 export class EditItemsComponent implements OnInit {
-  @Input() shopItems: Product[];
+  shopItems: Product[];
+  productSubscription: Subscription;
   isEditing: boolean = false;
 
-  constructor(private productService: ProductService,
-              private requestService: RequestService) {
-    this.shopItems = productService.getProducts();
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit(): void {
+    this.shopItems = this.productService.getProducts();
+    this.productSubscription = this.productService.productEvent.subscribe(
+      (updateProducts:Product[]) =>{
+      this.shopItems = updateProducts;
+    })
 
   }
-
 
   onEditItem(item: Product) {
     this.isEditing = true;

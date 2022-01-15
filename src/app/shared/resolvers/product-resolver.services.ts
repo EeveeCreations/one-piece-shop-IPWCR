@@ -2,8 +2,8 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/rou
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {RequestService} from "../requests/request.service";
-import {Product} from "./product.model";
-import {ProductService} from "./product.service";
+import {Product} from "../models/product.model";
+import {ProductService} from "../services/product.service";
 @Injectable({providedIn: 'root'})
 export class ProductResolver implements Resolve<Product[]>{
   constructor(private requestService: RequestService,

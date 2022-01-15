@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {OrderService} from "./orders/order.service";
-import {Product} from "../shared/product/product.model";
-import {ShopService} from "../shop/shop.service";
+import {OrderService} from "../shared/services/order.service";
+import {Product} from "../shared/models/product.model";
+import {ShopService} from "../shared/services/shop.service";
 import {RequestService} from "../shared/requests/request.service";
 
 @Component({

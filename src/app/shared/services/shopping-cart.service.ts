@@ -1,20 +1,21 @@
 import {Injectable} from "@angular/core";
-import {ShoppingCart} from "./shopping-cart.model";
+import {ShoppingCart} from "../models/shopping-cart.model";
 import {Subject} from "rxjs";
-import {CartItem} from "./cart-item.model";
-import {ProductService} from "../../shared/product/product.service";
-import {Product} from "../../shared/product/product.model";
-import {OrderService} from "../../admin/orders/order.service";
+import {CartItem} from "../models/cart-item.model";
+import {ProductService} from "./product.service";
+import {Product} from "../models/product.model";
+import {OrderHandelingService} from "./order-handeling.service";
 
 @Injectable()
 export class ShoppingCartService {
   private shoppingCart: ShoppingCart;
   shoppingCartEvent: Subject<ShoppingCart> = new Subject<ShoppingCart>();
-  cartItemsEvent: Subject<CartItem[]> = new Subject<CartItem[]>();
+
+  paymentEvent:Subject<boolean> = new Subject<boolean>();
 
   constructor(private productService: ProductService,
-              private orderService: OrderService) {
-    this.shoppingCart = new ShoppingCart(0, [], 0, false)
+              private orderHandlingService: OrderHandelingService) {
+    this.shoppingCart= new ShoppingCart(0, [], 0, false)
   }
 
   returnCart() {
@@ -34,6 +35,7 @@ export class ShoppingCartService {
   }
 
   updateCart(product: Product) {
+    this.paymentEvent.next(false)
     if (this.seeIfItemInCart(product)) {
       this.DeleteItemFromCart(product);
     } else {
@@ -65,8 +67,9 @@ export class ShoppingCartService {
     return undefined;
   }
 
-  buyTheCart(cart: ShoppingCart) {
-
+  buyTheCart(isPaying: boolean ) {
+    this.paymentEvent.next(isPaying);
+    console.log(this.shoppingCart);
   }
 
 
@@ -77,11 +80,11 @@ export class ShoppingCartService {
   setShoppingCart(cart: ShoppingCart) {
     this.shoppingCart = cart;
     // this.shoppingCartItems = this.shoppingCart.cartItems;
-    this.cartItemsEvent.next(this.shoppingCart.cartItems.slice());
+    // this.cartItemsEvent.next(this.shoppingCart.cartItems.slice());
   }
   putCartToOrders(){
     this.shoppingCart.isOrdered = true;
-    this.orderService.addToOrders(this.shoppingCart);
+    this.orderHandlingService.addNewOrder(this.shoppingCart);
 
   }
 }

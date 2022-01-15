@@ -1,4 +1,4 @@
-<section class="alertWindow" [ngStyle]="isProductInCart()? 'add': 'delete'" class="addWindow background">
+<section [ngStyle]="isProductInCart()? 'add': 'delete'" class="addWindow background">
   <header>
     <h2>{{isProductInCart() ? 'AddItem To Cart' : 'Delete item from Cart'}}</h2>
   </header>

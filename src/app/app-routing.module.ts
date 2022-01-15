@@ -8,8 +8,9 @@ import {ShopComponent} from "./shop/shop.component";
 import {OrdersComponent} from "./admin/orders/orders.component";
 import {PaymentComponent} from "./shop/alert/payment/payment.component";
 import {CompleteComponent} from "./shop/alert/payment/complete/complete.component";
-import {ProductResolver} from "./shared/product/product-resolver.services";
-import {OrdersResolver} from "./admin/orders/orders-resolver.service";
+import {ProductResolver} from "./shared/resolvers/product-resolver.services";
+import {OrdersResolver} from "./shared/resolvers/orders-resolver.service";
+import {AuthenticationComponent} from "./admin/authentication/authentication.component";
 
 const routes: Routes = [
   {path: '', component: StartPageComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
         ]}
     ]},
   {path: 'admin', component: AdminComponent, children: [
-      {path: '', redirectTo: 'orders', pathMatch: 'full'},
+      {path: '', redirectTo: 'authentication', pathMatch: 'full'},
+      {path: 'authentication', component: AuthenticationComponent},
       {path: 'orders', component: OrdersComponent, resolve: [OrdersResolver]},
       {path: 'editShop', component: EditItemsComponent, resolve: [ProductResolver]},
       {path: ':id', component: EditItemsComponent, resolve: [ProductResolver]}

@@ -1,4 +1,4 @@
-import {Product} from "../../shared/product/product.model";
+import {Product} from "./product.model";
 import {ShoppingCart} from "./shopping-cart.model";
 
 export class CartItem{

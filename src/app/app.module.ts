@@ -21,10 +21,11 @@ import {OrderComponent} from './admin/orders/order/order.component';
 import {PaymentComponent} from "./shop/alert/payment/payment.component";
 import {CompleteComponent} from "./shop/alert/payment/complete/complete.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {ProductService} from "./shared/product/product.service";
-import {ShoppingCartService} from "./shop/shopping-cart/shopping-cart.service";
+import {ProductService} from "./shared/services/product.service";
+import {ShoppingCartService} from "./shared/services/shopping-cart.service";
 import { ProductComponent } from './admin/edit-items/product/product.component';
-import {OrderService} from "./admin/orders/order.service";
+import {OrderService} from "./shared/services/order.service";
+import { AuthenticationComponent } from './admin/authentication/authentication.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {OrderService} from "./admin/orders/order.service";
     AlertComponent,
     OrdersComponent,
     OrderComponent,
-    ProductComponent
+    ProductComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,

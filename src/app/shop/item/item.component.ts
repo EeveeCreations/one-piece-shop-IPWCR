@@ -1,7 +1,7 @@
 import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {Product} from "../../shared/product/product.model";
-import {ShoppingCartService} from "../shopping-cart/shopping-cart.service";
-import {ShopService} from "../shop.service";
+import {Product} from "../../shared/models/product.model";
+import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
+import {ShopService} from "../../shared/services/shop.service";
 
 @Component({
   selector: 'app-item',
@@ -13,6 +13,7 @@ export class ItemComponent implements OnInit, OnChanges {
   @Input('i') index: number;
   @ViewChild('element') element: ElementRef;
   private inCart: boolean = true;
+  isHovering: boolean;
 
   constructor(private shoppingCartService: ShoppingCartService,
               private shopService: ShopService) {
@@ -31,7 +32,7 @@ export class ItemComponent implements OnInit, OnChanges {
 
   OnClickProduct(){
 
-    // return this.shoppingCartService.seeIfItemInCart(this.product);
+    // return this.shoppingCartService.seeIfItemInCart(this.resolvers);
 
   }
 

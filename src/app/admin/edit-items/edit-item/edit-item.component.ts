@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Product} from "../../../shared/product/product.model";
+import {Product} from "../../../shared/models/product.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {ProductService} from "../../../shared/product/product.service";
+import {ProductService} from "../../../shared/services/product.service";
 import {Subscription} from "rxjs";
 import {RequestService} from "../../../shared/requests/request.service";
 
@@ -21,7 +21,8 @@ export class EditItemComponent implements OnInit, OnDestroy {
   constructor(private route: Router,
               private activeRoute: ActivatedRoute,
               private productService: ProductService,
-              private requestService:RequestService) {
+              private requestService: RequestService
+  ) {
   }
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class EditItemComponent implements OnInit, OnDestroy {
       (params: Params) => {
         this.currentId = params['id'];
         this.isEditing = !isNaN(+params['id']);
+        console.log(this.isEditing)
         this.initForm();
       }
     )
@@ -50,34 +52,34 @@ export class EditItemComponent implements OnInit, OnDestroy {
     }
     this.editItemForm = new FormGroup({
       'name': new FormControl(name, Validators.required),
-      'desc': new FormControl(description, Validators.required),
+      'description': new FormControl(description, Validators.required),
       'price': new FormControl(price, Validators.required),
       'category': new FormControl(category, Validators.required),
       'imagePath': new FormControl(imagePath, Validators.required),
-    })
-
+    });
   }
 
   onSubmit() {
-    if (this.isEditing) {
-      this.productService.addProduct(this.product);
-      this.saveChanges('put')
+    if (!this.isEditing) {
+      this.productService.addProduct(this.product = this.editItemForm.value);
+      this.saveChanges('put','')
     } else {
-      this.productService.updateProduct(Number(this.currentId), this.product);
-      this.saveChanges('post')
-
+      this.productService.updateProduct(Number(this.currentId), this.editItemForm.value);
+      const id = Number(this.product.productNumber).toString();
+      console.log(id)
+      this.saveChanges('put',id)
     }
     this.redirect();
   }
 
-  private saveChanges(duty:string) {
-    const id = this.currentId.toString();
-    this.requestService.requestOfProduct(id,duty,this.product);
+  private saveChanges(duty:string,id: string) {
+    this.requestService.requestOfProduct(id, duty, this.product).subscribe();
   }
 
   onDelete() {
-    this.productService.deleteProduct(Number(this.currentId));
-    this.saveChanges('delete');
+    this.productService.deleteProduct(this.currentId);
+    const id = Number(this.product.productNumber).toString();
+    this.saveChanges('delete',id);
     this.redirect();
   }
 

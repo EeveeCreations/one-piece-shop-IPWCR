@@ -1,0 +1,25 @@
+<article>
+  <section>
+    <form [formGroup]="userForm" class="logInForm">
+      <label for="name">userName: </label><br>
+      <input id="name" type="name" formControlName="name">
+      <div *ngIf="isLogIn">
+        <label for="email">userName: </label><br>
+        <input id="email" type="email" formControlName="email">
+      </div>
+      <label for="pass">userName: </label><br>
+      <input id="pass" type="password" formControlName="password">
+    </form>
+    <button
+      [disabled]="!userForm.valid"
+      type="submit" class="btn btn-primary"
+    >
+      {{isLogIn? 'Log in' : 'Sign up!'}}</button>
+    |
+    <button (click)="onSwitchMode()"
+            type="button"
+            class="btn btn-success"
+    >
+      {{isLogIn? 'Switch to Sign up' : 'Switch to Login'}}</button>
+  </section>
+</article>

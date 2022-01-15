@@ -1,7 +1,7 @@
 import {Injectable, OnInit} from "@angular/core";
-import {ShoppingCartService} from "./shopping-cart/shopping-cart.service";
-import {Product} from "../shared/product/product.model";
-import {ProductService} from "../shared/product/product.service";
+import {ShoppingCartService} from "./shopping-cart.service";
+import {Product} from "../models/product.model";
+import {ProductService} from "./product.service";
 
 @Injectable()
 export class ShopService implements OnInit{

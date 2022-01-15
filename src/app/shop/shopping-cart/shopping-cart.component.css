@@ -1,6 +1,7 @@
 
 /*Shopping cart*/
 .ShoppingCart , .counter{
+  cursor: pointer;
   right: 10vh;
   top: 20vh;
   z-index: 2;
