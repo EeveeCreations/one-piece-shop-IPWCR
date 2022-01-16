@@ -1,25 +1,38 @@
-<article>
-  <section>
-    <form [formGroup]="userForm" class="logInForm">
-      <label for="name">userName: </label><br>
-      <input id="name" type="name" formControlName="name">
-      <div *ngIf="isLogIn">
-        <label for="email">userName: </label><br>
-        <input id="email" type="email" formControlName="email">
+<article class="container col-xs-12 background">
+  <section class="container-fluid">
+    <section class="col-xs-12 ">
+      <form [formGroup]="userForm" class="loginForm col-xs-12">
+          <label for="email">E-mail: </label><br>
+          <input id="email" type="email" formControlName="email">
+          <div *ngIf="!isLogIn">
+            <label for="name">userName: </label><br>
+            <input id="name" type="name" formControlName="name"><br>
+            <label>Admin rights: </label><br>
+            <input name="gender" id="admin" value="admin" type="radio"
+                   formControlName="isAdmin"><label>Admin</label><br>
+            <input name="gender" id="user" value="user" type="radio" formControlName="isAdmin"><label>User</label>
+          </div>
+          <br>
+          <label for="pass">Password: </label><br>
+          <input id="pass" type="password" formControlName="password"><br>
+          <div *ngIf="!isLogIn">
+            <label for="passCheck">checkPassword </label><br>
+            <input id="passCheck" type="password">
+          </div>
+      </form>
+      <div class="col-xs-12 loginForm">
+        <button
+          [disabled]="!userForm.valid"
+          type="submit" class="btn btn-primary"
+        >
+          {{isLogIn ? 'Log in' : 'Sign up!'}}</button>
+        |
+        <button (click)="onSwitchMode()"
+                type="button"
+                class="btn btn-success"
+        >
+          {{isLogIn ? 'Switch to Sign up' : 'Switch to Login'}}</button>
       </div>
-      <label for="pass">userName: </label><br>
-      <input id="pass" type="password" formControlName="password">
-    </form>
-    <button
-      [disabled]="!userForm.valid"
-      type="submit" class="btn btn-primary"
-    >
-      {{isLogIn? 'Log in' : 'Sign up!'}}</button>
-    |
-    <button (click)="onSwitchMode()"
-            type="button"
-            class="btn btn-success"
-    >
-      {{isLogIn? 'Switch to Sign up' : 'Switch to Login'}}</button>
+    </section>
   </section>
 </article>

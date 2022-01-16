@@ -1,25 +1,26 @@
 export class User {
-  private _id: bigint;
+  private _id: number;
   private _name: string;
   private _email: string;
-  private _passcode: string;
   private _isAdmin: boolean;
+  private _token: string;
+  private _endDate: Date;
 
 
-  constructor(id: bigint, name: string,email: string, passcode: string, isAdmin: boolean) {
+  constructor(id: number, name: string, email: string, isAdmin: boolean, token: string, endDate: Date) {
     this._id = id;
     this._name = name;
-    this._email = email
-    this._passcode = passcode;
+    this._email = email;
     this._isAdmin = isAdmin;
+    this._token = token;
+    this._endDate = endDate;
   }
 
-
-  get id(): bigint {
+  get id(): number {
     return this._id;
   }
 
-  set id(value: bigint) {
+  set id(value: number) {
     this._id = value;
   }
 
@@ -39,12 +40,8 @@ export class User {
     this._email = value;
   }
 
-  get passcode(): string {
-    return this._passcode;
-  }
-
-  set passcode(value: string) {
-    this._passcode = value;
+  get token(): string {
+    return this.token;
   }
 
   get isAdmin(): boolean {
@@ -53,5 +50,13 @@ export class User {
 
   set isAdmin(value: boolean) {
     this._isAdmin = value;
+  }
+
+  get endDate(): Date {
+    return this._endDate;
+  }
+
+  set endDate(value: Date) {
+    this._endDate = value;
   }
 }

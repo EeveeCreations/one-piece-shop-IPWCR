@@ -4,7 +4,7 @@ import {Subject} from "rxjs";
 import {CartItem} from "../models/cart-item.model";
 import {ProductService} from "./product.service";
 import {Product} from "../models/product.model";
-import {OrderHandelingService} from "./order-handeling.service";
+import {OrderHandlingService} from "./order-handling.service";
 
 @Injectable()
 export class ShoppingCartService {
@@ -14,7 +14,7 @@ export class ShoppingCartService {
   paymentEvent:Subject<boolean> = new Subject<boolean>();
 
   constructor(private productService: ProductService,
-              private orderHandlingService: OrderHandelingService) {
+              private orderHandlingService: OrderHandlingService) {
     this.shoppingCart= new ShoppingCart(0, [], 0, false)
   }
 

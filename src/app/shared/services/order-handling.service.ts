@@ -6,7 +6,7 @@ import {RequestService} from "../requests/request.service";
 import {Product} from "../models/product.model";
 import {ShoppingCart} from "../models/shopping-cart.model";
 @Injectable({providedIn: 'root'})
-export class OrderHandelingService implements OnInit{
+export class OrderHandlingService implements OnInit{
   activeOrders:Order[];
   orderEvent: Subject<Order[]>;
   orderError: string = null;

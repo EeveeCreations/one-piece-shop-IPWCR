@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Order} from './order.model'
 import {RequestService} from "../../shared/requests/request.service";
-import {OrderHandelingService} from "../../shared/services/order-handeling.service";
+import {OrderHandlingService} from "../../shared/services/order-handling.service";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -14,7 +14,7 @@ export class OrdersComponent implements OnInit {
   orders: Order[];
 
   constructor(
-    private orderHandlingService: OrderHandelingService,
+    private orderHandlingService: OrderHandlingService,
     private requestService: RequestService
   ){
   }

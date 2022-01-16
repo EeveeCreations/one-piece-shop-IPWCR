@@ -22,8 +22,8 @@ const routes: Routes = [
         ]}
     ]},
   {path: 'admin', component: AdminComponent, children: [
-      {path: '', redirectTo: 'authentication', pathMatch: 'full'},
-      {path: 'authentication', component: AuthenticationComponent},
+      {path: '', redirectTo: 'auth', pathMatch: 'full'},
+      {path: 'auth', component: AuthenticationComponent},
       {path: 'orders', component: OrdersComponent, resolve: [OrdersResolver]},
       {path: 'editShop', component: EditItemsComponent, resolve: [ProductResolver]},
       {path: ':id', component: EditItemsComponent, resolve: [ProductResolver]}

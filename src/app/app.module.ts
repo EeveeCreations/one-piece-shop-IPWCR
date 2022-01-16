@@ -26,6 +26,8 @@ import {ShoppingCartService} from "./shared/services/shopping-cart.service";
 import { ProductComponent } from './admin/edit-items/product/product.component';
 import {OrderService} from "./shared/services/order.service";
 import { AuthenticationComponent } from './admin/authentication/authentication.component';
+import { LoadingSpinnerComponent } from './shared/deceration-components/loading-spinner/loading-spinner.component';
+import { ErrorWarningComponent } from './shared/deceration-components/error-warning/error-warning.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { AuthenticationComponent } from './admin/authentication/authentication.c
     OrdersComponent,
     OrderComponent,
     ProductComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    LoadingSpinnerComponent,
+    ErrorWarningComponent
   ],
   imports: [
     BrowserModule,
