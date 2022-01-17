@@ -1,0 +1,35 @@
+.loginForm {
+  text-align: center;
+  padding: 20px;
+}
+
+.loginForm > button.btn-primary {
+  border: 2px solid var(--master_third_color_darker);
+  background: var(--master_third_color);
+  color: var(--smokey-black);
+}
+
+.loginForm > button.btn-success {
+  border: 2px solid var(--master_primairy_color_light);
+  background: var(--master_primairy_color_light);
+  font-weight: 600;
+  color: var(--smokey-black);
+
+}
+
+.loginForm > label, .loginForm > div > label {
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: -20px;
+  padding: 5px;
+  color: var(--master_secundairy_color);
+}
+
+input {
+  color: var(--smokey-black);
+  border: 2px solid var(--master_primairy_color_light);
+}
+
+input.ng-invalid.ng-touched {
+  border: 3px solid var(--master_primairy_color);
+}

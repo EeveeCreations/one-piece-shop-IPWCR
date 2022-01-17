@@ -1,0 +1,31 @@
+
+/*Error Page*/
+.error{
+  align-content: center;
+  text-align: center;
+  grid-template-columns: 1fr;
+}
+.error > h2{
+  width: 100%!important;
+}
+.error > button{
+  position: relative;
+  margin: var(--margin_center_vertical);
+}
+/* sources*/
+
+.sources  a{
+  font-weight: normal;
+  display: block;
+}
+.sources section{
+  grid-column: auto/span 3;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 2px solid var(--master_third_color);
+}
+.sources header, .sources li{
+  font-weight: bolder;
+  font-size: 120%;
+  display: block;
+  color: var(--master_primairy_color);
+}

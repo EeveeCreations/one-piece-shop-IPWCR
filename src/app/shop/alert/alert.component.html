@@ -1,0 +1,7 @@
+<section [ngStyle]="isProductInCart()? 'add': 'delete'" class="addWindow background">
+  <header>
+    <h2>{{isProductInCart() ? 'AddItem To Cart' : 'Delete item from Cart'}}</h2>
+  </header>
+  <button class="premBut">{{isProductInCart()? 'Add':'Delete'}}</button>
+  <p >{{isProductInCart()? 'Dont add':'Dont delete'}}}</p>
+</section>

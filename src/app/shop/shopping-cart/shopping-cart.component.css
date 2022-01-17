@@ -1,0 +1,27 @@
+
+/*Shopping cart*/
+.ShoppingCart , .counter{
+  cursor: pointer;
+  right: 10vh;
+  top: 20vh;
+  z-index: 2;
+  position: fixed;
+  text-align: center;
+  height: 70px;
+  width: 70px;
+  font-size: 45px;
+  border-radius: 50%;
+  border: 5px solid var(--master_primairy_color);
+  background: var(--master_secundairy_color);
+}
+.counter {
+  vertical-align: top;
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  font-size: 25px;
+  top: -10px;
+  right: -10px;
+  border-style: none;
+  background: var(--master_primairy_color);
+}

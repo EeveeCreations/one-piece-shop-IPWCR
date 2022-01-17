@@ -1,0 +1,15 @@
+<li class="list-group-item col-xs-12 background">
+  <div class="col-xs-10">
+    Amount of Products:<span>{{order.cart.amountOfProducts}}</span><br>
+    Products:<span *ngFor="let prod of order.cart.cartItems"><br>
+    {{prod.product.name}} - {{prod.amount}}<br>
+    </span>
+    Total Price: <span>€{{order.cart.totalPrice}}</span><br>
+  </div>
+  <div class="col-xs-2">
+    <button class="btn"
+            [ngClass]="order.completed? 'btn-danger' : 'btn-success'" type="button">
+            {{order.completed ? 'Disconfirm' : 'Confirm'}}
+    </button>
+  </div>
+</li>

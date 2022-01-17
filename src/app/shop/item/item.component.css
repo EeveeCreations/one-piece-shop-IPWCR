@@ -1,0 +1,30 @@
+figcaption.desc{
+  background: var(--master_primairy_color);
+  color: var(--white);
+  width: max-content;
+  padding: 2px 5px;
+  top: -45px;
+  position: relative;
+}
+
+/*List items*/
+
+.itemOfShop, .added{
+  border: 5px solid var(--master_third_color);
+  height: 200px;
+  padding: 0;
+  margin: 10px;
+}
+
+.itemOfShop:hover, .added:hover{
+  max-width: 90vh;
+  margin: 2% 0;
+  height: 240px;
+  border: 5px solid var(--master_secundairy_color);
+  transform: translateY( -10px);
+
+}
+/*Added classes*/
+.added{
+  border: 5px solid var(--master_primairy_color_light);
+}

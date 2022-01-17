@@ -1,0 +1,50 @@
+<article class="cssSelections">
+  <section class="cssSelection background">
+    <header>
+      <h2>The lil'old shop</h2>
+    </header>
+    <p class="doublespan">
+      <strong>OIIIIII!</strong><br>
+      Here you have it The fandom shop! Enjoy all the options we offer you!
+      And dont forget to check out after you have filled your car.<br>
+      We dont want you stealing our stuff.
+    </p>
+
+  </section>
+  <section class="filters cssSelection background">
+    <header>
+      <h2>Filters</h2>
+    </header>
+    <div class="filterset doublespan">
+      <input type="checkbox" id="luffy" name="filter">
+      <label for="luffy">Luffy</label>
+      <input type="checkbox" id="nami" name="filter">
+      <label for="nami">Nami</label>
+      <input type="checkbox" id="zorro" name="filter">
+      <label for="zorro">Zorro</label>
+      <input type="checkbox" id="other" name="filter">
+      <label for="other">Others</label>
+      <div>
+        <input type="checkbox" id="mug" name="filter">
+        <label for="mug">Mugs</label>
+        <input type="checkbox" id="tshirt" name="filter">
+        <label for="tshirt">T-shirts</label>
+        <input type="checkbox" id="statue" name="filter">
+        <label for="statue">Statues</label>
+        <input type="checkbox" id="vest" name="filter">
+        <label for="vest">Vests</label>
+        <input type="checkbox" id="extra" name="filter">
+        <label for="extra">Extra</label>
+      </div>
+    </div>
+  </section>
+  <app-payment *ngIf="isInPayMode"></app-payment>
+ <app-shopping-cart></app-shopping-cart>
+  <section class="shopSection col-xs-12">
+    <ul class="col-xs-12">
+      <app-item *ngFor="let product of shopProducts;let i = index"
+                  [product]="product"
+                  [i]="i"></app-item>
+    </ul>
+  </section>
+</article>
