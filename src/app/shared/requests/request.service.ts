@@ -7,7 +7,6 @@ import {Product} from "../models/product.model";
 import {BehaviorSubject, tap} from "rxjs";
 import {ProductService} from "../services/product.service";
 import {OrderService} from "../services/order.service";
-import {AuthService} from "../services/auth.service";
 
 @Injectable({providedIn: 'root'})
 export class RequestService {
@@ -32,7 +31,10 @@ export class RequestService {
 
   prepareHeader() {
     const headerOfRequest: HttpHeaders = new HttpHeaders();
-    headerOfRequest.set("Bearer ", this.user.token);
+    if(this.user!= null) {
+      headerOfRequest.set("Authorization","Bearer "+ this.user.token);
+    }
+    headerOfRequest.set( 'Access-Control-Allow-Origin', 'http://localhost:4200')
     return headerOfRequest;
   }
 
@@ -65,7 +67,6 @@ export class RequestService {
   }
 
   requestOfProduct(specific: string, duty: string, product: Product) {
-    console.log(product)
     this.url = this.prepareURL("product", specific);
     this.prepareHeader();
     return this.http.request<Product[]>(

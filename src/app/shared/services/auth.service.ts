@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {User} from "../models/user.model";
-import {BehaviorSubject, catchError, tap, throwError} from "rxjs";
+import {BehaviorSubject, catchError, map, throwError} from "rxjs";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserRole} from "../models/user-role.model";
@@ -44,23 +44,20 @@ export class AuthService {
     }
   }
 
-  logIn(email: string, password: string) {
+  logIn(username: string, password: string) {
     this.prepareURL('login')
-    return this.http.post<User>(
+    return this.http.post<{ name: string, roles: string, accessToken: string, refreshToken: string }>(
       this.url, {
-        email: email,
-        password: password,
-        returnSecureToken: true
+        username: username,
+        password: password
       }
     ).pipe(
       catchError(this.handleError)
-      , tap(dataRes => {
-          this.handleAuth(
-            dataRes.id,
+      , map(dataRes => {
+          return this.handleAuth(
             dataRes.name,
-            dataRes.email,
             dataRes.roles,
-            dataRes.token,
+            dataRes.accessToken,
             dataRes.refreshToken);
         }
       ));
@@ -68,7 +65,7 @@ export class AuthService {
 
   signUp(email: string, name: string, password: string, roles: UserRole[]) {
     this.prepareURL('register')
-    return this.http.post<User>(
+    return this.http.post<{ name: string, roles: string, accessToken: string, refreshToken: string }>(
       this.url, {
         name: name,
         email: email,
@@ -76,20 +73,27 @@ export class AuthService {
         password: password,
       }
     ).pipe(
+      map(dataRes =>{
+        return this.handleAuth(
+          dataRes.name,
+          dataRes.roles,
+          dataRes.accessToken,
+          dataRes.refreshToken);
+        }
+      ),
       catchError(this.handleError));
   }
 
   private handleAuth(
-    userId: number,
-    email: string,
     name: string,
-    roles: UserRole[],
+    roles: string,
     token: string,
     refreshToken: string) {
-    const user = new User(userId, name, email, roles, token, refreshToken)
+    const user = new User(1, name, null, JSON.parse(roles).toArray(), token, refreshToken)
     this.autoLogOut();
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.user.next(user);
+    return user;
 
   }
 

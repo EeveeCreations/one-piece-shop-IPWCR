@@ -62,7 +62,7 @@ export class EditItemComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (!this.isEditing) {
       this.productService.addProduct(this.product = this.editItemForm.value);
-      this.saveChanges('put','')
+      this.saveChanges('put','new')
     } else {
       this.productService.updateProduct(Number(this.currentId), this.editItemForm.value);
       const id = Number(this.product.productNumber).toString();
