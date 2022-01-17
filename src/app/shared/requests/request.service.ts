@@ -32,7 +32,7 @@ export class RequestService {
 
   prepareHeader() {
     const headerOfRequest: HttpHeaders = new HttpHeaders();
-    headerOfRequest.set("adminId", '1');
+    headerOfRequest.set("Bearer ", this.user.token);
     return headerOfRequest;
   }
 

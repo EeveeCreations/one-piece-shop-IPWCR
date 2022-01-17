@@ -2,15 +2,14 @@
   <section class="container-fluid">
     <section class="col-xs-12 ">
       <form [formGroup]="userForm" class="loginForm col-xs-12">
-          <label for="email">E-mail: </label><br>
-          <input id="email" type="email" formControlName="email">
+        <label for="name">User name: </label><br>
+        <input id="name" type="name" formControlName="name"><br>
           <div *ngIf="!isLogIn">
-            <label for="name">userName: </label><br>
-            <input id="name" type="name" formControlName="name"><br>
+            <label for="email">E-mail: </label><br>
+            <input id="email" type="email" formControlName="email"><br>
             <label>Admin rights: </label><br>
-            <input name="gender" id="admin" value="admin" type="radio"
-                   formControlName="isAdmin"><label>Admin</label><br>
-            <input name="gender" id="user" value="user" type="radio" formControlName="isAdmin"><label>User</label>
+            <input id="admin" value="true" type="checkbox"
+                   formControlName="admin"><label for="admin">Admin</label><br>
           </div>
           <br>
           <label for="pass">Password: </label><br>
@@ -23,6 +22,7 @@
       <div class="col-xs-12 loginForm">
         <button
           [disabled]="!userForm.valid"
+          (click)="onSubmit()"
           type="submit" class="btn btn-primary"
         >
           {{isLogIn ? 'Log in' : 'Sign up!'}}</button>

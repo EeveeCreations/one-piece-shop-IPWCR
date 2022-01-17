@@ -26,6 +26,7 @@
 }
 
 input {
+  color: var(--smokey-black);
   border: 2px solid var(--master_primairy_color_light);
 }
 

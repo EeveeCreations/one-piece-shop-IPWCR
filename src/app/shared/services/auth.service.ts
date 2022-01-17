@@ -3,6 +3,7 @@ import {User} from "../models/user.model";
 import {BehaviorSubject, catchError, tap, throwError} from "rxjs";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {UserRole} from "../models/user-role.model";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -28,16 +29,16 @@ export class AuthService {
       id: number,
       name: string,
       email: string,
-      isAdmin: boolean,
+      roles: UserRole[]
       _token: string,
-      _endDate: Date
+      _refreshToken: string
     } = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser) {
       return;
     }
-    const loadedUser = new User(currentUser.id, currentUser.name, currentUser.email, currentUser.isAdmin, currentUser._token, new Date(currentUser._endDate));
-    const expirationDuration = new Date(currentUser._endDate).getTime() - new Date().getTime();
-    this.autoLogOut(expirationDuration)
+    const loadedUser = new User(currentUser.id, currentUser.name, currentUser.email,
+      currentUser.roles, currentUser._token, currentUser._refreshToken);
+    this.autoLogOut()
     if (loadedUser.token) {
       this.user.next(loadedUser);
     }
@@ -58,20 +59,20 @@ export class AuthService {
             dataRes.id,
             dataRes.name,
             dataRes.email,
-            dataRes.isAdmin,
+            dataRes.roles,
             dataRes.token,
-            +dataRes.endDate);
+            dataRes.refreshToken);
         }
       ));
   }
 
-  signUp(email: string, name:string,password: string, isAdmin) {
-    this.prepareURL('logout')
+  signUp(email: string, name: string, password: string, roles: UserRole[]) {
+    this.prepareURL('register')
     return this.http.post<User>(
       this.url, {
         name: name,
         email: email,
-        isAdmin: isAdmin,
+        roles: roles,
         password: password,
       }
     ).pipe(
@@ -82,12 +83,11 @@ export class AuthService {
     userId: number,
     email: string,
     name: string,
-    isAdmin: boolean,
+    roles: UserRole[],
     token: string,
-    expiresIn: number) {
-    const endDate = new Date(new Date().getTime() + +expiresIn * 1000);
-    const user = new User(userId, name, email, isAdmin, token, endDate)
-    this.autoLogOut((expiresIn * 1000));
+    refreshToken: string) {
+    const user = new User(userId, name, email, roles, token, refreshToken)
+    this.autoLogOut();
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.user.next(user);
 
@@ -121,9 +121,10 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
 
-  autoLogOut(expirationDuration: number) {
+  autoLogOut() {
+    const MAX_MINUTES = 10 * 1000// miliseconds
     this.tokenExpirationTimer = setTimeout(() => {
       this.logOut();
-    }, expirationDuration)
+    }, MAX_MINUTES)
   }
 }

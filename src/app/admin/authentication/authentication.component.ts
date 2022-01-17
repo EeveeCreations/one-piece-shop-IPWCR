@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {User} from "../../shared/models/user.model";
 import {AuthService} from "../../shared/services/auth.service";
 import {AuthResponse} from "../../shared/models/auth-response.model";
+import {UserRole} from "../../shared/models/user-role.model";
+import {newArray} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-authentication',
@@ -11,7 +13,7 @@ import {AuthResponse} from "../../shared/models/auth-response.model";
   styleUrls: ['./authentication.component.css']
 })
 export class AuthenticationComponent implements OnInit {
-  isLogIn: boolean = false;
+  isLogIn: boolean = true;
   userForm: FormGroup;
   isWaiting: boolean;
   private error: any;
@@ -22,16 +24,30 @@ export class AuthenticationComponent implements OnInit {
     this.initForm();
   }
 
+  onSwitchMode() {
+    this.isLogIn = !this.isLogIn;
+    this.initForm();
+  }
+
   private initForm() {
-    this.userForm = new FormGroup({
-      'name': new FormControl(null,
-        [Validators.required, Validators.email]),
-      'email': new FormControl(null,
-        [Validators.required, Validators.email]),
-      'password': new FormControl(null,
-        [Validators.required, Validators.min(6)]),
-      'isAdmin': new FormControl(null, [Validators.required])
-    });
+    if(!this.isLogIn) {
+      this.userForm = new FormGroup({
+        'name': new FormControl(null,
+          [Validators.required]),
+        'email': new FormControl(null,
+          [Validators.required, Validators.email]),
+        'password': new FormControl(null,
+          [Validators.required, Validators.min(6)]),
+        'admin': new FormControl(null,)
+      });
+    }else {
+      this.userForm = new FormGroup({
+        'name': new FormControl(null,
+          [Validators.required]),
+        'password': new FormControl(null,
+          [Validators.required, Validators.min(6)]),
+      });
+    }
   }
 
   onSubmit() {
@@ -42,22 +58,21 @@ export class AuthenticationComponent implements OnInit {
     this.checkAuthentication();
   }
 
-  onSwitchMode() {
-    this.isLogIn = !this.isLogIn;
-  }
-
   checkAuthentication() {
     const name = this.userForm.get('name').value;
     const pass = this.userForm.get('password').value;
-
-    let authObs: Observable<AuthResponse>;
-
+    let authObs: Observable<User>;
     if (this.isLogIn) {
       authObs = this.authService.logIn(name, pass)
     } else {
       const email = this.userForm.get('email').value;
       const isAdmin = this.userForm.get('isAdmin').value;
-      authObs = this.authService.signUp(name,email,pass,isAdmin)
+      console.log(isAdmin);
+      let roles : UserRole[] = [new UserRole(2,"CLIENT")];
+      if(isAdmin){
+        roles.push(new UserRole(1,"ADMIN"));
+      }
+      authObs = this.authService.signUp(name,email,pass,roles)
     }
     authObs.subscribe(answer => {
       console.log(answer);

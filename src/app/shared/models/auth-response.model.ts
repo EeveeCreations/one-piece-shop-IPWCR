@@ -1,8 +1,10 @@
+import {UserRole} from "./user-role.model";
+
 export interface AuthResponse {
   id: number;
   name: string;
   email: string;
-  isAdmin: boolean;
+  roles: UserRole[];
   token: string;
-  endDate: Date;
+  refreshToken:string;
 }

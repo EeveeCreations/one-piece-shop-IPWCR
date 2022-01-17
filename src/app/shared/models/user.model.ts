@@ -1,19 +1,21 @@
+import {UserRole} from "./user-role.model";
+
 export class User {
   private _id: number;
   private _name: string;
   private _email: string;
-  private _isAdmin: boolean;
+  private _roles: UserRole[];
   private _token: string;
-  private _endDate: Date;
+  private _refreshToken: string;
 
 
-  constructor(id: number, name: string, email: string, isAdmin: boolean, token: string, endDate: Date) {
+  constructor(id: number, name: string, email: string, roles: UserRole[], token: string, refreshToken: string) {
     this._id = id;
     this._name = name;
     this._email = email;
-    this._isAdmin = isAdmin;
+    this._roles = roles;
     this._token = token;
-    this._endDate = endDate;
+    this._refreshToken = refreshToken;
   }
 
   get id(): number {
@@ -44,19 +46,19 @@ export class User {
     return this.token;
   }
 
-  get isAdmin(): boolean {
-    return this._isAdmin;
+  get refreshToken(): string {
+    return this._refreshToken;
   }
 
-  set isAdmin(value: boolean) {
-    this._isAdmin = value;
+  set refreshToken(value: string) {
+    this._refreshToken = value;
   }
 
-  get endDate(): Date {
-    return this._endDate;
+  get roles(): UserRole[] {
+    return this._roles;
   }
 
-  set endDate(value: Date) {
-    this._endDate = value;
+  set roles(value: UserRole[]) {
+    this._roles = value;
   }
 }
