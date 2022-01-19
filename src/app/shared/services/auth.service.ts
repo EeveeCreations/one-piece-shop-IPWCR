@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {User} from "../models/user.model";
 import {BehaviorSubject, catchError, map, throwError} from "rxjs";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserRole} from "../models/user-role.model";
 
@@ -22,6 +22,12 @@ export class AuthService {
   prepareURL(currentAuthenticationMethod: string) {
     this.url = "https://localhost:7004/" + currentAuthenticationMethod;
     return this.url;
+  }
+
+  prepareHeader() {
+    const headerOfRequest: HttpHeaders = new HttpHeaders();
+    headerOfRequest.set('Origin', 'http://localhost:4200');
+    return headerOfRequest;
   }
 
   autoLogIn() {
@@ -45,11 +51,15 @@ export class AuthService {
   }
 
   logIn(username: string, password: string) {
-    this.prepareURL('login')
+    this.prepareURL('login');
+    console.log(this.http.post(this.url,{},{        headers: this.prepareHeader()
+    }))
     return this.http.post<{ name: string, roles: string, accessToken: string, refreshToken: string }>(
       this.url, {
         username: username,
         password: password
+      }, {
+        headers: this.prepareHeader()
       }
     ).pipe(
       catchError(this.handleError)
@@ -73,12 +83,12 @@ export class AuthService {
         password: password,
       }
     ).pipe(
-      map(dataRes =>{
-        return this.handleAuth(
-          dataRes.name,
-          dataRes.roles,
-          dataRes.accessToken,
-          dataRes.refreshToken);
+      map(dataRes => {
+          return this.handleAuth(
+            dataRes.name,
+            dataRes.roles,
+            dataRes.accessToken,
+            dataRes.refreshToken);
         }
       ),
       catchError(this.handleError));
