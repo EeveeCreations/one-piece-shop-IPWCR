@@ -11,8 +11,8 @@ import {RouterModule} from "@angular/router";
 const routes = [
   {
     path: '', component: AdminComponent, children: [
-      {path: '', redirectTo: '', pathMatch: 'full'},
-      {path: '', component: AuthenticationComponent},
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
+      {path: 'login', component: AuthenticationComponent},
       {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard], resolve: [OrdersResolver],},
       {path: 'editShop', component: EditItemsComponent, canActivate: [AuthGuard], resolve: [ProductResolver]},
       {path: ':id', component: EditItemsComponent, canActivate: [AuthGuard], resolve: [ProductResolver]}

@@ -5,10 +5,8 @@
     </h2>
   </header>
     <section class="dropdown-menu">
-    <app-filter-item *ngFor="let category of productCategories;
-    let i = index;"
-                     [category]="category"
-                     [index]="i" class=" col-sm-2 col-xs-6"></app-filter-item>
+      <app-filter-item *ngFor="let category of productCategories;"
+                       [category]="category" class=" col-sm-2 col-xs-6"></app-filter-item>
     </section>
   </div>
 </section>

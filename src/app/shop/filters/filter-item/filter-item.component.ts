@@ -7,14 +7,9 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class FilterItemComponent implements OnInit {
   @Input() category: string;
-  @Input() index: number;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  indexOfFive() {
-    return  true //this.index %5 == 0;
   }
 }
