@@ -16,8 +16,6 @@ export class DropdownDirective{
       this.isOpen = this.elRef.nativeElement.contains(event.target) ? !this.isOpen : false;
   }
   constructor(private elRef: ElementRef) {
-    console.log(elRef.nativeElement);
-    // this.PATH_OF_ELEMENT = elRef.nativeElement
   }
 
 
