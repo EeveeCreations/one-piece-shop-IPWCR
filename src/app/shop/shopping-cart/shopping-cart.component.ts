@@ -2,7 +2,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {ShoppingCart} from "../../shared/models/shopping-cart.model";
 import {Subscription} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -13,9 +12,7 @@ export class ShoppingCartComponent implements OnInit {
   public cart: ShoppingCart;
   private cartSubscription: Subscription;
 
-  constructor(private shoppingCartService: ShoppingCartService,
-              private activeRoute: ActivatedRoute) {
-    this.cart = shoppingCartService.returnCart();
+  constructor(private shoppingCartService: ShoppingCartService) {
   }
 
   ngOnInit(): void {

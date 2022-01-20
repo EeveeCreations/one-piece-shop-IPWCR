@@ -6,7 +6,7 @@ import {ProductService} from "./product.service";
 import {Product} from "../models/product.model";
 import {OrderHandlingService} from "./order-handling.service";
 
-@Injectable()
+@Injectable({providedIn: "root"})
 export class ShoppingCartService {
   private shoppingCart: ShoppingCart;
   shoppingCartEvent: Subject<ShoppingCart> = new Subject<ShoppingCart>();
@@ -79,8 +79,6 @@ export class ShoppingCartService {
 
   setShoppingCart(cart: ShoppingCart) {
     this.shoppingCart = cart;
-    // this.shoppingCartItems = this.shoppingCart.cartItems;
-    // this.cartItemsEvent.next(this.shoppingCart.cartItems.slice());
   }
   putCartToOrders(){
     this.shoppingCart.isOrdered = true;

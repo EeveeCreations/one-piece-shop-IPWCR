@@ -6,15 +6,12 @@ export class ShoppingCart{
   private _totalPrice: number;
   private _isOrdered: boolean;
 
-
   constructor(amountOfProducts: number, cartItems: CartItem[], totalPrice: number, isOrdered: boolean) {
     this._amountOfProducts = amountOfProducts;
     this._cartItems = cartItems;
     this._totalPrice = totalPrice;
     this._isOrdered = isOrdered;
   }
-
-
 
   get amountOfProducts(): number {
     return this._amountOfProducts;

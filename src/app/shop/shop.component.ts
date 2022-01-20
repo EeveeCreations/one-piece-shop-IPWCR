@@ -42,14 +42,4 @@ export class ShopComponent implements OnInit , OnDestroy{
   private initFilters() {
     for(let item; this.shopProducts;){}
   }
-
-  OnFilterItem(string, filter){
-
-  }
-  filterItems() {
-    // for (let i = 0; i < this.items.length; i++) {
-    //   this.items[i].style.display = "none";
-    // }
-  }
-
 }

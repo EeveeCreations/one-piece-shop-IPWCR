@@ -1,6 +1,6 @@
 import {Order} from "../../admin/orders/order.model";
 import {Injectable, OnInit} from "@angular/core";
-import {Subject, Subscription} from "rxjs";
+import {Subject} from "rxjs";
 import {OrderService} from "./order.service";
 import {RequestService} from "../requests/request.service";
 import {Product} from "../models/product.model";

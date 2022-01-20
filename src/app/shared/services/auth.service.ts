@@ -10,7 +10,7 @@ export class AuthService {
   public url: string = "";
   user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  private tokenExpirationTimer: number;
+  private tokenExpirationTimer;
 
   constructor(private http: HttpClient,
               private router: Router) {
@@ -21,6 +21,7 @@ export class AuthService {
 
   prepareURL(currentAuthenticationMethod: string) {
     this.url = "https://localhost:7004/" + currentAuthenticationMethod;
+    //178.62.233.221/
     return this.url;
   }
 

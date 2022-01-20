@@ -15,10 +15,8 @@ export class RequestService {
   private user: User;
 
   constructor(private http: HttpClient,
-              // private authService: AuthService,
               private productService:ProductService,
               private orderService:OrderService) {
-    // authService.user.subscribe();
   }
 
   prepareURL(model: string, specific: string) {

@@ -24,7 +24,6 @@ export class OrderService {
   }
 
   deleteOrder(id: number) {
-    // const id = this.orders.indexOf(order);
     this.orders.splice(id, 1);
     this.orderEvent.next(this.orders.slice());
   }

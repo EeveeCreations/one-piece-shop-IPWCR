@@ -3,9 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {User} from "../../shared/models/user.model";
 import {AuthService} from "../../shared/services/auth.service";
-import {AuthResponse} from "../../shared/models/auth-response.model";
 import {UserRole} from "../../shared/models/user-role.model";
-import {newArray} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-authentication',

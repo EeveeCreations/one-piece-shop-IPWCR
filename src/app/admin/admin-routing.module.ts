@@ -10,7 +10,7 @@ import {RouterModule} from "@angular/router";
 
 const routes = [
   {
-    path: 'admin', component: AdminComponent, children: [
+    path: '', component: AdminComponent, children: [
       {path: '', redirectTo: 'auth', pathMatch: 'full'},
       {path: 'auth', component: AuthenticationComponent},
       {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard], resolve: [OrdersResolver],},
@@ -22,8 +22,8 @@ const routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [],
+  exports: [RouterModule],
 })
-export class AdminRouteModule {
+export class AdminRoutingModule {
 
 }

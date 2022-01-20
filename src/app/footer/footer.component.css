@@ -38,6 +38,7 @@ summary {
 }
 .contact input, .contact textarea{
   width: 100%;
+  color: var(--smokey-black);
   min-height:25px;
   border: 2px solid  var(--master_third_color);
   margin-bottom:var(--master_bottem_margin) ;

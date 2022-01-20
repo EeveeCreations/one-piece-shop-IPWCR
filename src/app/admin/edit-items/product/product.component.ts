@@ -11,8 +11,6 @@ export class ProductComponent implements OnInit {
   @Input()index: number;
   routeId: number;
   constructor() {
-    // console.log(this.resolvers.id)
-    // this.routeId = Number(this.resolvers.id);
   }
 
   ngOnInit(): void {

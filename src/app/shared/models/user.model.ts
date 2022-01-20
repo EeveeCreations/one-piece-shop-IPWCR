@@ -8,7 +8,6 @@ export class User {
   private _token: string;
   private _refreshToken: string;
 
-
   constructor(id: number, name: string, email: string, roles: UserRole[], token: string, refreshToken: string) {
     this._id = id;
     this._name = name;

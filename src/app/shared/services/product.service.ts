@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Product} from "../models/product.model";
 import {Subject} from "rxjs";
 
-@Injectable()
+@Injectable({providedIn:"root"})
 export class ProductService {
   private products: Product[] = [];
   productEvent: Subject<Product[]> = new Subject<Product[]>();

@@ -1,7 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {ActivePerfRecorder} from "@angular/compiler-cli/src/ngtsc/perf";
-import {RequestService} from "../shared/requests/request.service";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +6,18 @@ import {RequestService} from "../shared/requests/request.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  isOpened: boolean = false;
 
-  constructor(private router: Router,
-              private requestService: RequestService) {}
+  constructor() {}
 
   ngOnInit(): void {
+    // this.closePopUp();
+  }
+
+  private closePopUp() {
+    setTimeout(() =>{
+      this.isOpened = false;
+    },1500);
   }
 
 

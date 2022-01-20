@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Directive, OnInit} from '@angular/core';
 
-@Component({
-  selector: 'app-loading-spinner',
-  templateUrl: './loading-spinner.component.html',
-  styleUrls: ['./loading-spinner.component.css']
+@Directive({
+  selector: '[app-spinner]'
 })
 export class LoadingSpinnerComponent implements OnInit {
 

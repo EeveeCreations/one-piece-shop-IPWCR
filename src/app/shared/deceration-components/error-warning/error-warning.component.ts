@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Directive, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-error-warning',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./error-warning.component.css']
 })
 export class ErrorWarningComponent implements OnInit {
-
+    @Input() errorMes: string;
   constructor() { }
 
   ngOnInit(): void {
