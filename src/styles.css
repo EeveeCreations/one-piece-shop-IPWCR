@@ -128,10 +128,6 @@ figcaption {
 
 .cssSelection {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  grid-column-gap: var(--grid-gap);
   color: var(--smokey-black);
   padding: 20px 10%;
 }

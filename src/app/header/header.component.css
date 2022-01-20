@@ -27,11 +27,10 @@
   color: var(--white);
   text-transform: capitalize;
 }
-ng-reflect{
+.MasterNavbar >li.NavItem :hover,
+.MasterNavbar >li.NavItem :active {
   font-weight: 900;
   color: var(--master_primairy_color);
-}
-li.ng-reflect{
   background: transparent;
 }
 

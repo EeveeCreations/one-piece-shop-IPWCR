@@ -1,0 +1,14 @@
+<section class="cssSelection filters background col-xs-12">
+  <div appDropdown  class="dropdown filterset">
+  <header class="col-md-12 ">
+    <h2>Filters <span class="caret"></span>
+    </h2>
+  </header>
+    <section class="dropdown-menu">
+    <app-filter-item *ngFor="let category of productCategories;
+    let i = index;"
+                     [category]="category"
+                     [index]="i" class=" col-sm-2 col-xs-6"></app-filter-item>
+    </section>
+  </div>
+</section>

@@ -13,12 +13,12 @@ export class ShoppingCartComponent implements OnInit {
   private cartSubscription: Subscription;
 
   constructor(private shoppingCartService: ShoppingCartService) {
-  }
-
-  ngOnInit(): void {
     this.cartSubscription = this.shoppingCartService.shoppingCartEvent.subscribe(cart =>{
       this.cart = cart;}
     )
+  }
+
+  ngOnInit(): void {
   }
 
   onBuyCart() {

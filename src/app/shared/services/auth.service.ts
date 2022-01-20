@@ -4,6 +4,7 @@ import {BehaviorSubject, catchError, map, throwError} from "rxjs";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserRole} from "../models/user-role.model";
+import {LocalStorageService} from "./local-storage.service";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -13,7 +14,8 @@ export class AuthService {
   private tokenExpirationTimer;
 
   constructor(private http: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private localStorageService: LocalStorageService) {
     this.user.subscribe(() => {
       // this.router.navigate(['/auth']);
     })
@@ -32,19 +34,10 @@ export class AuthService {
   }
 
   autoLogIn() {
-    const currentUser: {
-      id: number,
-      name: string,
-      email: string,
-      roles: UserRole[]
-      _token: string,
-      _refreshToken: string
-    } = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
+    const loadedUser: User = this.localStorageService.getUserFromLocalStorage()
+    if (!loadedUser) {
       return;
     }
-    const loadedUser = new User(currentUser.id, currentUser.name, currentUser.email,
-      currentUser.roles, currentUser._token, currentUser._refreshToken);
     this.autoLogOut()
     if (loadedUser.token) {
       this.user.next(loadedUser);
@@ -102,7 +95,7 @@ export class AuthService {
     refreshToken: string) {
     const user = new User(1, name, null, JSON.parse(roles).toArray(), token, refreshToken)
     this.autoLogOut();
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.localStorageService.storeUser(user);
     this.user.next(user);
     return user;
 
@@ -133,7 +126,7 @@ export class AuthService {
     if (this.tokenExpirationTimer) {
       clearTimeout();
     }
-    localStorage.removeItem('currentUser');
+    this.localStorageService.removeUser();
   }
 
   autoLogOut() {

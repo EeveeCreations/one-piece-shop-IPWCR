@@ -10,12 +10,16 @@ import {AlertComponent} from "./alert/alert.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ShopRoutingModule} from "./shop-routing.module";
 import {ItemComponent} from "./item/item.component";
+import { FiltersComponent } from './filters/filters.component';
+import { FilterItemComponent } from './filters/filter-item/filter-item.component';
+import {DecorationComponentsModule} from "../shared/deceration-components/decoration-components.module";
 
 @NgModule({
   imports: [
     CommonModule,
     ShopRoutingModule,
     ReactiveFormsModule,
+    DecorationComponentsModule,
   ],
   declarations:[
     DetailComponent,
@@ -26,6 +30,8 @@ import {ItemComponent} from "./item/item.component";
     ShopComponent,
     ProductComponent,
     AlertComponent,
+    FiltersComponent,
+    FilterItemComponent,
   ],
   exports:[
     DetailComponent,

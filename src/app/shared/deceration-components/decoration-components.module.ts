@@ -2,6 +2,7 @@ import {LoadingSpinnerComponent} from "./loading-spinner/loading-spinner.compone
 import {ErrorWarningComponent} from "./error-warning/error-warning.component";
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
+import {DropdownDirective} from "../directives/drop-down.directive";
 
 @NgModule({
   imports:[
@@ -9,11 +10,13 @@ import {CommonModule} from "@angular/common";
   ],
   declarations:[
     LoadingSpinnerComponent,
-    ErrorWarningComponent
+    ErrorWarningComponent,
+    DropdownDirective
    ],
   exports:[
     LoadingSpinnerComponent,
-    ErrorWarningComponent
+    ErrorWarningComponent,
+    DropdownDirective
   ]
 })
 export class DecorationComponentsModule{}

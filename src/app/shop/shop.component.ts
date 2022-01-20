@@ -15,6 +15,7 @@ export class ShopComponent implements OnInit , OnDestroy{
   private subscriptionOfProducts: Subscription;
   private subscriptionOfPayment: Subscription;
   public isInPayMode: boolean = false;
+  public shopAlert: boolean = false;
 
   constructor(private shoppingCartService: ShoppingCartService,
               private productService: ProductService) { }

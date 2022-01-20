@@ -5,6 +5,7 @@ import {CartItem} from "../models/cart-item.model";
 import {ProductService} from "./product.service";
 import {Product} from "../models/product.model";
 import {OrderHandlingService} from "./order-handling.service";
+import {LocalStorageService} from "./local-storage.service";
 
 @Injectable({providedIn: "root"})
 export class ShoppingCartService {
@@ -14,8 +15,12 @@ export class ShoppingCartService {
   paymentEvent:Subject<boolean> = new Subject<boolean>();
 
   constructor(private productService: ProductService,
-              private orderHandlingService: OrderHandlingService) {
-    this.shoppingCart= new ShoppingCart(0, [], 0, false)
+              private orderHandlingService: OrderHandlingService,
+              private localStorageService: LocalStorageService) {
+    this.shoppingCart = localStorageService.getCartFromLocalStorage();
+    if(!this.shoppingCart) {
+      this.shoppingCart = new ShoppingCart(0, [], 0, false);
+    }
   }
 
   returnCart() {
@@ -41,9 +46,9 @@ export class ShoppingCartService {
     } else {
       this.AddItemToCart(product);
     }
+    this.localStorageService.storeCart(this.shoppingCart);
     this.shoppingCart.amountOfProducts = this.shoppingCart.cartItems.length;
     this.shoppingCart.totalPrice = this.calculatePrice();
-    console.log(this.shoppingCart)
     this.shoppingCartEvent.next(this.shoppingCart);
   }
 

@@ -33,7 +33,6 @@ export class ProductService {
 
   setProducts(newProducts: Product[]): void {
     this.products = newProducts;
-    console.log(this.products)
     this.productEvent.next(this.products);
   }
 
