@@ -128,10 +128,6 @@ figcaption {
 
 .cssSelection {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  grid-column-gap: var(--grid-gap);
   color: var(--smokey-black);
   padding: 20px 10%;
 }
@@ -177,15 +173,6 @@ figcaption {
   }
   100%{
     opacity: 100;
-  }
-}
-
-@keyframes dance {
-  0%{
-    transform: rotate(0deg);
-  }
-  100%{
-    transform: rotate(360deg);
   }
 }
 

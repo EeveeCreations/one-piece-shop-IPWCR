@@ -1,19 +1,21 @@
 import {Injectable} from "@angular/core";
 import {User} from "../models/user.model";
-import {BehaviorSubject, catchError, map, throwError} from "rxjs";
+import {BehaviorSubject, catchError, map, throwError, toArray} from "rxjs";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserRole} from "../models/user-role.model";
+import {LocalStorageService} from "./local-storage.service";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
   public url: string = "";
   user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  private tokenExpirationTimer: number;
+  private tokenExpirationTimer;
 
   constructor(private http: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private localStorageService: LocalStorageService) {
     this.user.subscribe(() => {
       // this.router.navigate(['/auth']);
     })
@@ -21,29 +23,21 @@ export class AuthService {
 
   prepareURL(currentAuthenticationMethod: string) {
     this.url = "https://localhost:7004/" + currentAuthenticationMethod;
+    //178.62.233.221/
     return this.url;
   }
 
   prepareHeader() {
     const headerOfRequest: HttpHeaders = new HttpHeaders();
-    headerOfRequest.set('Origin', 'http://localhost:4200');
+    headerOfRequest.set('origin', 'http://localhost:4200');
     return headerOfRequest;
   }
 
   autoLogIn() {
-    const currentUser: {
-      id: number,
-      name: string,
-      email: string,
-      roles: UserRole[]
-      _token: string,
-      _refreshToken: string
-    } = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
+    const loadedUser: User = this.localStorageService.getUserFromLocalStorage()
+    if (!loadedUser) {
       return;
     }
-    const loadedUser = new User(currentUser.id, currentUser.name, currentUser.email,
-      currentUser.roles, currentUser._token, currentUser._refreshToken);
     this.autoLogOut()
     if (loadedUser.token) {
       this.user.next(loadedUser);
@@ -52,18 +46,19 @@ export class AuthService {
 
   logIn(username: string, password: string) {
     this.prepareURL('login');
-    console.log(this.http.post(this.url,{},{        headers: this.prepareHeader()
-    }))
     return this.http.post<{ name: string, roles: string, accessToken: string, refreshToken: string }>(
       this.url, {
-        username: username,
-        password: password
       }, {
-        headers: this.prepareHeader()
+        headers: this.prepareHeader(),
+        params: {
+          username: username,
+          passcode: password
+        }
       }
     ).pipe(
       catchError(this.handleError)
       , map(dataRes => {
+          console.log(dataRes);
           return this.handleAuth(
             dataRes.name,
             dataRes.roles,
@@ -80,7 +75,7 @@ export class AuthService {
         name: name,
         email: email,
         roles: roles,
-        password: password,
+        passcode: password,
       }
     ).pipe(
       map(dataRes => {
@@ -99,12 +94,26 @@ export class AuthService {
     roles: string,
     token: string,
     refreshToken: string) {
-    const user = new User(1, name, null, JSON.parse(roles).toArray(), token, refreshToken)
-    this.autoLogOut();
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    const newRoles: UserRole[] =this.createRoles(roles)
+    const user = new User(1, name, null, newRoles, token, refreshToken)
+    this.localStorageService.storeUser(user);
     this.user.next(user);
+    this.autoLogOut();
     return user;
 
+  }
+
+  private createRoles(roles: string): UserRole[] {
+    let  newRoles: UserRole[] = []
+    let id: number = 2;
+    console.log(roles)
+    for(const rol of roles.replace('[','').replace(']','').replace(' ','').split(",")){
+      if(rol.startsWith("ADMIN")){
+          id = 1;
+      }
+      newRoles.push(new UserRole(id,rol))
+    }
+    return newRoles;
   }
 
   private handleError(errorRes: HttpErrorResponse) {
@@ -120,19 +129,19 @@ export class AuthService {
         errorMessage = 'This email is incorrect';
         break;
       case 'INVALID_PASSWORD':
-        errorMessage = 'This password is incorrects';
+        errorMessage = 'This password is incorrect';
         break;
     }
     return throwError(errorMessage);
   }
 
   logOut() {
-    this.router.navigate(['./authenticaton']);
+    this.router.navigate(['./']);
     this.user.next(null);
     if (this.tokenExpirationTimer) {
       clearTimeout();
     }
-    localStorage.removeItem('currentUser');
+    this.localStorageService.removeUser();
   }
 
   autoLogOut() {

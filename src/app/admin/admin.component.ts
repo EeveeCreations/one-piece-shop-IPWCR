@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {OrderService} from "../shared/services/order.service";
 import {Product} from "../shared/models/product.model";
 import {ShopService} from "../shared/services/shop.service";
-import {RequestService} from "../shared/requests/request.service";
 
 @Component({
   selector: 'app-admin',
@@ -12,19 +10,9 @@ import {RequestService} from "../shared/requests/request.service";
 export class AdminComponent implements OnInit {
   shopItems: Product[];
 
-  constructor(private shopService: ShopService,
-              private requestService:RequestService) { }
+  constructor(private shopService: ShopService) { }
 
   ngOnInit(): void {
-    this.getProductItems()
   }
 
-  private getProductItems() {
-    this.shopItems = this.shopService.getAllShopItems();
-
-  }
-
-  openOrders() {
-      // this.requestService.requestOfOrder("all", "get",null).subscribe();
-  }
 }

@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Product} from "../models/product.model";
 import {Subject} from "rxjs";
 
-@Injectable()
+@Injectable({providedIn:"root"})
 export class ProductService {
   private products: Product[] = [];
   productEvent: Subject<Product[]> = new Subject<Product[]>();
@@ -33,7 +33,6 @@ export class ProductService {
 
   setProducts(newProducts: Product[]): void {
     this.products = newProducts;
-    console.log(this.products)
     this.productEvent.next(this.products);
   }
 

@@ -15,6 +15,7 @@ export class ShopComponent implements OnInit , OnDestroy{
   private subscriptionOfProducts: Subscription;
   private subscriptionOfPayment: Subscription;
   public isInPayMode: boolean = false;
+  public shopAlert: boolean = false;
 
   constructor(private shoppingCartService: ShoppingCartService,
               private productService: ProductService) { }
@@ -42,14 +43,4 @@ export class ShopComponent implements OnInit , OnDestroy{
   private initFilters() {
     for(let item; this.shopProducts;){}
   }
-
-  OnFilterItem(string, filter){
-
-  }
-  filterItems() {
-    // for (let i = 0; i < this.items.length; i++) {
-    //   this.items[i].style.display = "none";
-    // }
-  }
-
 }

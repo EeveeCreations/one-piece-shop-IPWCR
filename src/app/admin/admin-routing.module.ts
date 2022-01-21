@@ -10,20 +10,19 @@ import {RouterModule} from "@angular/router";
 
 const routes = [
   {
-    path: 'admin', component: AdminComponent, children: [
-      {path: '', redirectTo: 'auth', pathMatch: 'full'},
-      {path: 'auth', component: AuthenticationComponent},
-      {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard], resolve: [OrdersResolver],},
-      {path: 'editShop', component: EditItemsComponent, canActivate: [AuthGuard], resolve: [ProductResolver]},
-      {path: ':id', component: EditItemsComponent, canActivate: [AuthGuard], resolve: [ProductResolver]}
+    path: '', component: AdminComponent, children: [
+      {path: 'login', component: AuthenticationComponent},
+      {path: 'orders', component: OrdersComponent, resolve: [OrdersResolver],},//canActivate: [AuthGuard],
+      {path: 'editShop', component: EditItemsComponent, resolve: [ProductResolver]},//canActivate: [AuthGuard],
+      {path: ':id', component: EditItemsComponent,  resolve: [ProductResolver]} //canActivate: [AuthGuard],
     ]
   },
 ]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [],
+  exports: [RouterModule],
 })
-export class AdminRouteModule {
+export class AdminRoutingModule {
 
 }

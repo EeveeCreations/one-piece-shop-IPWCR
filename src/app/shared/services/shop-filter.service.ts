@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import {CartItem} from "../models/cart-item.model";
 import {ProductService} from "./product.service";
 import {Subscription} from "rxjs";
 import {Product} from "../models/product.model";

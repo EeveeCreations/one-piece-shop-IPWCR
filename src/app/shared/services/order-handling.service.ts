@@ -1,6 +1,6 @@
 import {Order} from "../../admin/orders/order.model";
 import {Injectable, OnInit} from "@angular/core";
-import {Subject, Subscription} from "rxjs";
+import {Subject} from "rxjs";
 import {OrderService} from "./order.service";
 import {RequestService} from "../requests/request.service";
 import {Product} from "../models/product.model";
@@ -28,7 +28,7 @@ export class OrderHandlingService implements OnInit{
 
   addNewOrder(shoppingCart: ShoppingCart){
     const newOrder = new Order(shoppingCart, false);
-    this.activeOrders.push();
+    this.activeOrders.push(newOrder);
   }
 
   updateOrder(index: number, order: Order) {

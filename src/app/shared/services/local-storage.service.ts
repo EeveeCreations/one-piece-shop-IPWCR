@@ -1,0 +1,61 @@
+import {Injectable} from "@angular/core";
+import {User} from "../models/user.model";
+import {UserRole} from "../models/user-role.model";
+import {ShoppingCart} from "../models/shopping-cart.model";
+import {CartItem} from "../models/cart-item.model";
+
+@Injectable({providedIn: 'root'})
+export class LocalStorageService {
+  private USER_ITEM :string = 'currentUser';
+  private SHOPPING_CART: string = 'shoppingCart';
+
+  removeItemFromLocalStorage(itemName: string) {
+    localStorage.removeItem(itemName);
+  }
+
+  storeUser(currentUser: User) {
+    localStorage.setItem(this.USER_ITEM, JSON.stringify(currentUser));
+  }
+
+  removeUser() {
+    localStorage.removeItem(this.USER_ITEM);
+  }
+
+  getUserFromLocalStorage(): User {
+    const currentUser: {
+      id: number,
+      name: string,
+      email: string,
+      roles: UserRole[]
+      _token: string,
+      _refreshToken: string
+    } = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+      return;
+    }
+    return new User(currentUser.id, currentUser.name, currentUser.email,
+      currentUser.roles, currentUser._token, currentUser._refreshToken);
+  }
+
+  getCartFromLocalStorage(): ShoppingCart {
+    const newCart: {
+      amountOfProducts: number,
+      cartItems: CartItem[],
+      totalPrice: number,
+      isOrdered: boolean } = JSON.parse(localStorage.getItem(this.SHOPPING_CART));
+    if (!newCart) {
+      return;
+    }
+    return new ShoppingCart(newCart.amountOfProducts, newCart.cartItems, newCart.totalPrice, newCart.isOrdered)
+  }
+
+  storeCart(cart: ShoppingCart) {
+    console.log(this.SHOPPING_CART, JSON.stringify(cart))
+    localStorage.setItem(this.SHOPPING_CART, JSON.stringify(cart));
+  }
+
+  removeCart() {
+    localStorage.removeItem(this.SHOPPING_CART);
+  }
+
+}
