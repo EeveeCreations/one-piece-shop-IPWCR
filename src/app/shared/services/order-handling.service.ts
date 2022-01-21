@@ -28,7 +28,7 @@ export class OrderHandlingService implements OnInit{
 
   addNewOrder(shoppingCart: ShoppingCart){
     const newOrder = new Order(shoppingCart, false);
-    this.activeOrders.push();
+    this.activeOrders.push(newOrder);
   }
 
   updateOrder(index: number, order: Order) {

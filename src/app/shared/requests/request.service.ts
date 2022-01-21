@@ -7,6 +7,7 @@ import {Product} from "../models/product.model";
 import {tap} from "rxjs";
 import {ProductService} from "../services/product.service";
 import {OrderService} from "../services/order.service";
+import {AuthService} from "../services/auth.service";
 
 @Injectable({providedIn: 'root'})
 export class RequestService {
@@ -16,7 +17,11 @@ export class RequestService {
 
   constructor(private http: HttpClient,
               private productService:ProductService,
-              private orderService:OrderService) {
+              private orderService:OrderService,
+              private authService: AuthService) {
+    this.subscription = authService.user.subscribe( user =>{
+      this.user = user;
+    })
   }
 
   prepareURL(model: string, specific: string) {
@@ -31,9 +36,8 @@ export class RequestService {
     const headerOfRequest: HttpHeaders = new HttpHeaders();
     if (this.user != null) {
       headerOfRequest.set("Authorization", "Bearer " + this.user.token);
+      console.log(this.user.token)
     }
-    headerOfRequest.set('Access-Control-Allow-Origin', 'http://localhost:4200');
-    headerOfRequest.set('Access-Control-Allow-Method', 'POST');
     return headerOfRequest;
   }
 
@@ -41,16 +45,16 @@ export class RequestService {
     this.url = this.prepareURL("cart", specific);
     return this.http.request<ShoppingCart[]>(duty, this.url,
       {
+        headers: this.prepareHeader(),
         body: cart,
-        headers: this.prepareHeader()
-      })
+      },
+      )
       .pipe(
      );
   }
 
   requestOfOrder(specific: string, duty: string, order: Order) {
-    this.url = this.prepareURL("order", specific);
-    this.prepareHeader();
+    this.url = this.prepareURL("order", specific);;
     return this.http.request<Order[]>(
       duty, this.url,
       {

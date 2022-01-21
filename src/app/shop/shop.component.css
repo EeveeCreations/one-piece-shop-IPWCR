@@ -13,4 +13,9 @@
   font-size: 110%;
   font-weight: bolder;
 }
-
+.alert-box{
+  position: center;
+  vertical-align: center;
+  horiz-align: center;
+  margin: auto;
+}

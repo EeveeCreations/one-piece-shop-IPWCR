@@ -8,16 +8,16 @@ const routes: Routes = [
   {
     path: 'shop', loadChildren: () =>
       import('./shop/shop.module').then(
-        (c) => {
-         return c.ShopModule
+        (m) => {
+         return m.ShopModule
         }
       )
   },
   {
     path: 'admin', loadChildren: () =>
       import('./admin/admin.module').then(
-        (c) => {
-         return  c.AdminModule
+        (m) => {
+         return  m.AdminModule
         }
       )
   },

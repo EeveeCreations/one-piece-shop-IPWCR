@@ -33,7 +33,7 @@ import {EditItemComponent} from "./edit-items/edit-item/edit-item.component";
     EditItemComponent,
     OrdersComponent,
     OrderComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
   ]
 })
 export class AdminModule{}

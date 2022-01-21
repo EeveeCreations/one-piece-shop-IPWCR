@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {User} from "../../shared/models/user.model";
 import {AuthService} from "../../shared/services/auth.service";
 import {UserRole} from "../../shared/models/user-role.model";
@@ -61,11 +61,11 @@ export class AuthenticationComponent implements OnInit {
     const pass = this.userForm.get('password').value;
     let authObs: Observable<User>;
     if (this.isLogIn) {
-      authObs = this.authService.logIn(name, pass)
+      authObs = this.authService.logIn(name, pass).pipe(tap(answer =>{
+        console.log(answer)}));
     } else {
       const email = this.userForm.get('email').value;
-      const isAdmin = this.userForm.get('isAdmin').value;
-      console.log(isAdmin);
+      const isAdmin = this.userForm.get('isAdmin');
       let roles : UserRole[] = [new UserRole(2,"CLIENT")];
       if(isAdmin){
         roles.push(new UserRole(1,"ADMIN"));
@@ -73,7 +73,7 @@ export class AuthenticationComponent implements OnInit {
       authObs = this.authService.signUp(name,email,pass,roles)
     }
     authObs.subscribe(answer => {
-      console.log(answer);
+
     }, errorMes=> {
 
       this.error = errorMes;
