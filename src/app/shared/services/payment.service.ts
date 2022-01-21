@@ -1,11 +1,10 @@
-import {ShoppingCart} from "../models/shopping-cart.model";
 import {Injectable, OnInit} from "@angular/core";
 
-@Injectable()
+@Injectable({providedIn: "root"})
 export class PaymentService implements OnInit{
-  private isPaying: boolean;
-  paymentCart: ShoppingCart;
 
+  constructor() {
+  }
   ngOnInit(): void {
   }
 

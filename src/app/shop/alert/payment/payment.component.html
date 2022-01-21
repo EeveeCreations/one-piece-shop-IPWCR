@@ -1,24 +1,26 @@
-<article class=" container-fluid">
-  <section class=" col-sm-4 background window">
-    <header>
-      <h2>Pay cart</h2>
-    </header>
-    <p>Your total will be: &#8364;<span>{{cart.totalPrice}} </span></p>
-    <p>Your cart is filled with: <span *ngFor="let item of cartItems">{{item.product.name}}</span></p>
-    <form formGroupName="client" class="col-xs-12">
-      <label for="cName">Name </label>
-      <input formControlName="name"
-             type="text"
-             id="cName">
-      <br>
-      <label for="cMail">E-mail * </label>
-      <input formControlName="name"
-             type="email"
-             id="cMail" required>
-    </form>
-    <section class="btn-group col-xs-12">
-      <button [disabled]="!clientForm.valid" (click)="onPaymentSucceed()" class="premBut btn col-xs-6">Pay</button>
-      <p (click)="onCancelPayment()" class="no col-xs-6">Don't pay yet</p>
+<article class="container-fluid">
+  <section class="background window container-fluid">
+    <section class="payment">
+      <header>
+        <h2>Pay cart</h2>
+      </header>
+      <p>Your total will be: &#8364;<span>{{cart.totalPrice}} </span></p>
+      <p>Your cart is filled with: <span *ngFor="let item of cartItems">{{item.product.name}}</span></p>
+      <form [formGroup]="clientForm" class="col-sm-8">
+        <label for="cName">Name :</label><br>
+        <input formControlName="name"
+               type="text"
+               id="cName">
+        <br>
+        <label for="cMail">E-mail *: </label><br>
+        <input formControlName="name"
+               type="email"
+               id="cMail">
+      </form>
+      <section class="btn-group">
+        <button [disabled]="!clientForm.valid" (click)="onPaymentSucceed()" class="premBut btn col-xs-12">Pay</button>
+        <p (click)="onCancelPayment()" class="no col-xs-6">Don't pay yet</p>
+      </section>
     </section>
   </section>
 </article>

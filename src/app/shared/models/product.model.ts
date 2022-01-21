@@ -16,9 +16,6 @@ export class Product {
     this._imagePath = imagePath;
   }
 
-
-
-
   get productNumber(): number {
     return this._productNumber;
   }

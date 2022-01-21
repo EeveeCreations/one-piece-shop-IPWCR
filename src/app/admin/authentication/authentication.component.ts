@@ -4,6 +4,7 @@ import {Observable, tap} from "rxjs";
 import {User} from "../../shared/models/user.model";
 import {AuthService} from "../../shared/services/auth.service";
 import {UserRole} from "../../shared/models/user-role.model";
+import {NewUser} from "../../shared/models/new-user.model";
 
 @Component({
   selector: 'app-authentication',
@@ -70,7 +71,8 @@ export class AuthenticationComponent implements OnInit {
       if(isAdmin){
         roles.push(new UserRole(1,"ADMIN"));
       }
-      authObs = this.authService.signUp(name,email,pass,roles)
+      let newUser = new NewUser(name,pass,email,roles)
+      authObs = this.authService.signUp(newUser)
     }
     authObs.subscribe(answer => {
 

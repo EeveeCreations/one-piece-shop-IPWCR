@@ -7,6 +7,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserRole} from "../../../shared/models/user-role.model";
 import {AuthService} from "../../../shared/services/auth.service";
+import {NewUser} from "../../../shared/models/new-user.model";
 
 @Component({
   selector: 'app-payment',
@@ -33,7 +34,6 @@ export class PaymentComponent implements OnInit , OnDestroy{
       this.inPayingMode = isPaying;
       this.cart = this.cartService.returnCart();
       this.cartItems = this.cart.cartItems;
-      console.log(this.cart);
     });
     this.initForm();
   }
@@ -48,8 +48,11 @@ export class PaymentComponent implements OnInit , OnDestroy{
     const mail = this.clientForm.get('mail').value
     const name = this.clientForm.get('name').value
 
-    this.authService.signUp(mail,name, "", [new UserRole(3,"UN_REG_CLIENT")])
-    this.router.navigate(['./payForCart'],{relativeTo:this.activeRoute});
+    if(this.authService.user == null){
+      const newUser = new NewUser(name,mail,"",[new UserRole(3,"UN_REG_CLIENT")])
+      this.authService.signUp(newUser);
+    }
+    this.router.navigate(['paid'],{relativeTo:this.activeRoute});
     this.cartService.buyTheCart(false);
   }
 

@@ -1,0 +1,13 @@
+.cssSelection{
+  text-align: center;
+}
+.cssSelection > h2{
+  width: 100%;
+  padding: 30px;
+}
+.cssSelection > h1{
+  color: var(--master_primairy_color_light);
+}
+p{
+  font-size: 130%;
+}

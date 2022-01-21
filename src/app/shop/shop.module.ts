@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DetailComponent} from "./item/detail/detail.component";
 import {PaymentComponent} from "./alert/payment/payment.component";
-import {CompleteComponent} from "./alert/payment/complete/complete.component";
+import {CompleteComponent} from "./alert/complete/complete.component";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {ShopComponent} from "./shop.component";
 import {ProductComponent} from "../admin/edit-items/product/product.component";

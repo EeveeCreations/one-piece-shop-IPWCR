@@ -17,6 +17,7 @@ export class User {
     this._refreshToken = refreshToken;
   }
 
+
   get id(): number {
     return this._id;
   }

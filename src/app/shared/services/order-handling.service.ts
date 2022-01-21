@@ -7,20 +7,16 @@ import {Product} from "../models/product.model";
 import {ShoppingCart} from "../models/shopping-cart.model";
 @Injectable({providedIn: 'root'})
 export class OrderHandlingService implements OnInit{
-  activeOrders:Order[];
+  activeOrders:Order[] = [];
   orderEvent: Subject<Order[]>;
-  orderError: string = null;
 
   ranCart: ShoppingCart;
   ranProduct: Product;
   constructor(private orderService: OrderService,
-              private requestService: RequestService) {
-
-  }
+              private requestService: RequestService) {  }
 
   ngOnInit(): void {
-    this.getAllOrdersOfDB();
-
+   this.activeOrders = this.getAllOrdersOfDB();
   }
 
   ngOnDestroy(): void {
@@ -28,7 +24,10 @@ export class OrderHandlingService implements OnInit{
 
   addNewOrder(shoppingCart: ShoppingCart){
     const newOrder = new Order(shoppingCart, false);
-    this.activeOrders.push(newOrder);
+    this.requestService.requestOfOrder('new','post',newOrder).subscribe((order)=>{
+      this.activeOrders.push(order[0]);
+      }
+    )
   }
 
   updateOrder(index: number, order: Order) {
@@ -39,8 +38,8 @@ export class OrderHandlingService implements OnInit{
     return this.requestService.requestOfOrder(index.toString(),'delete',null);
   }
 
-  getAllOrdersOfDB() {
-    this.orderService.getOrders();
+  getAllOrdersOfDB():Order[] {
+    return this.orderService.getOrders();
   }
   getAllOrders(){
     return this.activeOrders;
