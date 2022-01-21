@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ShoppingCartService} from "../../../shared/services/shopping-cart.service";
 
 @Component({
   selector: 'app-complete',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompleteComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private shoppingCartService:ShoppingCartService) {
   }
-
+  ngOnInit(): void {
+    this.shoppingCartService.orderCompleted();
+  }
 }

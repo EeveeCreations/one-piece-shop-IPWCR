@@ -33,7 +33,6 @@ export class PaymentComponent implements OnInit , OnDestroy{
       this.inPayingMode = isPaying;
       this.cart = this.cartService.returnCart();
       this.cartItems = this.cart.cartItems;
-      console.log(this.cart);
     });
     this.initForm();
   }
@@ -48,8 +47,10 @@ export class PaymentComponent implements OnInit , OnDestroy{
     const mail = this.clientForm.get('mail').value
     const name = this.clientForm.get('name').value
 
-    this.authService.signUp(mail,name, "", [new UserRole(3,"UN_REG_CLIENT")])
-    this.router.navigate(['./payForCart'],{relativeTo:this.activeRoute});
+    if(this.authService.user == null){
+      this.authService.signUp(mail,name, "", [new UserRole(3,"UN_REG_CLIENT")]);
+    }
+    this.router.navigate(['paid'],{relativeTo:this.activeRoute});
     this.cartService.buyTheCart(false);
   }
 

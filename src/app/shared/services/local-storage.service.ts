@@ -42,15 +42,19 @@ export class LocalStorageService {
       amountOfProducts: number,
       cartItems: CartItem[],
       totalPrice: number,
-      isOrdered: boolean } = JSON.parse(localStorage.getItem(this.SHOPPING_CART));
+      isOrdered: boolean
+    } = JSON.parse(localStorage.getItem(this.SHOPPING_CART));
     if (!newCart) {
       return;
     }
-    return new ShoppingCart(newCart.amountOfProducts, newCart.cartItems, newCart.totalPrice, newCart.isOrdered)
+    // let cartItems: CartItem[] = []
+    // for (let item of newCart.cartItems){
+    //   cartItems.push(item);
+    // }
+    return new ShoppingCart(newCart.amountOfProducts, newCart.cartItems, newCart.totalPrice, newCart.isOrdered);
   }
 
   storeCart(cart: ShoppingCart) {
-    console.log(this.SHOPPING_CART, JSON.stringify(cart))
     localStorage.setItem(this.SHOPPING_CART, JSON.stringify(cart));
   }
 

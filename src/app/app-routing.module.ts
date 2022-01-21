@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: '**', component: ErrorPageComponent},
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules,useHash: true})],
+  imports: [RouterModule.forRoot(routes, )], //{preloadingStrategy: PreloadAllModules,useHash: true}
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

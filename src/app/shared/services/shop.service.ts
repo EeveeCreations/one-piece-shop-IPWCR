@@ -38,12 +38,4 @@ export class ShopService implements OnInit{
     }
   }
 
-  getAllShopItems(): Product[] {
-    return this.allItemsOfShop;
-  }
-
-  setItemsOfShop(newItems: Product[]) {
-    this.allItemsOfShop = newItems;
-  }
-
 }

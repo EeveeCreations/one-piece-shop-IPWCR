@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {ShoppingCart} from "../../shared/models/shopping-cart.model";
 import {Subscription} from "rxjs";
@@ -13,12 +13,14 @@ export class ShoppingCartComponent implements OnInit {
   private cartSubscription: Subscription;
 
   constructor(private shoppingCartService: ShoppingCartService) {
-    this.cartSubscription = this.shoppingCartService.shoppingCartEvent.subscribe(cart =>{
-      this.cart = cart;}
-    )
   }
 
   ngOnInit(): void {
+    this.cartSubscription = this.shoppingCartService.shoppingCartEvent.subscribe((cart: ShoppingCart) =>{
+      console.log(cart)
+      console.log(this.shoppingCartService.returnCart())
+      this.cart = this.shoppingCartService.returnCart()}
+    )
   }
 
   onBuyCart() {

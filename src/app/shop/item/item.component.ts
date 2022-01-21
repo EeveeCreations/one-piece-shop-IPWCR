@@ -20,32 +20,21 @@ export class ItemComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.inCart = this.shoppingCartService.seeIfItemInCart(this.product)
-    if (this.inCart) {
-      this.element.nativeElement.classList.add('added');
-    }
+
   }
 
-  alertToEvent() {
+  alertOfItem() {
     this.shopService.GiveAlertAboutItem(this.product);
   }
 
-  OnClickProduct(){
-
-    // return this.shoppingCartService.seeIfItemInCart(this.resolvers);
-
-  }
-
   isInCart(): boolean {
-
     return this.inCart;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.inCart = this.shoppingCartService.seeIfItemInCart(this.product)
-    if (this.inCart) {
-      this.element.nativeElement.className = 'added';
-
-    }
+    // this.inCart = this.shoppingCartService.seeIfItemInCart(this.product)
+    // if (this.inCart) {
+    //   this.element.nativeElement.className = 'added';
+    // }
   }
 }

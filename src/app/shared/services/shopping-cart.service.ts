@@ -8,27 +8,28 @@ import {OrderHandlingService} from "./order-handling.service";
 import {LocalStorageService} from "./local-storage.service";
 
 @Injectable({providedIn: "root"})
-export class ShoppingCartService {
+export class ShoppingCartService{
   private shoppingCart: ShoppingCart;
-  shoppingCartEvent: Subject<ShoppingCart> = new Subject<ShoppingCart>();
-
-  paymentEvent:Subject<boolean> = new Subject<boolean>();
+  public shoppingCartEvent: Subject<ShoppingCart> = new Subject<ShoppingCart>();
+  public paymentEvent:Subject<boolean> = new Subject<boolean>();
 
   constructor(private productService: ProductService,
               private orderHandlingService: OrderHandlingService,
               private localStorageService: LocalStorageService) {
-    this.shoppingCart = localStorageService.getCartFromLocalStorage();
+
+    this.shoppingCart = this.localStorageService.getCartFromLocalStorage();
     if(!this.shoppingCart) {
-      this.shoppingCart = new ShoppingCart(0, [], 0, false);
+      this.createNewCart();
     }
+  }
+
+  private createNewCart() {
+    this.shoppingCart = new ShoppingCart(0, [], 0, false);
+    this.shoppingCartEvent.next(this.shoppingCart);
   }
 
   returnCart() {
     return this.shoppingCart;
-  }
-
-  returnCartItems() {
-    return this.shoppingCart.cartItems.slice();
   }
 
   private calculatePrice() : number{
@@ -46,14 +47,14 @@ export class ShoppingCartService {
     } else {
       this.AddItemToCart(product);
     }
-    this.localStorageService.storeCart(this.shoppingCart);
     this.shoppingCart.amountOfProducts = this.shoppingCart.cartItems.length;
     this.shoppingCart.totalPrice = this.calculatePrice();
+    this.localStorageService.storeCart(this.shoppingCart);
     this.shoppingCartEvent.next(this.shoppingCart);
   }
 
   AddItemToCart(product: Product) {
-    const item: CartItem = new CartItem(this.shoppingCart, product, 1)
+    const item: CartItem = new CartItem(product, 1);
     this.shoppingCart.cartItems.push(item);
   }
 
@@ -74,20 +75,20 @@ export class ShoppingCartService {
 
   buyTheCart(isPaying: boolean ) {
     this.paymentEvent.next(isPaying);
-    console.log(this.shoppingCart);
   }
-
 
   seeIfItemInCart(product: Product): boolean {
     return this.findProductInCart(product) != undefined;
   }
 
-  setShoppingCart(cart: ShoppingCart) {
-    this.shoppingCart = cart;
-  }
   putCartToOrders(){
-    this.shoppingCart.isOrdered = true;
     this.orderHandlingService.addNewOrder(this.shoppingCart);
+  }
 
+  orderCompleted() {
+    this.shoppingCart.isOrdered = true;
+    this.putCartToOrders();
+    this.localStorageService.removeCart();
+    this.createNewCart();
   }
 }

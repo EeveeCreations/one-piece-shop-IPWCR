@@ -23,8 +23,6 @@ export class OrdersComponent implements OnInit {
         this.orders = newOrders;
       }
     );
-    console.log(this.orders);
-
     }
 
 

@@ -1,25 +1,13 @@
 import {Product} from "./product.model";
-import {ShoppingCart} from "./shopping-cart.model";
 
 export class CartItem{
-  private _cartNumber: ShoppingCart;
-  private _product: Product;
-  private _amount: number;
-
-  constructor( cartNumber: ShoppingCart, product: Product, amount: number) {
-    this._cartNumber = cartNumber;
+  constructor(product: Product, amount: number) {
     this._product = product;
     this._amount = amount;
   }
+  private _product: Product;
+  private _amount: number;
 
-
-  get cartNumber(): ShoppingCart {
-    return this._cartNumber;
-  }
-
-  set cartNumber(value: ShoppingCart) {
-    this._cartNumber = value;
-  }
 
   get product(): Product {
     return this._product;

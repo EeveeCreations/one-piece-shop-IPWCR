@@ -14,13 +14,10 @@ export class OrderHandlingService implements OnInit{
   ranCart: ShoppingCart;
   ranProduct: Product;
   constructor(private orderService: OrderService,
-              private requestService: RequestService) {
-
-  }
+              private requestService: RequestService) {  }
 
   ngOnInit(): void {
     this.getAllOrdersOfDB();
-
   }
 
   ngOnDestroy(): void {
