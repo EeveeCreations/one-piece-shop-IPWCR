@@ -66,7 +66,7 @@ export class AuthenticationComponent implements OnInit {
         console.log(answer)}));
     } else {
       const email = this.userForm.get('email').value;
-      const isAdmin = this.userForm.get('isAdmin');
+      const isAdmin = this.userForm.get('admin').touched;
       let roles : UserRole[] = [new UserRole(2,"CLIENT")];
       if(isAdmin){
         roles.push(new UserRole(1,"ADMIN"));

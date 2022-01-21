@@ -10,11 +10,11 @@ import {RouterModule} from "@angular/router";
 
 const routes = [
   {
-    path: '', component: AdminComponent, children: [
+    path: '', redirectTo:'',component: AdminComponent, children: [
       {path: 'login', component: AuthenticationComponent},
-      {path: 'orders', component: OrdersComponent,  resolve: [OrdersResolver]}, //canActivate: [AuthGuard], ,
-      {path: 'editShop', component: EditItemsComponent,  resolve: [ProductResolver]}, //canActivate: [AuthGuard],
-      {path: ':id', component: EditItemsComponent, resolve: [ProductResolver]} //canActivate: [AuthGuard],
+      {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard], resolve: [OrdersResolver]},
+      {path: 'editShop', component: EditItemsComponent, canActivate: [AuthGuard], resolve: [ProductResolver]},
+      {path: ':id', component: EditItemsComponent, canActivate: [AuthGuard],resolve: [ProductResolver]}
     ]
   },
 ]
