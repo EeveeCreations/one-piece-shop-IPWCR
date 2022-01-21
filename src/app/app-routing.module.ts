@@ -11,6 +11,7 @@ import {CompleteComponent} from "./shop/alert/payment/complete/complete.componen
 import {ProductResolver} from "./shared/resolvers/product-resolver.services";
 import {OrdersResolver} from "./shared/resolvers/orders-resolver.service";
 import {AuthenticationComponent} from "./admin/authentication/authentication.component";
+import {AuthGuard} from "./shared/guards/auth.guard";
 
 const routes: Routes = [
   {path: '', component: StartPageComponent},
@@ -20,13 +21,6 @@ const routes: Routes = [
         path: 'payment', component: PaymentComponent, children: [
           {path: ':cartId', component: CompleteComponent}
         ]}
-    ]},
-  {path: 'admin', component: AdminComponent, children: [
-      {path: '', redirectTo: 'auth', pathMatch: 'full'},
-      {path: 'auth', component: AuthenticationComponent},
-      {path: 'orders', component: OrdersComponent, resolve: [OrdersResolver]},
-      {path: 'editShop', component: EditItemsComponent, resolve: [ProductResolver]},
-      {path: ':id', component: EditItemsComponent, resolve: [ProductResolver]}
     ]},
   {path: '**', component: ErrorPageComponent},
 ];

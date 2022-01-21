@@ -4,7 +4,7 @@ import {User} from "../models/user.model";
 import {ShoppingCart} from "../models/shopping-cart.model";
 import {Order} from "../../admin/orders/order.model";
 import {Product} from "../models/product.model";
-import {BehaviorSubject, tap} from "rxjs";
+import {tap} from "rxjs";
 import {ProductService} from "../services/product.service";
 import {OrderService} from "../services/order.service";
 
@@ -31,10 +31,11 @@ export class RequestService {
 
   prepareHeader() {
     const headerOfRequest: HttpHeaders = new HttpHeaders();
-    if(this.user!= null) {
-      headerOfRequest.set("Authorization","Bearer "+ this.user.token);
+    if (this.user != null) {
+      headerOfRequest.set("Authorization", "Bearer " + this.user.token);
     }
-    headerOfRequest.set( 'Access-Control-Allow-Origin', 'http://localhost:4200')
+    headerOfRequest.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+    headerOfRequest.set('Access-Control-Allow-Method', 'POST');
     return headerOfRequest;
   }
 
