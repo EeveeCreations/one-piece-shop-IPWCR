@@ -51,7 +51,7 @@ export class LocalStorageService {
     // for (let item of newCart.cartItems){
     //   cartItems.push(item);
     // }
-    return new ShoppingCart(newCart.amountOfProducts, newCart.cartItems, newCart.totalPrice, newCart.isOrdered);
+    // return new ShoppingCart(newCart.amountOfProducts, newCart.cartItems, newCart.totalPrice, newCart.isOrdered);
   }
 
   storeCart(cart: ShoppingCart) {

@@ -1,10 +1,12 @@
 import {Injectable} from "@angular/core";
 import {User} from "../models/user.model";
-import {BehaviorSubject, catchError, map, throwError, toArray} from "rxjs";
+import {NewUser} from "../models/new-user.model";
+import {BehaviorSubject, catchError, map, throwError} from "rxjs";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserRole} from "../models/user-role.model";
 import {LocalStorageService} from "./local-storage.service";
+import {Md5} from "ts-md5";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -17,7 +19,7 @@ export class AuthService {
               private router: Router,
               private localStorageService: LocalStorageService) {
     this.user.subscribe(() => {
-      // this.router.navigate(['/auth']);
+      this.router.navigate(['/editshop']);
     })
   }
 
@@ -43,7 +45,9 @@ export class AuthService {
       this.user.next(loadedUser);
     }
   }
-
+  passwordHash(password: string): string {
+    return Md5.hashStr(password);
+  }
   logIn(username: string, password: string) {
     this.prepareURL('login');
     return this.http.post<{ name: string, roles: string, accessToken: string, refreshToken: string }>(
@@ -52,7 +56,7 @@ export class AuthService {
         headers: this.prepareHeader(),
         params: {
           username: username,
-          passcode: password
+          passcode: this.passwordHash(password)
         }
       }
     ).pipe(
@@ -68,14 +72,14 @@ export class AuthService {
       ));
   }
 
-  signUp(email: string, name: string, password: string, roles: UserRole[]) {
+  signUp(newUser: NewUser) {
     this.prepareURL('register')
     return this.http.post<{ name: string, roles: string, accessToken: string, refreshToken: string }>(
       this.url, {
-        name: name,
-        email: email,
-        roles: roles,
-        passcode: password,
+        name:newUser.name,
+        email: newUser.email,
+        passcode: newUser.passcode,
+        roles: newUser.roles,
       }
     ).pipe(
       map(dataRes => {

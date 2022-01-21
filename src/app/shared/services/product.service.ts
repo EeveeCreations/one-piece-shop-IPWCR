@@ -11,13 +11,11 @@ export class ProductService {
   }
 
   addProduct(product: Product){
-    console.log('add')
     this.products.push(product);
     this.productEvent.next(this.products.slice());
   }
 
   updateProduct(index: number, newProduct: Product){
-    console.log('updated')
     this.products[index] = newProduct;
     this.productEvent.next(this.products.slice());
   }

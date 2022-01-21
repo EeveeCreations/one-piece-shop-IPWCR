@@ -54,7 +54,7 @@ export class RequestService {
   }
 
   requestOfOrder(specific: string, duty: string, order: Order) {
-    this.url = this.prepareURL("order", specific);;
+    this.url = this.prepareURL("order", specific);
     return this.http.request<Order[]>(
       duty, this.url,
       {

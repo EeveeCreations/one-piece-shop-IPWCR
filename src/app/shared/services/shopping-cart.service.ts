@@ -25,10 +25,10 @@ export class ShoppingCartService{
 
   private createNewCart() {
     this.shoppingCart = new ShoppingCart(0, [], 0, false);
-    this.shoppingCartEvent.next(this.shoppingCart);
+    this.updateShoppingCart();
   }
 
-  returnCart() {
+  returnCart(): ShoppingCart {
     return this.shoppingCart;
   }
 
@@ -50,8 +50,15 @@ export class ShoppingCartService{
     this.shoppingCart.amountOfProducts = this.shoppingCart.cartItems.length;
     this.shoppingCart.totalPrice = this.calculatePrice();
     this.localStorageService.storeCart(this.shoppingCart);
-    this.shoppingCartEvent.next(this.shoppingCart);
+    this.updateShoppingCart()
   }
+
+  private updateShoppingCart() {
+    setTimeout(() =>{
+      this.shoppingCartEvent.next(this.shoppingCart);
+    },0);
+  }
+
 
   AddItemToCart(product: Product) {
     const item: CartItem = new CartItem(product, 1);

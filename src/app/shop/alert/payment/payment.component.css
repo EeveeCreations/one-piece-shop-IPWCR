@@ -3,12 +3,13 @@
   position: fixed;
   text-align: center;
   padding: 10px;
-  min-width: 400px;
+  min-width: 90vw;
   border: 5px solid var(--master_third_color);
 }
 .window > form{
   text-align: center;
   width: 60%;
+  padding-bottom: 20px;
 }
 .premBut{
   background: var(--master_primairy_color_light);
@@ -16,8 +17,9 @@
 .no {
   cursor: pointer;
   display: inline-block;
-  width: 40%;
-  text-align: right;
   font-size: 80%;
   text-decoration: underline;
+}
+h2,p{
+  width: 100%;
 }
