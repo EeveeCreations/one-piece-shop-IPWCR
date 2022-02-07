@@ -9,6 +9,7 @@ import {AuthenticationComponent} from "./authentication/authentication.component
 import {AdminRoutingModule} from "./admin-routing.module";
 import {ShopModule} from "../shop/shop.module";
 import {EditItemComponent} from "./edit-items/edit-item/edit-item.component";
+import { AdminNavComponent } from './admin-nav/admin-nav.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {EditItemComponent} from "./edit-items/edit-item/edit-item.component";
     EditItemComponent,
     OrdersComponent,
     OrderComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    AdminNavComponent
   ],
   exports:[
     AdminComponent,

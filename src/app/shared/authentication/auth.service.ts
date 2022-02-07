@@ -5,8 +5,8 @@ import {BehaviorSubject, catchError, map, throwError} from "rxjs";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserRole} from "../models/user-role.model";
-import {LocalStorageService} from "./local-storage.service";
-import {Md5} from "ts-md5";
+import {LocalStorageService} from "../services/local-storage.service";
+import {shajs} from "sha.js";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -30,9 +30,12 @@ export class AuthService {
   }
 
   prepareHeader() {
-    const headerOfRequest: HttpHeaders = new HttpHeaders();
-    headerOfRequest.set('origin', 'http://localhost:4200');
-    return headerOfRequest;
+   return new HttpHeaders(
+      {
+        ContentType: 'application/json',
+        Accept: 'application/json',
+        // Origin: 'http://localhost:4200',
+  });
   }
 
   autoLogIn() {
@@ -46,7 +49,7 @@ export class AuthService {
     }
   }
   passwordHash(password: string): string {
-    return Md5.hashStr(password);
+    return shajs('sha256').update(password).digest('hex');
   }
   logIn(username: string, password: string) {
     this.prepareURL('login');

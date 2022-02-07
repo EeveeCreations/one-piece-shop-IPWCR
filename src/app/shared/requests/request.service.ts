@@ -7,7 +7,7 @@ import {Product} from "../models/product.model";
 import {tap} from "rxjs";
 import {ProductService} from "../services/product.service";
 import {OrderService} from "../services/order.service";
-import {AuthService} from "../services/auth.service";
+import {AuthService} from "../authentication/auth.service";
 
 @Injectable({providedIn: 'root'})
 export class RequestService {

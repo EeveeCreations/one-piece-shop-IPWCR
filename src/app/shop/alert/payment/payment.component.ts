@@ -6,7 +6,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserRole} from "../../../shared/models/user-role.model";
-import {AuthService} from "../../../shared/services/auth.service";
+import {AuthService} from "../../../shared/authentication/auth.service";
 import {NewUser} from "../../../shared/models/new-user.model";
 
 @Component({
