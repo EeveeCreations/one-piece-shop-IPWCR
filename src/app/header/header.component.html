@@ -1,3 +1,4 @@
+<script src="../app-routing.module.ts"></script>
 <header>
 <!--  <section *ngIf="isOpened">-->
 <!--    <header id="MasterHeader">-->
@@ -21,7 +22,7 @@
       <ul class="nav navbar-nav">
         <li class="NavItem"><a style="cursor: pointer" [routerLink]="['']">Home</a></li>
         <li class="NavItem" (click)="OnOpenShop()"><a style="cursor: pointer" [routerLink]="['/shop']">Shop</a></li>
-        <li class="NavItem" (click)="OnOpenShop()"><a style="cursor: pointer" [routerLink]="['/admin/login']">Admin</a></li>
+        <li class="NavItem" (click)="OnOpenShop()"><a style="cursor: pointer" [routerLink]="['/auth']">Admin</a></li>
       </ul>
     </div>
   </nav>

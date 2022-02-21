@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormGroup} from "@angular/forms";
 import {Observable, tap} from "rxjs";
-import {User} from "../../shared/models/user.model";
-import {AuthService} from "../../shared/authentication/auth.service";
-import {UserRole} from "../../shared/models/user-role.model";
-import {NewUser} from "../../shared/models/new-user.model";
+import {User} from "../shared/models/user.model";
+import {AuthService} from "../shared/authentication/auth.service";
+import {UserRole} from "../shared/models/user-role.model";
+import {NewUser} from "../shared/models/new-user.model";
 
 @Component({
   selector: 'app-authentication',
@@ -20,34 +20,12 @@ export class AuthenticationComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.initForm();
   }
 
   onSwitchMode() {
     this.isLogIn = !this.isLogIn;
-    this.initForm();
   }
 
-  private initForm() {
-    if(!this.isLogIn) {
-      this.userForm = new FormGroup({
-        'name': new FormControl(null,
-          [Validators.required]),
-        'email': new FormControl(null,
-          [Validators.required, Validators.email]),
-        'password': new FormControl(null,
-          [Validators.required, Validators.min(6)]),
-        'admin': new FormControl(null,)
-      });
-    }else {
-      this.userForm = new FormGroup({
-        'name': new FormControl(null,
-          [Validators.required]),
-        'password': new FormControl(null,
-          [Validators.required, Validators.min(6)]),
-      });
-    }
-  }
 
   onSubmit() {
     if (!this.userForm.valid) {

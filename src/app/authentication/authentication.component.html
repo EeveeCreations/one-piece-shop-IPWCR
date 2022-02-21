@@ -1,0 +1,22 @@
+<article class="container col-xs-12 background">
+  <section class="container-fluid">
+    <section class="col-xs-12 ">
+      <app-login (form)="userForm"  *ngIf="isLogIn"></app-login>
+      <app-register (form)="userForm" *ngIf="!isLogIn"></app-register>
+      <div class="col-xs-12 loginForm">
+        <button
+          [disabled]="!userForm.valid"
+          (click)="onSubmit()"
+          type="submit" class="btn btn-primary"
+        >
+          {{isLogIn ? 'Log in' : 'Sign up!'}}</button>
+        |
+        <button (click)="onSwitchMode()"
+                type="button"
+                class="btn btn-success"
+        >
+          {{isLogIn ? 'Switch to Sign up' : 'Switch to Login'}}</button>
+      </div>
+    </section>
+  </section>
+</article>

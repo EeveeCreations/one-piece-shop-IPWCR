@@ -5,7 +5,7 @@ import {Injectable} from "@angular/core";
 import {UserRole} from "../../models/user-role.model";
 
 @Injectable({providedIn:"root"})
-export class AuthAdminGuard implements CanActivate {
+export class UserGuard implements CanActivate {
   constructor(private router: Router,
               private authService: AuthService) {
   }
@@ -18,12 +18,11 @@ export class AuthAdminGuard implements CanActivate {
       take(1)
       , map(
         user => {
-          const adminRole:UserRole = new UserRole(1,"ADMIN")
-          const isAuth = user.roles.indexOf(adminRole) != -1;
-          if (isAuth) {
+          const isNotAUser = !user;
+          if (isNotAUser) {
             return true;
           }
-          return this.router.createUrlTree(['/admin/home']);
+          return this.router.createUrlTree(['/auth']);
         }));
 
   }

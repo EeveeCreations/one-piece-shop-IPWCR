@@ -1,0 +1,14 @@
+<form [formGroup]="userForm" class="loginForm col-xs-12">
+  <label for="name">User name: </label><br>
+  <input id="name" type="name" formControlName="name"><br>
+    <label for="email">E-mail: </label><br>
+    <input id="email" type="email" formControlName="email"><br>
+    <label>Admin rights: </label><br>
+    <input id="admin" value="true" type="checkbox"
+           formControlName="admin"><label for="admin">Admin</label><br>
+  <br>
+  <label for="pass">Password: </label><br>
+  <input id="pass" type="password" formControlName="password"><br>
+    <label for="passCheck">checkPassword </label><br>
+    <input id="passCheck" type="password">
+</form>

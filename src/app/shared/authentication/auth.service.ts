@@ -19,8 +19,10 @@ export class AuthService {
               private router: Router,
               private localStorageService: LocalStorageService) {
     this.user.subscribe(() => {
-      this.router.navigate(['/editshop']);
-    })
+      if(this.user != null) {
+        // this.router.navigate(['/']);
+      }
+    });
   }
 
   prepareURL(currentAuthenticationMethod: string) {
