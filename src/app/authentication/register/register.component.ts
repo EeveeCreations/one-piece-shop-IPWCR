@@ -53,7 +53,6 @@ export class RegisterComponent implements OnInit {
         roles.push(new UserRole(1,"ADMIN"));
       }
       let newUser = new NewUser(name,email,pass,roles);
-    console.log(newUser.roles);
       authObs = this.authService.signUp(newUser);
     authObs.subscribe(answer => {
     }, errorMes=> {
