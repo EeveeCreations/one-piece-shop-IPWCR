@@ -84,7 +84,7 @@ export class AuthService {
         name:newUser.name,
         email: newUser.email,
         passcode: this.passwordHash(newUser.passcode),
-        roles: newUser.roles.join(',')
+        roles: newUser.roles.toString()
       }
     ).pipe(
       map(dataRes => {
