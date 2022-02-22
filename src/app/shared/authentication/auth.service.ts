@@ -84,7 +84,7 @@ export class AuthService {
         name:newUser.name,
         email: newUser.email,
         passcode: newUser.passcode,
-        roles: newUser.roles,
+        roles: newUser.roles.toString()
       }
     ).pipe(
       map(dataRes => {

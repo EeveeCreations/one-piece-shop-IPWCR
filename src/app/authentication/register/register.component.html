@@ -12,3 +12,8 @@
     <label for="passCheck">checkPassword </label><br>
     <input id="passCheck" type="password">
 </form>
+<button
+  [disabled]="!userForm.valid"
+  (click)="onSubmit()"
+  type="submit" class="btn btn-primary"
+>Sign up!</button>

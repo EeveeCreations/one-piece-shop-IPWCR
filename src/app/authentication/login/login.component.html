@@ -5,3 +5,9 @@
   <label for="pass">Password: </label><br>
   <input id="pass" type="password" formControlName="password"><br>
 </form>
+
+<button
+  [disabled]="!userForm.valid"
+  (click)="onSubmit()"
+  type="submit" class="btn btn-primary"
+>Log in</button>

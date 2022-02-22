@@ -1,23 +1,17 @@
-.loginForm {
+.auth-form{
   text-align: center;
-  padding: 20px;
+  padding: 10%;
+}
+form, .auth-form button{
+  padding: 2%;
 }
 
-.loginForm > button.btn-primary {
+.auth-form button.btn-primary {
   border: 2px solid var(--master_third_color_darker);
   background: var(--master_third_color);
   color: var(--smokey-black);
 }
-
-.loginForm > button.btn-success {
-  border: 2px solid var(--master_primairy_color_light);
-  background: var(--master_primairy_color_light);
-  font-weight: 600;
-  color: var(--smokey-black);
-
-}
-
-.loginForm > label, .loginForm > div > label {
+loginForm > label, auth-form.loginForm > div > label {
   font-size: 16px;
   font-weight: bold;
   padding-left: -20px;
@@ -26,10 +20,27 @@
 }
 
 input {
+  width: 110%;
   color: var(--smokey-black);
   border: 2px solid var(--master_primairy_color_light);
 }
 
-input.ng-invalid.ng-touched {
+input.ng-invalid .ng-touched {
   border: 3px solid var(--master_primairy_color);
+}
+.filer-section {
+  text-align: center;
+  padding: 2%;
+}
+.filer-section>figure>img {
+  box-shadow: var(--box-shadow-white);
+  max-width: 500px;
+  border-radius: 10%;
+}
+.filer-section > button{
+  border: 2px solid var(--master_primairy_color_light);
+  background: var(--master_primairy_color_light);
+  font-weight: 600;
+  box-shadow: var(--box-shadow-white);
+  color: var(--smokey-black);
 }

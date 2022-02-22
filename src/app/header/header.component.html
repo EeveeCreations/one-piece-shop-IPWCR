@@ -1,17 +1,5 @@
 <script src="../app-routing.module.ts"></script>
 <header>
-<!--  <section *ngIf="isOpened">-->
-<!--    <header id="MasterHeader">-->
-<!--      <div class="overlay"></div>-->
-<!--      <h1>OnePiece So far</h1>-->
-<!--      <p> The one anime who has episodes full of all genres in just 1007 episodes as of now. ;)-->
-<!--      </p>-->
-<!--      <figure>-->
-<!--        <img src="assets/images/headerBackground.jpg" alt="Luffy d monkey and his crew">-->
-<!--        <figcaption>Luffy looking awsomee</figcaption>-->
-<!--      </figure>-->
-<!--    </header>-->
-<!--  </section>-->
   <nav class="navbar MasterNavbar">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -22,7 +10,7 @@
       <ul class="nav navbar-nav">
         <li class="NavItem"><a style="cursor: pointer" [routerLink]="['']">Home</a></li>
         <li class="NavItem" (click)="OnOpenShop()"><a style="cursor: pointer" [routerLink]="['/shop']">Shop</a></li>
-        <li class="NavItem" (click)="OnOpenShop()"><a style="cursor: pointer" [routerLink]="['/auth']">Admin</a></li>
+        <li class="NavItem" (click)="OnOpenShop()"><a style="cursor: pointer" [routerLink]="['/register']">Admin</a></li>
       </ul>
     </div>
   </nav>

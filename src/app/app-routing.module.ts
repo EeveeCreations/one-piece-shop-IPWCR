@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import { RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {StartPageComponent} from "./start-page/start-page.component";
 import {ErrorPageComponent} from "./error-page/error-page.component";
 
@@ -22,7 +22,7 @@ const routes: Routes = [
       )
   },
   {
-    path: 'auth', loadChildren: () =>
+    path: 'register', loadChildren: () =>
       import('./authentication/auth.module').then(
         (m) => {
           return  m.AuthModule
@@ -30,10 +30,9 @@ const routes: Routes = [
       )
   },
   {path: '**', component: ErrorPageComponent},
-  {path: '/**', component: ErrorPageComponent},
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, )], //{preloadingStrategy: PreloadAllModules,useHash: true}
+  imports: [RouterModule.forRoot(routes,{ /*preloadingStrategy: PreloadAllModules,*/useHash: true} )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

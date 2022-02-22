@@ -1,28 +1,54 @@
-import {Component, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Observable, tap} from "rxjs";
+import {User} from "../../shared/models/user.model";
+import {AuthService} from "../../shared/authentication/auth.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: [],
-  encapsulation: ViewEncapsulation.Emulated
+  styleUrls: ['../authentication.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
-  @Output('form') userForm: FormGroup;
+  userForm: FormGroup;
+  private error: any;
 
-  constructor() { }
+
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.initForm()
   }
 
   private initForm() {
-      this.userForm = new FormGroup({
-        'name': new FormControl(null,
-          [Validators.required]),
-        'password': new FormControl(null,
-          [Validators.required, Validators.min(6)]),
-      });
+    this.userForm = new FormGroup({
+      'name': new FormControl(null,
+        [Validators.required]),
+      'password': new FormControl(null,
+        [Validators.required, Validators.min(6)]),
+    });
   }
 
+  onSubmit() {
+    if (!this.userForm.valid) {
+      return;
+    }
+    this.checkAuthentication();
+  }
+
+  checkAuthentication() {
+    const name = this.userForm.get('name').value;
+    const pass = this.userForm.get('password').value;
+    let authObs: Observable<User>;
+    authObs = this.authService.logIn(name, pass).pipe(tap(answer => {
+      authObs.subscribe(answer => {
+      }, errorMes => {
+
+        this.error = errorMes;
+      });
+    }));
+    this.userForm.reset();
+  }
 }
