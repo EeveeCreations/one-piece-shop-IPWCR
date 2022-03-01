@@ -18,11 +18,12 @@ export class AuthAdminGuard implements CanActivate {
       take(1)
       , map(
         user => {
-          const adminRole:UserRole = new UserRole(1,"ADMIN")
-          const isAuth = user.roles.indexOf(adminRole) != -1;
-          if (isAuth) {
-            return true;
-          }
+          const admin: string = "ADMIN";
+            user.roles.forEach( function (uRole) {
+             if(uRole.role == admin){
+               return true;
+             }}
+            );
           return this.router.createUrlTree(['/admin/home']);
         }));
 

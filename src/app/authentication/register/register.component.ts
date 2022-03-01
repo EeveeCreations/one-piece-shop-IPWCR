@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
 import {User} from "../../shared/models/user.model";
 import {UserRole} from "../../shared/models/user-role.model";
 import {NewUser} from "../../shared/models/new-user.model";
@@ -48,16 +48,20 @@ export class RegisterComponent implements OnInit {
     let authObs: Observable<User>;
       const email = this.userForm.get('email').value;
       const isAdmin = this.userForm.get('admin').touched;
-      let roles : UserRole[] = [new UserRole(2,"CLIENT")];
+      let roles : UserRole[] = [new UserRole(BigInt(2),"CLIENT")];
       if(isAdmin){
-        roles.push(new UserRole(1,"ADMIN"));
+        roles.push(new UserRole(BigInt(1),"ADMIN"));
       }
       let newUser = new NewUser(name,email,pass,roles);
       authObs = this.authService.signUp(newUser);
-    authObs.subscribe(answer => {
-    }, errorMes=> {
-      this.error = errorMes;
-    });
+    authObs.subscribe(answer =>{
+      console.log(answer)
+    })
+    // subscribe(answer => {
+    //   console.log(answer)
+    // }, errorMes=> {
+    //   this.error = errorMes;
+    // });
     this.userForm.reset();
   }
 }

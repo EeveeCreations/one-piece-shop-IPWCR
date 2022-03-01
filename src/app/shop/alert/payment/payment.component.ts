@@ -48,10 +48,10 @@ export class PaymentComponent implements OnInit , OnDestroy{
     const mail = this.clientForm.get('mail').value
     const name = this.clientForm.get('name').value
 
-    if(this.authService.user == null){
-      const newUser = new NewUser(name,mail,"",[new UserRole(3,"UN_REG_CLIENT")])
-      this.authService.signUp(newUser);
-    }
+    // if(this.authService.user == null){
+    //   const newUser = new NewUser(name,mail,"",[new UserRole(null,"UN_REG_CLIENT")])
+    //   this.authService.signUp(newUser);
+    // }
     this.router.navigate(['paid'],{relativeTo:this.activeRoute});
     this.cartService.buyTheCart(false);
   }

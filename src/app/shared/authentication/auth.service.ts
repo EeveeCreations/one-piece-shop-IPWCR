@@ -6,7 +6,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserRole} from "../models/user-role.model";
 import {LocalStorageService} from "../services/local-storage.service";
-import {shajs} from "sha.js";
+import * as shajs from 'sha.js';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -25,8 +25,8 @@ export class AuthService {
     });
   }
 
-  prepareURL(currentAuthenticationMethod: string) {
-    this.url = "https://localhost:7004/" + currentAuthenticationMethod;
+  prepareURL(authentication: string) {
+    this.url = "https://localhost:7004/" + authentication;
     //178.62.233.221/
     return this.url;
   }
@@ -36,7 +36,6 @@ export class AuthService {
       {
         ContentType: 'application/json',
         Accept: 'application/json',
-        // Origin: 'http://localhost:4200',
   });
   }
 
@@ -84,7 +83,7 @@ export class AuthService {
         name:newUser.name,
         email: newUser.email,
         passcode: this.passwordHash(newUser.passcode),
-        roles: newUser.roles.toString()
+        roles: newUser.roles
       }
     ).pipe(
       map(dataRes => {
@@ -92,7 +91,8 @@ export class AuthService {
             dataRes.name,
             dataRes.roles,
             dataRes.accessToken,
-            dataRes.refreshToken);
+            dataRes.refreshToken
+          );
         }
       ),
       catchError(this.handleError));
@@ -114,11 +114,10 @@ export class AuthService {
 
   private createRoles(roles: string): UserRole[] {
     let  newRoles: UserRole[] = []
-    let id: number = 2;
+    const id: bigint = null;
     console.log(roles)
     for(const rol of roles.replace('[','').replace(']','').replace(' ','').split(",")){
       if(rol.startsWith("ADMIN")){
-          id = 1;
       }
       newRoles.push(new UserRole(id,rol))
     }

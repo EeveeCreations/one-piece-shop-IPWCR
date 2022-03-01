@@ -7,11 +7,11 @@ export class NewUser {
   private _passcode: string;
   private _roles: UserRole[];
 
-  constructor(name: string, email: string, password: string, roles: UserRole[]) {
+  constructor(name: string, email: string, passcode: string, roles: UserRole[]) {
     this._id = null;
     this._name = name;
     this._email = email;
-    this._passcode = password;
+    this._passcode = passcode;
     this._roles = roles;
   }
 
