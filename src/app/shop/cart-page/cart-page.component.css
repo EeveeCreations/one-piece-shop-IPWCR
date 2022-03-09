@@ -1,0 +1,18 @@
+.paySection h2{
+  width: 100%;
+  text-align: center;
+  border-bottom: solid var(--master_primairy_color) 1px;
+}
+.paySection  h3{
+  text-align: left;
+}
+.paySection span{
+  float: right;
+}
+.btn-success{
+  position: relative;
+  right: 0;
+  border: solid var(--master_third_color_darker);
+  background: var(--master_third_color);
+}
+

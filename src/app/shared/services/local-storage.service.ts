@@ -43,10 +43,10 @@ export class LocalStorageService implements OnInit{
 
   getCartFromLocalStorage(): ShoppingCart {
     const newCart: {
-      amountOfProducts: number,
-      cartItems: CartItem[],
-      totalPrice: number,
-      isOrdered: boolean
+      _amountOfProducts: number,
+      _cartItems: CartItem[],
+      _totalPrice: number,
+      _isOrdered: boolean
     } = JSON.parse(localStorage.getItem(this.SHOPPING_CART));
     if (!newCart) {
       return;
@@ -55,7 +55,7 @@ export class LocalStorageService implements OnInit{
     // for (let item of newCart.cartItems){
     //   cartItems.push(item);
     // }
-    // return new ShoppingCart(newCart.amountOfProducts, newCart.cartItems, newCart.totalPrice, newCart.isOrdered);
+    return new ShoppingCart(newCart._amountOfProducts, newCart._cartItems, newCart._totalPrice, newCart._isOrdered);
   }
 
   storeCart(cart: ShoppingCart) {

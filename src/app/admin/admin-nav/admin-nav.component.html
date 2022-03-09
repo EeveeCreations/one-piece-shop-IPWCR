@@ -1,7 +1,7 @@
 <nav class="adminNav navbar-default nav background navbar"> <!-- *ngIf="isAdmin"*/ -->
   <ul>
-    <li class="navbar-collapse"><a [routerLink]="['']">Open Orders</a></li>
-    <li class="navbar-collapse"><a [routerLink]="['orders']">Open Orders</a></li>
-    <li class="navbar-collapse"><a [routerLink]="['shop-products']">Edit ShopItems</a></li>
+    <li class="navbar-collapse"><a routerLinkActive="activeLink" [routerLink]="['Home']">Open Orders</a></li>
+    <li class="navbar-collapse"><a routerLinkActive="activeLink" [routerLink]="['orders']">Open Orders</a></li>
+    <li class="navbar-collapse"><a routerLinkActive="activeLink" [routerLink]="['shop-products']">Edit ShopItems</a></li>
   </ul>
 </nav>

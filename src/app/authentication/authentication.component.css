@@ -29,18 +29,27 @@ input.ng-invalid .ng-touched {
   border: 3px solid var(--master_primairy_color);
 }
 .filer-section {
-  text-align: center;
-  padding: 2%;
-}
-.filer-section>figure>img {
-  box-shadow: var(--box-shadow-white);
-  max-width: 500px;
+  height: 50vw;
+  width: 500px;
   border-radius: 10%;
+  background:url(src/assets/Images/background/space.jpg) fixed no-repeat;
+  text-align: center;
+  padding: 0;
+}
+.filer-section > figure {
+  position: absolute;
+  border-radius: 10%;
+  height: inherit;
+  width: inherit;
+  background: var(--transparent_white);
 }
 .filer-section > button{
+  position: relative;
+  top: 370px;
+  z-index: 2;
   border: 2px solid var(--master_primairy_color_light);
   background: var(--master_primairy_color_light);
-  font-weight: 600;
-  box-shadow: var(--box-shadow-white);
+  font-size: 18px;
+  box-shadow: var(--box-shadow);
   color: var(--smokey-black);
 }

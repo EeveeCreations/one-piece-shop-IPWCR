@@ -8,9 +8,9 @@
         </a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="NavItem"><a style="cursor: pointer" [routerLink]="['']">Home</a></li>
-        <li class="NavItem" (click)="OnOpenShop()"><a style="cursor: pointer" [routerLink]="['/shop']">Shop</a></li>
-        <li class="NavItem" (click)="OnOpenShop()"><a style="cursor: pointer" [routerLink]="['/register']">Admin</a></li>
+        <li class="NavItem"><a style="cursor: pointer" routerLinkActive="activeLink" [routerLink]="['home']">Home</a></li>
+        <li class="NavItem" (click)="OnOpenShop()"><a style="cursor: pointer" routerLinkActive="activeLink" [routerLink]="['/shop']">Shop</a></li>
+        <li class="NavItem" (click)="OnOpenShop()"><a style="cursor: pointer" routerLinkActive="activeLink" [routerLink]="['/register']">{{isUser? 'Orders': 'login'}}</a></li>
       </ul>
     </div>
   </nav>

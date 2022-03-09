@@ -1,40 +1,47 @@
-import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {Product} from "../../shared/models/product.model";
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {ShopService} from "../../shared/services/shop.service";
+import {CartItem} from "../../shared/models/cart-item.model";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit, OnChanges {
+export class ItemComponent implements OnInit, OnDestroy {
   @Input('product') product: Product;
   @Input('i') index: number;
   @ViewChild('element') element: ElementRef;
-  private inCart: boolean = true;
-  isHovering: boolean;
+  // cartSubscription: Subscription;
+  inCart: boolean = true;
+  cartItem: CartItem;
 
   constructor(private shoppingCartService: ShoppingCartService,
               private shopService: ShopService) {
+    this.checkInCart()
   }
 
   ngOnInit(): void {
+  }
+  ngOnDestroy():void {
 
   }
 
   alertOfItem() {
-    this.shopService.GiveAlertAboutItem(this.product);
+    this.shopService.giveAlertAboutItem(this.product);
+    this.checkInCart();
   }
 
-  isInCart(): boolean {
-    return this.inCart;
+  amountOfItemChange(isAdd: boolean) {
+      this.shopService.changeAmountOfItem(this.product, isAdd)
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // this.inCart = this.shoppingCartService.seeIfItemInCart(this.product)
-    // if (this.inCart) {
-    //   this.element.nativeElement.className = 'added';
-    // }
+  checkInCart(){
+    if ( this.shoppingCartService.seeIfItemInCart(this.product)) {
+          this.cartItem = this.shoppingCartService.getItemOfCart(this.product);
+          // this.element.nativeElement.className = 'added';
+    }
   }
 }

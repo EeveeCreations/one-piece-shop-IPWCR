@@ -1,0 +1,47 @@
+.counterInCart , .amount{
+  cursor: pointer;
+  z-index: 8;
+  position:absolute;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  right: -10px;
+  top: -10px;
+  font-size: 45px;
+  border-radius: 50%;
+  padding-top: -20px;
+  color: var(--master_primairy_color_light);
+  border: 5px solid var(--master_primairy_color_light);
+  background: var(--white);
+}
+.counterInCart > span{
+  position: relative;
+  top: -10px;
+}
+
+.amount{
+  object-position: top;
+  z-index: 7;
+  vertical-align: top;
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  font-size: 25px;
+  right: -25px;
+  margin:  0;
+  top:-23px;
+  border-style: none;
+  color: var(--white);
+  background: var(--master_primairy_color_light);
+}
+.amount >span{
+  position: relative;
+  top: -2px;
+}
+.delete{
+  z-index: 6;
+  top: 0;
+  right: -35px;
+  background: var(--master_primairy_color);
+}
+

@@ -1,20 +1,18 @@
 /*Header*/
 /*Navbar ____________________________________________________________________________________ Nav bar*/
 .homeIcon{
-  max-height: 100px;
+  max-height: 90px;
 }
 .MasterNavbar {
+  margin: 0;
+  text-align: right;
   z-index: 3;
-  top: -8px;
   border-radius: 8px;
-  max-width: 70%;
   min-width: max-content;
   height: 110px;
   color: var(--white);
   background: var(--smokey-black);
   position: relative;
-  margin: var(--margin_center_horizental);
-  box-shadow: var(--box-shadow-white);
 }
 .MasterNavbar li {
   font-size: 200%;
@@ -51,13 +49,17 @@
 
   .MasterNavbar ul {
     padding: 0;
+    width: 100%;
+    display: flex;
     justify-content: center;
     flex-direction: column;
   }
 
   .MasterNavbar li {
+    width: 50%;
+    margin: 0 auto;
     display: block;
-    width: 100%;
+
   }
 
   .MasterNavbar a {

@@ -4,7 +4,7 @@ import {StartPageComponent} from "./start-page/start-page.component";
 import {ErrorPageComponent} from "./error-page/error-page.component";
 
 const routes: Routes = [
-  {path: '', component: StartPageComponent},
+  {path: 'home', component: StartPageComponent},
   {
     path: 'shop', loadChildren: () =>
       import('./shop/shop.module').then(

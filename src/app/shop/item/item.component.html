@@ -4,5 +4,5 @@
       <img [src]="product.imagePath" alt="{{product.description}}">
       <figcaption class="desc">{{product.description}} &#8364; {{product.price}}</figcaption>
     </figure>
-  <app-detail *ngIf="isHovering"></app-detail>
+  <app-detail *ngIf="cartItem" [amount]="cartItem.amount" (itemAmountEvent)="amountOfItemChange($event)"></app-detail>
 </li>
