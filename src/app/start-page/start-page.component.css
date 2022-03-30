@@ -1,16 +1,29 @@
 .cssSelection {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-column-gap: var(--grid-gap);
+}
+.cssSelection > .cssSelections {
+  display: grid;
+  grid-template-columns: 1fr;
   grid-template-rows: auto;
   grid-column-gap: var(--grid-gap);
 }
 
+.Homepage grid{
+  grid-template-columns: 1fr;
+
+}
+.newItemsDisplay{
+ height: 40vw;
+}
+
+
+
 @media only screen and (min-width: 689px) and (max-width: 1200px) {
 
-  /*  Page*/
-  .cssSelection {
-    grid-template-columns: 1fr 1fr;
-  }
+
 }
 
 @media only screen and (min-width: 350px) and (max-width: 689px) {
@@ -19,4 +32,9 @@
   .cssSelection {
     grid-template-columns: 1fr;
   }
+
+  .newItemsDisplay{
+    height: 70vw;
+  }
+
 }

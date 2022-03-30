@@ -33,6 +33,7 @@ summary {
 }
 
 .contact h2{
+  width: 100%;
   font-weight: 600;
   color: var(--master_third_color_darker);
 }

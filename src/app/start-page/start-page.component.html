@@ -1,93 +1,35 @@
-<article class="cssSelections">
-  <section class="cssSelection background">
-    <header>
-      <h2>Original Content</h2>
+<article class="cssSelections Homepage">
+  <section class="cssSelection newItemsDisplay">
+    <header class="col-xs-12">
+      <h2>Newest Products</h2>
     </header>
-    <p> In perhaps its largest deviation from the manga, Toei(original maker) has produced a considerable amount of
-      original story
-      material—popularly called filler by fans—using the manga's basic setting and characters.
-      These may comprise a single episode or multi-episode arcs; most are written to reconcile with the
-      manga-based continuity,
-    </p>
-    <p>
-      but have no tangible impact on it (and in fact are almost never referenced even by other anime-original
-      material).
-      A complete listing of these arcs and episodes may be found here.
-    </p>
-    <section>
-      <p>
-        Thirteen television specials, which fall among two subcategories:
-      </p>
-      <ul>
-        <li>Four hour-long specials, all original stories, aired in standard episode timeslots (that coincide
-          with seasonal school breaks).
-        </li>
-        <li>Nine two-hour specials, a combination of original stories and re-adaptations of manga stories, aired
-          on
-          days preceding standard episodes (also usually coinciding with school breaks).
-        </li>
-      </ul>
-    </section>
-    <section>
-      <ul>
-        <li>Various original video animations (OVAs), usually meant to serve as tie-ins for individual films.
-        </li>
-        <li>Various exhibition shorts, shown exclusively at special events and attractions.</li>
-        <li>Various recap features, which feature some degree of original content but mostly reuse footage from
-          the television anime.
-        </li>
-      </ul>
-    </section>
-    <section>
-      <p>
-        Apart from the standard television anime,
-        Toei has also produced many standalone One Piece works,
-        which fall outside the episode numbering and broadcast schedule.
-        These include:
-      </p>
-      <ul>
-        <li>Fourteen theatrical films, traditionally released during Golden Week but given more sporadic
-          releases
-          (as well as more direct contribution from Eiichiro Oda) from the tenth onward.
-        </li>
-        <li>Three featurettes, bundled respectively with the second, third, and fifth films.</li>
-      </ul>
+    <section class="col-xs-12">
+      <figure>
+        <img [src]="currentProduct.imagePath" [alt]="currentProduct.description"/>
+        <figcaption> Newest product in our shop</figcaption>
+      </figure>
     </section>
   </section>
-  <section class="cssSelection">
-    <header>
-      <h2>Relation to the Manga</h2>
+  <section class="cssSelection aboutSpace background ">
+    <header class="col-xs-12">
+      <h2>Why Space</h2>
     </header>
-    <p>
-      The One Piece anime is—particularly compared to other long-running anime—extensively faithful to its source
-      material,
-      adapting nearly all of the manga's story content with a minimum of deliberate contradiction.
-      Though it has altered and rearranged (and on rarer occasions, removed) a number of the manga's elements,
-      it typically does so for time or content-rating purposes; when such changes contradict material later
-      established by the manga,
-      they are by default ignored, with the manga taking precedence.
-    </p>
-    <p>
-      Due to the longrun of the series there have been recap episodes often told in flashbacks and later with new
-      animation.
-      (An in-depth listing of the anime's changes may be found on the articles for each individual story arc
-      and—to a lesser extent—the articles for each individual episode. )
-    </p>
-  </section>
-  <section class="cssSelection background">
-    <header>
-      <h2>What is there to find on the site ?</h2>
-    </header>
-    <section>
-      <p>On this site you wil find a <a [routerLink]="['/shop']">little ol' shop</a> Here you can find some merch of the
-        Anime
-        in the form of mugs, blankets, clothing, Statues, posters etc.
-        Anything your little weeb heart desires</p>
-    </section>
-    <section>
-      <p>Furthermore there is a small about page where you can find some information about the crew mates and what
-        has
-        happened (so far) for me in the series</p>
+    <section class="col-xs-12">
+      <p>
+        The One Piece anime is—particularly compared to other long-running anime—extensively faithful to its source
+        material,
+        adapting nearly all of the manga's story content with a minimum of deliberate contradiction.
+        Though it has altered and rearranged (and on rarer occasions, removed) a number of the manga's elements,
+        it typically does so for time or content-rating purposes; when such changes contradict material later
+        established by the manga,
+        they are by default ignored, with the manga taking precedence.
+      </p>
+      <p>
+        Due to the longrun of the series there have been recap episodes often told in flashbacks and later with new
+        animation.
+        (An in-depth listing of the anime's changes may be found on the articles for each individual story arc
+        and—to a lesser extent—the articles for each individual episode. )
+      </p>
     </section>
   </section>
 </article>

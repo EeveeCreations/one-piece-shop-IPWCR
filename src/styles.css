@@ -16,7 +16,7 @@
   --master_font: 'Montserrat', sans-serif;
 
   /*colors*/
-  --master_color: #0c0c0c;
+  --master_color: #020202;
   --master_color_light: #5b5b5b;
   --master_primairy_color: #372565;
   --master_primairy_color_light: #5e4ba9;
@@ -131,17 +131,17 @@ figcaption {
 /*!*Basics*!*/
 .cssSelections {
   overflow: hidden;
-  background: var(--transparent_white);
+  background: var(--transparent_black);
   width: 100%;
   position: relative;
 }
-.cssSelections h2 {
+.cssSelections h2, .background h2 {
   animation: slideIn 900ms ease-in forwards;
   width: 120%;
   height: max-content;
   position: relative;
   font-size: 250%;
-  color: var(--master_primairy_color);
+  color: var(--master_primairy_color_light);
 }
 
 .cssSelection {
