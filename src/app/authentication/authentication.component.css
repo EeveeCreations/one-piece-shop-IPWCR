@@ -6,11 +6,15 @@
 form, .auth-form button{
   padding: 2%;
 }
+button {
+  color: var(--white);
+  font-weight: 900;
+}
 
 .auth-form button.btn-primary {
   border: 2px solid var(--master_third_color_darker);
   background: var(--master_third_color);
-  color: var(--smokey-black);
+
 }
 .loginForm,.auth-form{
   font-size: 32px;
@@ -58,10 +62,9 @@ input.ng-invalid .ng-touched {
   top: 10%;
   margin: auto;
   z-index: 2;
-  border-radius: 5%;
-  border: 2px solid var(--master_primairy_color_light);
-  background: var(--master_primairy_color_light);
+  border-radius: 5px;
+  border: 2px solid var(--master_primairy_color);
+  background: var(--master_primairy_color);
   font-size:22px;
   box-shadow: var(--box-shadow);
-  color: var(--smokey-black);
 }

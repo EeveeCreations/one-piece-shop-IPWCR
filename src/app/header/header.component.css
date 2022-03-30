@@ -13,6 +13,7 @@
   color: var(--white);
   background: var(--smokey-black);
   position: relative;
+  border-bottom: solid 5px var(--master_primairy_color );
 }
 .MasterNavbar li {
   font-size: 200%;

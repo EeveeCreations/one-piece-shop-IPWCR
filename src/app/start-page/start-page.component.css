@@ -11,12 +11,23 @@
   grid-column-gap: var(--grid-gap);
 }
 
-.Homepage grid{
-  grid-template-columns: 1fr;
-
-}
 .newItemsDisplay{
- height: 40vw;
+  height: 40vw;
+  font-size: 22px;
+  position: relative;
+  text-align: center;
+}
+.newItemsDisplay h2 {
+  width: 100%;
+}
+.newItemsDisplay figcaption{
+  top: -40px;
+  width: 80%;
+  padding: 5px;
+  margin: 0 auto ;
+  position: relative;
+  background: var(--transparent_white);
+  color: var(--master_primairy_color_light);
 }
 
 

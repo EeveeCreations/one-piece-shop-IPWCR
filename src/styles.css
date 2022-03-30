@@ -142,6 +142,7 @@ figcaption {
   position: relative;
   font-size: 250%;
   color: var(--master_primairy_color_light);
+  font-weight: 900;
 }
 
 .cssSelection {
