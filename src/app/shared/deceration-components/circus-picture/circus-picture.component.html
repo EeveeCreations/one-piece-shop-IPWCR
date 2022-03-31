@@ -1,0 +1,6 @@
+<section *ngIf="currentProduct" class="col-xs-12 circus">
+  <figure>
+    <img [@Circus]="state" [src]="currentProduct.imagePath" [alt]="currentProduct.description"/>
+    <figcaption> {{currentProduct.name}}</figcaption>
+  </figure>
+</section>

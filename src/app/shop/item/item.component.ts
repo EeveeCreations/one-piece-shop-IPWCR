@@ -14,7 +14,6 @@ export class ItemComponent implements OnInit, OnDestroy {
   @Input('product') product: Product;
   @Input('i') index: number;
   @ViewChild('element') element: ElementRef;
-  // cartSubscription: Subscription;
   inCart: boolean = true;
   cartItem: CartItem;
 

@@ -30,30 +30,15 @@ export class StartPageComponent implements OnInit {
   }
 
   setNewProducts(products: Product[]) {
-    for(let i = 0; i < 5; i++){
-      this.newProducts.push(products[products.length -i])
-    }
-  }
+    // for(let i = 0; i < 5; i++){
+    //   this.newProducts.push(products[products.length -i])
+    // }
+    this.newProducts = [
+      new Product(2, "HELOOW", "EYG", 232, "Dugfffy", "https://static.independent.co.uk/2022/01/17/13/jovian_exoplanet.jpg?quality=75&width=1200&auto=webp")
+      , new Product(6, "Woow", "EYG", 232, "Dugfffy", "https://img.pixers.pics/pho_wat(s3:700/FO/71/02/27/95/700_FO71022795_46be9723deea229b4463a1b4b657068e.jpg,700,485,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,435,jpg)/fotobehang-alien-planet-3d-gesmolten-computer-kunstwerk.jpg.jpg")
+      , new Product(4, "idee", "EYG", 232, "Dugfffy", "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2021/10/location_of_possible_planet_in_m51/23742967-1-eng-GB/Location_of_possible_planet_in_M51_pillars.jpg")
 
-  rollTheNewProducts(){
-    let amountPictures = this.newProducts.length -1;
-    let i;
-    setInterval(function () {
-        if (i === 0) {
-          this.newProducts[amountPictures].style.display = "none";
-        } else {
-          this.newProducts[i - 1].style.display = "none";
-        }
-        this.newProducts[i].style.display = "block";
-        i++;
-        if (i === amountPictures + 1) {
-          i = 0
-        }
-      }
-      , 3000);
-  }
-  ngChangePicture(){
-
+    ];
   }
 
   ngOnDestroy(): void {

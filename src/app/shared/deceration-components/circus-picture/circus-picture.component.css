@@ -1,0 +1,21 @@
+.circus{
+  width: 100%;
+  height: 30vw;
+  font-size: 22px;
+  position: relative;
+  text-align: center;
+}
+.circus img{
+  display: block;
+  height:30VW;
+  width: 100%;
+}
+.circus figcaption{
+  top: -40px;
+  width: 80%;
+  padding: 5px;
+  margin: 0 auto ;
+  position: relative;
+  background: var(--transparent_white);
+  color: var(--master_primairy_color_light);
+}

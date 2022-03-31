@@ -3,12 +3,7 @@
     <header class="col-xs-12 text-center">
       <h2>Newest Products</h2>
     </header>
-    <section class="col-xs-12">
-      <figure>
-        <img [src]="currentProduct.imagePath" [alt]="currentProduct.description"/>
-        <figcaption> Newest product in our shop</figcaption>
-      </figure>
-    </section>
+    <app-circus-picture [products]="newProducts" ></app-circus-picture>
   </section>
   <section class="cssSelection aboutSpace background ">
     <header class="col-xs-12">
