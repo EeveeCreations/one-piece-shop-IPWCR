@@ -9,28 +9,34 @@ import {Router} from "@angular/router";
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css'],
 })
-export class ShoppingCartComponent implements OnInit ,OnDestroy{
-  public cart: ShoppingCart;
-  private cartSubscription: Subscription;
+export class ShoppingCartComponent implements OnInit, OnDestroy {
+  cartSubscription: Subscription;
+  cart: ShoppingCart;
 
-  constructor(private shoppingCartService: ShoppingCartService,
-              private router: Router) {
+  constructor(
+    private shoppingCartService: ShoppingCartService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
-    this.cartSubscription = this.shoppingCartService.shoppingCartEvent.subscribe((cart: ShoppingCart) =>{
-      this.cart = cart}
-      , error => {
-       this.router.navigate(['error'])
-    });
-  }
-
-  onBuyCart() {
-    this.shoppingCartService.buyTheCart(true);
+    this.setSubscription();
   }
 
   ngOnDestroy() {
     this.cartSubscription.unsubscribe();
+  }
+
+  private setSubscription() {
+    this.cartSubscription = this.shoppingCartService.shoppingCartEvent.subscribe(
+      (cart: ShoppingCart) => {
+        this.cart = cart;
+      }
+    );
+  }
+
+  onBuyCart() {
+    this.shoppingCartService.buyTheCart(true);
   }
 
 

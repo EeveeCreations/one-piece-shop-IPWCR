@@ -1,16 +1,37 @@
-
+.cssSelections{
+  height: 60vw;
+}
 /*Error Page*/
 .error{
+  padding: 10%;
   align-content: center;
   text-align: center;
-  grid-template-columns: 1fr;
+  color:var(--white);
 }
 .error > h2{
+  color: var(--master_secundairy_color);
   width: 100%!important;
+  font-size: 48px;
+}
+.error >h1 {
+  color: var(--master_third_color);
+  width: 100%!important;
+  font-size: 55px;
+
 }
 .error > button{
   position: relative;
   margin: var(--margin_center_vertical);
+}
+.notFoundGif > figure >img{
+  height: 100%;
+  border-radius: 30%;
+}
+.notFoundGif{
+  position: absolute;
+  z-index: -1;
+  padding: 5% 1%;
+  height: 100%;
 }
 /* sources*/
 
@@ -28,4 +49,37 @@
   font-size: 120%;
   display: block;
   color: var(--master_primairy_color);
+}
+
+@media only screen and (min-width: 1400px) {
+  .cssSelection{
+    padding: 0 25%;
+  }
+  .error{
+    padding: 10%;
+    width: 100%;
+    height: 100%;
+  }
+  .notFoundGif > figure >img{
+    height: 70%;
+    border-radius: 30%;
+  }
+}
+@media only screen and (min-width: 350px) and (max-width: 689px) {
+  .cssSelection{
+    height: 100vw;
+  }
+  .error{
+    padding: 0;
+    padding-top: 20% ;
+    width: 100%;
+    height: 100%;
+    /*background: var(--transparent_white);*/
+    /*border:  solid 5px var(--master_primairy_color_light)*/
+  }
+  .notFoundGif{
+    padding: 0;
+    height: 100%;
+  }
+
 }

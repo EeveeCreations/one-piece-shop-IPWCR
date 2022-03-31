@@ -1,24 +1,28 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnInit} from "@angular/core";
 import {User} from "../models/user.model";
 import {UserRole} from "../models/user-role.model";
 import {ShoppingCart} from "../models/shopping-cart.model";
 import {CartItem} from "../models/cart-item.model";
 
 @Injectable({providedIn: 'root'})
-export class LocalStorageService {
-  private USER_ITEM :string = 'currentUser';
+export class LocalStorageService implements OnInit{
+  private USER :string = 'currentUser';
   private SHOPPING_CART: string = 'shoppingCart';
+
+  ngOnInit(): void {
+    window.onstorage = () => this.onChangeOfStorage();
+  }
 
   removeItemFromLocalStorage(itemName: string) {
     localStorage.removeItem(itemName);
   }
 
   storeUser(currentUser: User) {
-    localStorage.setItem(this.USER_ITEM, JSON.stringify(currentUser));
+    localStorage.setItem(this.USER, JSON.stringify(currentUser));
   }
 
   removeUser() {
-    localStorage.removeItem(this.USER_ITEM);
+    localStorage.removeItem(this.USER);
   }
 
   getUserFromLocalStorage(): User {
@@ -39,10 +43,10 @@ export class LocalStorageService {
 
   getCartFromLocalStorage(): ShoppingCart {
     const newCart: {
-      amountOfProducts: number,
-      cartItems: CartItem[],
-      totalPrice: number,
-      isOrdered: boolean
+      _amountOfProducts: number,
+      _cartItems: CartItem[],
+      _totalPrice: number,
+      _isOrdered: boolean
     } = JSON.parse(localStorage.getItem(this.SHOPPING_CART));
     if (!newCart) {
       return;
@@ -51,7 +55,7 @@ export class LocalStorageService {
     // for (let item of newCart.cartItems){
     //   cartItems.push(item);
     // }
-    // return new ShoppingCart(newCart.amountOfProducts, newCart.cartItems, newCart.totalPrice, newCart.isOrdered);
+    return new ShoppingCart(newCart._amountOfProducts, newCart._cartItems, newCart._totalPrice, newCart._isOrdered);
   }
 
   storeCart(cart: ShoppingCart) {
@@ -60,6 +64,11 @@ export class LocalStorageService {
 
   removeCart() {
     localStorage.removeItem(this.SHOPPING_CART);
+  }
+
+  onChangeOfStorage(){
+    this.removeUser();
+    this.removeCart();
   }
 
 }

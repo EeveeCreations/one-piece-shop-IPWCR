@@ -18,7 +18,7 @@ export class ShopService implements OnInit{
     this.allItemsOfShop = this.productService.getProducts();
   }
 
-  GiveAlertAboutItem(product: Product) {
+  giveAlertAboutItem(product: Product) {
     if (this.shoppingCartService.seeIfItemInCart(product)) {
       this.giveAlertToDelete(product);
     } else {
@@ -26,10 +26,15 @@ export class ShopService implements OnInit{
     }
   }
 
+   changeAmountOfItem(product, toAdd:boolean){
+    this.shoppingCartService.updateCart(product,"amount",toAdd)
+  }
+
   private giveAlertToDelete(product: Product) {
     if (confirm("Do you want to Delete this Item from the Cart")) {
-      this.shoppingCartService.updateCart(product);
+      this.shoppingCartService.updateCart(product, "delete");
     }
+
   }
 
   private giveAlertToAdd(product: Product) {

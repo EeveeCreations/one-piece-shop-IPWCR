@@ -21,8 +21,7 @@ export class EditItemsComponent implements OnInit {
     this.productSubscription = this.productService.productEvent.subscribe(
       (updateProducts:Product[]) =>{
       this.shopItems = updateProducts;
-    })
-
+    });
   }
 
   onEditItem(item: Product) {

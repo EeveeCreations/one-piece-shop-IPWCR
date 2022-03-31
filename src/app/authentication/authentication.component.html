@@ -1,0 +1,16 @@
+<article class="container col-xs-12 background">
+  <section class="container-fluid">
+    <section class="col-sm-12 filer-section">
+      <figure>
+<!--        <img [src]="isLogIn? 'assets/Images/crew/Luffy.jpg': 'assets/Images/crew/OnepieceCrew4.jpg'"/>-->
+      </figure>
+      <button (click)="onSwitchMode()"
+              type="button"
+              class="btn btn-success">
+        {{isLogIn ? 'Switch to Sign up' : 'Switch to Login'}}</button>
+    </section>
+    <section class="col-sm-12 auth-form">
+      <router-outlet></router-outlet>
+    </section>
+  </section>
+</article>

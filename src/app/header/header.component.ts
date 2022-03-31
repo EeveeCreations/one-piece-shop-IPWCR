@@ -7,8 +7,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   isOpened: boolean = false;
+  isUser: boolean = false;
 
-  constructor() {}
+  constructor(
+    // private authService: AuthService,
+  ) {}
 
   ngOnInit(): void {
     // this.closePopUp();
@@ -19,8 +22,6 @@ export class HeaderComponent implements OnInit {
       this.isOpened = false;
     },1500);
   }
-
-
   OnOpenShop() {
   }
 }
