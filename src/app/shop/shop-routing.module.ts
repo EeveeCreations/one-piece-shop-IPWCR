@@ -11,10 +11,12 @@ const routes = [
     path: '', component: ShopComponent, children: [
       {path: 'products', component: ShopPageComponent , resolve: [ProductResolver]},
       {path: 'myCart', component: CartPageComponent}, //, canActivate:[UserGuard]
+      {path: 'paid', component: CompleteComponent},
       {path: '**', redirectTo: 'products'}
     ]
-  },
-  {path: 'paid', component: CompleteComponent}]
+  }
+]
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

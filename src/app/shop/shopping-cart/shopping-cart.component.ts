@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {ShoppingCart} from "../../shared/models/shopping-cart.model";
 import {Subscription} from "rxjs";
+import {LocalStorageService} from "../../shared/services/local-storage.service";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,11 +10,13 @@ import {Subscription} from "rxjs";
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit, OnDestroy {
+  // @Output('Pay') pay : EventEmitter<boolean> = new EventEmitter<boolean>();
   cartSubscription: Subscription;
   cart: ShoppingCart;
 
   constructor(
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    private localStorageService: LocalStorageService
   ) {
   }
 
@@ -26,10 +29,10 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   private setSubscription() {
-    this.cartSubscription = this.shoppingCartService.shoppingCartEvent.subscribe(
-      (cart: ShoppingCart) => {
-        console.log(cart)
-        this.cart = cart;
+    this.cart = this.localStorageService.getCartFromLocalStorage();
+    this.cartSubscription =  this.shoppingCartService.shoppingCartEvent.subscribe(() => {
+
+        this.cart = this.shoppingCartService.returnCart();
       }
     );
   }

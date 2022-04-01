@@ -10,11 +10,12 @@ import {ProductService} from "../../shared/services/product.service";
   styleUrls: ['./shop-page.component.css']
 })
 export class ShopPageComponent implements OnInit, OnDestroy {
-
+  private subscriptionPayMode: Subscription;
   private subscriptionOfProducts: Subscription;
   shopProducts: Product[];
   public isInPayMode: boolean = false;
   public shopAlert: boolean = false;
+
   constructor(
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService
@@ -28,6 +29,11 @@ export class ShopPageComponent implements OnInit, OnDestroy {
         console.log("updated")
         this.setShopProducts(products);
       }
+    );
+    this.subscriptionPayMode = this.shoppingCartService.paymentEvent.subscribe( mode =>{
+      this.isInPayMode = mode;
+    }
+
     );
   }
 

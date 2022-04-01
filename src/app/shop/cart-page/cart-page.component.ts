@@ -18,19 +18,19 @@ export class CartPageComponent implements OnInit {
     private shopService: ShopService,
     private shoppingCartService: ShoppingCartService,
     private localStorageService: LocalStorageService
-  ) {
-    this.setSubscription();
-  }
+  ) {}
 
   setSubscription() {
+    this.cart = this.localStorageService.getCartFromLocalStorage();
     this.shoppingCartSubscription = this.shoppingCartService.shoppingCartEvent.subscribe(
       (newCart: ShoppingCart) => {
         this.cart = newCart;
       });
-    this.cart = this.localStorageService.getCartFromLocalStorage();
+
   }
 
   ngOnInit(): void {
+    this.setSubscription();
   }
 
   onPayCart(){

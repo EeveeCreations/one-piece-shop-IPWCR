@@ -12,7 +12,7 @@ export class ShoppingCartService implements OnInit {
 
   private shoppingCart: ShoppingCart;
   public shoppingCartEvent: Subject<ShoppingCart> = new Subject<ShoppingCart>();
-  public paymentEvent:Subject<boolean>;
+  public paymentEvent: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private productService: ProductService,
@@ -47,7 +47,7 @@ export class ShoppingCartService implements OnInit {
   }
 
   updateCart(product: Product, updateType?: string, toAdd?: boolean) {
-    // this.paymentEvent.next(false);
+    this.paymentEvent.next(false);
     if (this.seeIfItemInCart(product)) {
       switch (updateType) {
         case "delete" :
@@ -62,11 +62,11 @@ export class ShoppingCartService implements OnInit {
     }
     this.shoppingCart.amountOfProducts = this.shoppingCart.cartItems.length;
     this.shoppingCart.totalPrice = this.calculatePrice();
-    this.localStorageService.storeCart(this.shoppingCart);
     this.updateShoppingCart();
   }
 
   private updateShoppingCart() {
+    this.localStorageService.storeCart(this.shoppingCart);
     this.shoppingCartEvent.next(this.shoppingCart);
   }
 
@@ -91,7 +91,7 @@ export class ShoppingCartService implements OnInit {
   }
 
   buyTheCart(isPaying: boolean) {
-    // this.paymentEvent.next(isPaying);
+    this.paymentEvent.next(isPaying);
   }
 
   seeIfItemInCart(product: Product): boolean {
@@ -123,7 +123,9 @@ export class ShoppingCartService implements OnInit {
         this.DeleteItemFromCart(product);
       }
     }
-  this.updateShoppingCart();
+    this.shoppingCart.amountOfProducts = this.shoppingCart.cartItems.length;
+    this.shoppingCart.totalPrice = this.calculatePrice();
+    this.updateShoppingCart();
   }
 
   ngOnInit(): void {
