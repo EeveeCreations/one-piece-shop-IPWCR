@@ -1,0 +1,10 @@
+.cartItem{
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--master_primairy_color);
+  background: var(--transparent_white)!important;
+}
+.cartItem h1{
+  font-weight: 900;
+}

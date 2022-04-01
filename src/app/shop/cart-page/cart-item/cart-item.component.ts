@@ -16,14 +16,14 @@ export class CartItemComponent implements OnInit {
   }
 
   deleteItem() {
-    this.shoppingCartService.changeItemAmount(this.cartItem.product,false);
+    this.shoppingCartService.changeItemAmount(this.cartItem._product,false);
   }
 
   addItem() {
-    this.shoppingCartService.changeItemAmount(this.cartItem.product,true);
+    this.shoppingCartService.changeItemAmount(this.cartItem._product,true);
   }
 
   getTotalProductPrice() {
-    return this.cartItem.product.price * this.cartItem.amount;
+    return this.cartItem._product.price * this.cartItem._amount;
   }
 }

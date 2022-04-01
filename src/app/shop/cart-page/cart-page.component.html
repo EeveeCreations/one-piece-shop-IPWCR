@@ -1,4 +1,4 @@
-<section class="background cssSelection col-xs-12">
+<section class=" paySection cssSelection col-xs-12">
   <h1>My Cart</h1>
   <hr>
   <ul>
@@ -7,7 +7,7 @@
       [cartItem]="cartItem "></app-cart-item>
   </ul>
  </section>
-<section class="cssSelection paySection col-xs-12">
+<section class="cssSelection background paySection col-xs-12">
   <h2>Pay</h2>
   <h3 class="col-xs-12">Total: <span class="col-xs-2">€{{cart? cart.totalPrice : 0}}</span></h3>
   <button (click)="onPayCart()" class=" col-xs-12 btn btn-success">Order Cart</button>

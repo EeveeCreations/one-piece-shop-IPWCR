@@ -13,7 +13,7 @@ figcaption.desc{
   border: 5px solid var(--master_third_color);
   height: 200px;
   padding: 0;
-  margin: 10px;
+  margin: 25px;
 }
 
 .itemOfShop:hover, .added:hover{

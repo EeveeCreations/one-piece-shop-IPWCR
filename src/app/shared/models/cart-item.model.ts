@@ -5,8 +5,8 @@ export class CartItem{
     this._product = product;
     this._amount = amount;
   }
-  private _product: Product;
-  private _amount: number;
+  _product: Product;
+  _amount: number;
 
 
   get product(): Product {
