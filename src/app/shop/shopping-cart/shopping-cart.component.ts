@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {ShoppingCart} from "../../shared/models/shopping-cart.model";
 import {Subscription} from "rxjs";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -14,8 +13,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   cart: ShoppingCart;
 
   constructor(
-    private shoppingCartService: ShoppingCartService,
-    private router: Router
+    private shoppingCartService: ShoppingCartService
   ) {
   }
 
@@ -30,6 +28,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   private setSubscription() {
     this.cartSubscription = this.shoppingCartService.shoppingCartEvent.subscribe(
       (cart: ShoppingCart) => {
+        console.log(cart)
         this.cart = cart;
       }
     );

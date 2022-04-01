@@ -20,12 +20,12 @@ export class ShopPageComponent implements OnInit, OnDestroy {
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService
   ) {
-    this.setSubscriptions();
   }
 
   setSubscriptions() {
     this.subscriptionOfProducts = this.productService.productEvent.subscribe(
       (products: Product[]) => {
+        console.log(products)
         this.shopProducts = products;
       }
     );
@@ -36,7 +36,7 @@ export class ShopPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.shopProducts = this.productService.getProducts();
+    this.setSubscriptions();
     this.initFilters();
   }
 

@@ -11,7 +11,7 @@ import {LocalStorageService} from "./local-storage.service";
 export class ShoppingCartService implements OnInit {
 
   private shoppingCart: ShoppingCart;
-  public shoppingCartEvent: Subject<ShoppingCart>;
+  public shoppingCartEvent: Subject<ShoppingCart> = new Subject<ShoppingCart>();
   public paymentEvent:Subject<boolean>;
 
   constructor(

@@ -1,4 +1,4 @@
 <section (click)="onBuyCart()" class="ShoppingCart">
-  <p class="counter">{{cart.amountOfProducts}}</p>
+  <p class="counter">{{cart ? cart.amountOfProducts: 0 }}</p>
   <p>🛒</p>
 </section>

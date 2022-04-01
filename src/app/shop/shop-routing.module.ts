@@ -9,7 +9,7 @@ import {CartPageComponent} from "./cart-page/cart-page.component";
 const routes = [
   {
     path: '', component: ShopComponent, children: [
-      {path: 'products', component: ShopPageComponent ,resolve: [ProductResolver]},
+      {path: 'products', component: ShopPageComponent , resolve: [ProductResolver]},
       {path: 'myCart', component: CartPageComponent}, //, canActivate:[UserGuard]
       {path: '**', redirectTo: 'products'}
     ]

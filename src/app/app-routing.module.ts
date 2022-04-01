@@ -2,9 +2,10 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {StartPageComponent} from "./start-page/start-page.component";
 import {ErrorPageComponent} from "./error-page/error-page.component";
+import {ProductResolver} from "./shared/resolvers/product-resolver.services";
 
 const routes: Routes = [
-  {path: 'home', component: StartPageComponent},
+  {path: 'home', component: StartPageComponent, resolve: [ProductResolver]},
   {
     path: 'shop', loadChildren: () =>
       import('./shop/shop.module').then(
