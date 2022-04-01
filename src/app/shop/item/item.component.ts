@@ -3,7 +3,6 @@ import {Product} from "../../shared/models/product.model";
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {ShopService} from "../../shared/services/shop.service";
 import {CartItem} from "../../shared/models/cart-item.model";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-item',

@@ -15,11 +15,6 @@ export class ProductResolver implements Resolve<Product[]>{
     const products = this.productService.getProducts();
     if (products.length === 0) {
       const newProducts = this.requestService.requestOfProduct("all","get",null);
-      // newProducts.subscribe( products =>{
-      //   this.productService.setProducts(products);
-      // })
-      // this.productService.productEvent.subscribe( products =>{
-      // })
       return newProducts
     }
     return products

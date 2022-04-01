@@ -11,11 +11,10 @@ import {ProductService} from "../../shared/services/product.service";
 })
 export class ShopPageComponent implements OnInit, OnDestroy {
 
-  public shopProducts: Product[];
   private subscriptionOfProducts: Subscription;
+  shopProducts: Product[];
   public isInPayMode: boolean = false;
   public shopAlert: boolean = false;
-
   constructor(
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService
@@ -23,12 +22,17 @@ export class ShopPageComponent implements OnInit, OnDestroy {
   }
 
   setSubscriptions() {
+    this.shopProducts = this.productService.getProducts();
     this.subscriptionOfProducts = this.productService.productEvent.subscribe(
       (products: Product[]) => {
-        console.log(products)
-        this.shopProducts = products;
+        console.log("updated")
+        this.setShopProducts(products);
       }
     );
+  }
+
+  private setShopProducts(products: Product[]) {
+    this.shopProducts = products;
   }
 
   ngOnDestroy(): void {
@@ -37,11 +41,11 @@ export class ShopPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setSubscriptions();
-    this.initFilters();
+    // this.initFilters();
   }
 
   private initFilters() {
-    for (let item; this.shopProducts;) {
-    }
+    // for (let item; this.shopProducts;) {
+    // }
   }
 }

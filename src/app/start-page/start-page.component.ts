@@ -22,8 +22,7 @@ export class StartPageComponent implements OnInit {
   }
 
   setSubscriptions() {
-    this.setNewProducts(this.productService.getProducts())
-    console.log(this.newProducts)
+    this.setNewProducts(this.productService.getProducts());
     this.subscriptionOfProducts = this.productService.productEvent.subscribe(
       (products: Product[]) => {
         this.setNewProducts(products)
