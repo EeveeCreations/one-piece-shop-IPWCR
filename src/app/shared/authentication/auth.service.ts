@@ -20,7 +20,7 @@ export class AuthService {
               private localStorageService: LocalStorageService) {
     this.user.subscribe(() => {
       if(this.user != null) {
-        // this.router.navigate(['/']);
+        this.router.navigate(['/admin']);
       }
     });
   }
@@ -34,8 +34,7 @@ export class AuthService {
   prepareHeader() {
     return new HttpHeaders(
       {
-        ContentType: 'application/json',
-        Accept: 'application/json',
+        accept: 'application/json',
       });
   }
 
@@ -66,7 +65,6 @@ export class AuthService {
     ).pipe(
       catchError(this.handleError)
       , map(dataRes => {
-          console.log(dataRes);
           return this.handleAuth(
             dataRes.name,
             dataRes.roles,

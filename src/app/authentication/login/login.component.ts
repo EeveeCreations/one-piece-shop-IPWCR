@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
 import {User} from "../../shared/models/user.model";
 import {AuthService} from "../../shared/authentication/auth.service";
 
@@ -42,13 +42,12 @@ export class LoginComponent implements OnInit {
     const name = this.userForm.get('name').value;
     const pass = this.userForm.get('password').value;
     let authObs: Observable<User>;
-    authObs = this.authService.logIn(name, pass).pipe(tap(answer => {
-      authObs.subscribe(answer => {
+      authObs = this.authService.logIn(name, pass)
+    authObs.subscribe(answer => {
+      console.log(answer);
       }, errorMes => {
-
         this.error = errorMes;
       });
-    }));
     this.userForm.reset();
   }
 }
