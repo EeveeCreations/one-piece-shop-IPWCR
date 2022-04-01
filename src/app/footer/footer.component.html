@@ -1,0 +1,42 @@
+<footer>
+  <div class="container background col-xs-12">
+    <div class="container-fluid">
+      <section class="contact">
+        <section class="col-xs-12">
+          <h2>Need  help?</h2>
+          <p>Something wrong you and you want to ring the bell for it ?
+            just contact our mail service no problem.</p>
+        </section>
+        <form [formGroup]="mailForm" (ngSubmit)="onMail()" class="col-xs-12">
+          <section class="col-md-5">
+            <label for="email">E-mail</label>
+            <input formControlName="mail" id="email" type="email" required>
+            <label for="subject">Subject</label>
+            <input formControlName="subject" id="subject" type="text" required>
+          </section>
+          <section>
+            <div class="col-md-7">
+              <label for="message">Message</label>
+              <textarea formControlName="message" id="message" required></textarea>
+            </div>
+          </section>
+            <button [disabled]="!mailForm.valid" class="btn btn-thirdColor" id="submit" type="submit">Send</button>
+        </form>
+      </section>
+      <details class="col-md-6">
+        <summary>This footer gives all needed sources to the page,
+        This website is made for educational purposes</summary>
+        <p>Source:
+          <a [routerLink]="['error']">Source page</a>
+          <a target="_blank" href="https://onepiece.fandom.com/wiki/One_Piece_Wiki">Wikipedia.fandom</a>
+          <a target="_blank" href="https://en.wikipedia.org/wiki/One_Piece">Wikipedia </a>
+          <a target="_blank" href="https://jiaszeto.com/">Based Design off Jiaszeto</a>
+        </p>
+      </details>
+      <section id="rights" class="col-md-6">
+        <p>This application was made for educational and grading purposes only<br>
+          &#169; EVCreations S1126086 2022</p>
+      </section>
+    </div>
+  </div>
+</footer>

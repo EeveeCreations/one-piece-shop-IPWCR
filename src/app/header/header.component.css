@@ -1,0 +1,73 @@
+/*Header*/
+/*Navbar ____________________________________________________________________________________ Nav bar*/
+.homeIcon{
+  max-height: 90px;
+}
+.MasterNavbar {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+  text-align: right;
+  z-index: 3;
+  border-radius: 8px;
+  min-width: max-content;
+  height: 110px;
+  color: var(--white);
+  background: var(--smokey-black);
+  position: relative;
+  border-bottom: solid 5px var(--master_primairy_color );
+}
+.MasterNavbar li {
+  font-size: 200%;
+  text-align: center;
+  padding: var(--padding_master);
+}
+.MasterNavbar a{
+  width: 100%;
+  height: 100%;
+  color: var(--white);
+  text-transform: capitalize;
+}
+.MasterNavbar >li.NavItem :hover,
+.MasterNavbar >li.NavItem :active {
+  font-weight: 900;
+  color: var(--master_primairy_color);
+  background: none;
+}
+
+@media only screen and (min-width: 350px) and (max-width: 800px) {
+  img.homeIcon {
+    margin: 20px;
+    position: absolute;
+    max-height: 100px;
+    max-width: 100px;
+  }
+
+  /*Navigate*/
+  .MasterNavbar {
+    max-width: 100%;
+    width: 100%;
+    height: max-content;
+  }
+
+  .MasterNavbar ul {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .MasterNavbar li {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+
+  }
+
+  .MasterNavbar a {
+    margin: 0;
+    padding: 0;
+  }
+}
+

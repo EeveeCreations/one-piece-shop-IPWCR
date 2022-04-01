@@ -1,0 +1,8 @@
+button{
+  min-height: 50px;
+}
+span{
+  text-align: right;
+  color: var(--master_secundairy_color);
+}
+

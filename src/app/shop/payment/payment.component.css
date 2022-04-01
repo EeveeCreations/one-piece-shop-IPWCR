@@ -1,0 +1,42 @@
+.window{
+  z-index: 99;
+  position: fixed;
+  margin: 0 30vw;
+  text-align: center;
+  padding: 10px;
+  min-width: 40vw;
+  border: 5px solid var(--master_third_color);
+}
+.no {
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px 5px;
+  text-decoration: underline;
+}
+h2,p{
+  width: 100%;
+}
+input {
+  font-size: 22px;
+  width: 50%;
+  color: var(--smokey-black);
+  border: 2px solid var(--master_primairy_color_light);
+}
+
+input[type=checkbox] {
+  width: 5%;
+  color: var(--smokey-black);
+  border: 2px solid var(--master_primairy_color_light);
+}
+
+input.ng-invalid .ng-touched {
+  border: 3px solid var(--master_primairy_color);
+}
+
+@media only screen and (min-width: 350px) and (max-width: 1200px) {
+  .window{
+    margin: 0;
+    min-width: 95vw;
+
+  }
+}

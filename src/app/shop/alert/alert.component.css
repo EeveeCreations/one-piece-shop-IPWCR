@@ -1,0 +1,24 @@
+.window{
+  top: 10vh;
+  z-index: 99;
+  position: fixed;
+  text-align: center;
+  padding: 30px;
+  width: 400px;
+  height: fit-content;
+  border: 5px solid var(--master_third_color);
+}
+.window > form{
+  width: 60%;
+}
+.premBut{
+  background: var(--master_primairy_color_light);
+}
+.no {
+  cursor: pointer;
+  display: inline-block;
+  width: 40%;
+  text-align: right;
+  font-size: 80%;
+  text-decoration: underline;
+}

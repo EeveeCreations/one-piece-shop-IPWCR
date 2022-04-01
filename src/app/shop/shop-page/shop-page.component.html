@@ -1,0 +1,13 @@
+<app-filters></app-filters>
+<app-payment class="container col-xs-12" *ngIf="isInPayMode"></app-payment>
+<app-alert *ngIf="shopAlert"></app-alert>
+<app-shopping-cart></app-shopping-cart>
+<section class="shopSection col-xs-12">
+  <ul class="col-xs-12">
+    <div class="col-xs-12">
+    <app-item *ngFor="let product of shopProducts let i = index"
+              [product]="product"
+              [i]="i"></app-item>
+    </div>
+  </ul>
+</section>

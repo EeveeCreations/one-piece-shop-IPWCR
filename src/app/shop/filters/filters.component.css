@@ -1,0 +1,19 @@
+.filters {
+  text-align: left;
+  font-size:110%;
+  color: var(--master_third_color);
+  grid-column: auto/span 2;
+}
+
+.filterset div {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid var(--master_third_color);
+}
+/*Dropdown*/
+.filters .dropdown-menu{
+  background: none;
+  border:none ;
+  box-shadow: none;
+  position: relative;
+}

@@ -1,0 +1,70 @@
+.auth-form{
+  text-align: center;
+  padding: 10%;
+  padding-top: 0;
+}
+form, .auth-form button{
+  padding: 2%;
+}
+button {
+  color: var(--white);
+  font-weight: 900;
+}
+
+.auth-form button.btn-primary {
+  border: 2px solid var(--master_third_color_darker);
+  background: var(--master_third_color);
+
+}
+.loginForm,.auth-form{
+  font-size: 32px;
+}
+loginForm > label, auth-form.loginForm > div > label {
+  font-size: 40px;
+  font-weight: bold;
+  padding-left: -20px;
+  padding: 5px;
+  color: var(--master_secundairy_color);
+}
+
+input {
+  font-size: 22px;
+  width: 50%;
+  color: var(--smokey-black);
+  border: 2px solid var(--master_primairy_color_light);
+}
+
+input[type=checkbox] {
+  width: 5%;
+  color: var(--smokey-black);
+  border: 2px solid var(--master_primairy_color_light);
+}
+
+input.ng-invalid .ng-touched {
+  border: 3px solid var(--master_primairy_color);
+}
+.filer-section {
+  margin: 0 15%;
+  height: 10vw;
+  width: 70%;
+  background:url(src/assets/Images/background/space.jpg) fixed no-repeat;
+  text-align: center;
+  padding: 0;
+}
+.filer-section > figure {
+  position: absolute;
+  height: inherit;
+  width: 100%;
+  background: var(--transparent_white);
+}
+.filer-section > button{
+  position: relative;
+  top: 10%;
+  margin: auto;
+  z-index: 2;
+  border-radius: 5px;
+  border: 2px solid var(--master_primairy_color);
+  background: var(--master_primairy_color);
+  font-size:22px;
+  box-shadow: var(--box-shadow);
+}

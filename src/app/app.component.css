@@ -1,0 +1,59 @@
+/*About us ___________________________________________________________________ */
+.carousel{
+  grid-template-columns: 1fr;
+  padding: 20px 15%;
+}
+.carouselPicture{
+  border: 1px solid var(--transparent_black);
+  animation: fadeIn 500ms backwards;
+  max-height: 40vh;
+  display: none;
+  box-shadow: rgba(36, 36, 36, 0.64) 7px 7px 7px;
+}
+.carouselPicture[data-carosel = '1']{
+  display: block;
+}
+.carouselPicture > figcaption{
+  color: var(--smokey-black);
+  padding:5px 10px;
+  top: -20px;
+  font-size: 110%;
+  margin: 0 auto;
+  position: relative;
+  width: max-content;
+  background: var(--master_third_color);
+
+}
+.crew{
+  grid-template-columns: 1fr 1fr;
+}
+.crew > p{
+  margin: var(--margin_center_vertical);
+  padding: 0  10%;
+  position: relative;
+}
+.crew figure{
+  padding: 20px;
+  margin: var(--margin_center_horizental);
+  height: 125px;
+  width: 125px;
+}
+.crew figure > img {
+  animation: slideIn 2s;
+  border: 2px solid black;
+  border-radius: 40%;
+}
+
+/*Watch and Read ________________________________________ Watch And Read*/
+.Watch{
+  grid-template-columns:  1fr 1fr;
+}
+.Watch iframe{
+  border: 5px solid var(--master_secundairy_color);
+  width:120%;
+  left: -20%;
+  position: relative;
+  height:415px;
+  margin: var(--margin_center_horizental);
+  margin-bottom: 20px;
+}

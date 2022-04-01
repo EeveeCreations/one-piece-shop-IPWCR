@@ -1,0 +1,13 @@
+<article class="col-xs-12">
+  <section class="col-sm-6">
+    <ul class="list-group">
+      <app-product *ngFor="let item of shopItems; let i = index"
+          [item]="item"
+          [index]="i"
+          ></app-product>
+    </ul>
+  </section>
+  <section class="col-sm-6">
+    <app-edit-item></app-edit-item>
+  </section>
+</article>

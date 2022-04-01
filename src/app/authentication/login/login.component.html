@@ -1,0 +1,13 @@
+<form [formGroup]="userForm" class="loginForm col-xs-12">
+  <label for="name">User name: </label><br>
+  <input id="name" type="name" formControlName="name"><br>
+  <br>
+  <label for="pass">Password: </label><br>
+  <input id="pass" type="password" formControlName="password"><br>
+</form>
+
+<button
+  [disabled]="!userForm.valid"
+  (click)="onSubmit()"
+  type="submit" class="btn btn-primary"
+>Log in</button>

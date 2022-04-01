@@ -1,0 +1,64 @@
+/*Footer ____________________________________________________________________________________ Footer*/
+
+details{
+  cursor: pointer;
+}
+a{
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  font-weight: 800;
+  color: var(--master_third_color_darker);
+}
+p, h2{
+  color: var(--master_third_color_darker);
+
+}
+/*Rights section*/
+#rights{
+  text-align: right;
+}
+
+summary {
+  padding: var(--padding_master);
+  font-style: italic;
+}
+/*Contact section*/
+.contact{
+  width: 100%;
+  margin:  auto 0;
+  padding: 20px;
+  color: var(--master_third_color_darker);
+}
+
+.contact h2{
+  width: 100%;
+  font-weight: 600;
+  color: var(--master_third_color_darker);
+}
+.contact input, .contact textarea{
+  width: 100%;
+  color: var(--smokey-black);
+  min-height:25px;
+  border: 2px solid  var(--master_third_color);
+  margin-bottom:var(--master_bottem_margin) ;
+}
+.contact textarea{
+  height: 100px;
+}
+.contact input[type=text]:focus, .contact input[type=email]:focus, textarea:focus {
+  border:3px solid var(--master_primairy_color_light);
+  outline: 3px solid var(--master_primairy_color_light);
+}
+.btn-thirdColor{
+  cursor: pointer;
+  border: 2px solid var(--master_third_color);
+  background-color: var(--master_third_color);
+  color: var(--white);
+}
+/*-------------------------------Form invalids -----------------------------------*/
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
+  border: 3px solid var(--master_primairy_color);
+}
