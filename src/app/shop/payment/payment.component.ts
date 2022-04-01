@@ -50,7 +50,7 @@ export class PaymentComponent implements OnInit{
       this.authService.signUp(newUser);
     }
 
-    this.router.navigate(['/paid'],{relativeTo:this.activeRoute});
+    this.router.navigate(['/paid'+name],{relativeTo:this.activeRoute});
     this.cartService.buyTheCart(false);
   }
 

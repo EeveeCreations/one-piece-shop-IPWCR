@@ -230,9 +230,6 @@ figcaption {
   }
 
   /*Shop*/
-  .filters {
-    grid-column: auto/span 3;
-  }
 }
 
 /*Tablet vertical*/

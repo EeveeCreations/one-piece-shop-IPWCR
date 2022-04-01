@@ -4,6 +4,8 @@
   max-height: 90px;
 }
 .MasterNavbar {
+  display: flex;
+  justify-content: space-evenly;
   margin: 0;
   text-align: right;
   z-index: 3;
@@ -30,7 +32,7 @@
 .MasterNavbar >li.NavItem :active {
   font-weight: 900;
   color: var(--master_primairy_color);
-  background: transparent;
+  background: none;
 }
 
 @media only screen and (min-width: 350px) and (max-width: 800px) {

@@ -48,16 +48,16 @@ export class RegisterComponent implements OnInit {
     let authObs: Observable<User>;
       const email = this.userForm.get('email').value;
       const isAdmin = this.userForm.get('admin').touched;
-      let roles : UserRole[] = [new UserRole(BigInt(2),"CLIENT")];
+      let roles : UserRole[] = [new UserRole(null,"CLIENT")];
       if(isAdmin){
-        roles.push(new UserRole(BigInt(1),"ADMIN"));
+        roles.push(new UserRole(null,"ADMIN"));
       }
       let newUser = new NewUser(name,email,pass,roles);
       authObs = this.authService.signUp(newUser);
-    authObs.subscribe(answer =>{
+      authObs.subscribe(answer =>{
       console.log(answer)
     })
-    // subscribe(answer => {
+    //   .subscribe(answer => {
     //   console.log(answer)
     // }, errorMes=> {
     //   this.error = errorMes;
