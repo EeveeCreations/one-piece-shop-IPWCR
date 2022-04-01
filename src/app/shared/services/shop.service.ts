@@ -3,7 +3,7 @@ import {ShoppingCartService} from "./shopping-cart.service";
 import {Product} from "../models/product.model";
 import {ProductService} from "./product.service";
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ShopService implements OnInit{
   allItemsOfShop: Product[];
 

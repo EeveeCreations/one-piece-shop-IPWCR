@@ -4,11 +4,9 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DropdownDirective} from "../directives/drop-down.directive";
 import { CircusPictureComponent } from './circus-picture/circus-picture.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   imports:[
-    BrowserAnimationsModule,
     CommonModule,
   ],
   declarations:[

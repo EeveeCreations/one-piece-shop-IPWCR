@@ -4,8 +4,10 @@
 <app-shopping-cart></app-shopping-cart>
 <section class="shopSection col-xs-12">
   <ul class="col-xs-12">
-    <app-item *ngFor="let product of shopProducts;let i = index"
+    <div class="col-xs-12">
+    <app-item *ngFor="let product of shopProducts let i = index"
               [product]="product"
               [i]="i"></app-item>
+    </div>
   </ul>
 </section>

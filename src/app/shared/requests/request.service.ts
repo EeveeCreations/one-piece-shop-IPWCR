@@ -82,7 +82,6 @@ export class RequestService {
         if (specific == 'all') {
           this.productService.setProducts(products);
         }
-
       }));
 
   }

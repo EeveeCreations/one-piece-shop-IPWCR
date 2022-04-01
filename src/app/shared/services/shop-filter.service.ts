@@ -9,10 +9,10 @@ export class ShopFilterService {
   private items: Product[];
 
   constructor(private productService: ProductService) {
-    this.itemSubscription = productService.productEvent.subscribe(products =>{
-      this.items = products;
-      }
-    )
+    // this.itemSubscription = productService.productEvent.subscribe(products =>{
+    //   this.items = products;
+    //   }
+    // )
   }
 
   filterItems() {

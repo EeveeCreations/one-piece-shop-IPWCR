@@ -32,11 +32,11 @@ export class AuthService {
   }
 
   prepareHeader() {
-   return new HttpHeaders(
+    return new HttpHeaders(
       {
         ContentType: 'application/json',
         Accept: 'application/json',
-  });
+      });
   }
 
   autoLogIn() {
@@ -77,16 +77,21 @@ export class AuthService {
   }
 
   signUp(newUser: NewUser) {
-    this.prepareURL('register')
-    return this.http.post<{ name: string, roles: string, accessToken: string, refreshToken: string }>(
+    this.prepareURL('register');
+    console.log(newUser.roles);
+    return this.http.post<{name: string, roles: string, accessToken: string, refreshToken: string}>(
       this.url, {
+        id: null,
         name:newUser.name,
         email: newUser.email,
         passcode: this.passwordHash(newUser.passcode),
         roles: newUser.roles
+      },{
+        headers: this.prepareHeader()
       }
     ).pipe(
       map(dataRes => {
+          console.log(dataRes)
           return this.handleAuth(
             dataRes.name,
             dataRes.roles,
@@ -125,6 +130,7 @@ export class AuthService {
   }
 
   private handleError(errorRes: HttpErrorResponse) {
+    console.log(errorRes)
     let errorMessage = 'An unkown error occurd';
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);

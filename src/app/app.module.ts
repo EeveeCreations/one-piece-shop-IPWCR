@@ -10,6 +10,7 @@ import {StartPageComponent} from './start-page/start-page.component';
 import {ErrorPageComponent} from './error-page/error-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import {DecorationComponentsModule} from "./shared/deceration-components/decoration-components.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -20,12 +21,13 @@ import {DecorationComponentsModule} from "./shared/deceration-components/decorat
     ErrorPageComponent,
   ],
     imports: [
-        BrowserModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        DecorationComponentsModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      HttpClientModule,
+      FormsModule,
+      ReactiveFormsModule,
+      AppRoutingModule,
+      DecorationComponentsModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,8 @@
-import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Product} from "../../shared/models/product.model";
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {ShopService} from "../../shared/services/shop.service";
 import {CartItem} from "../../shared/models/cart-item.model";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-item',
@@ -19,10 +18,12 @@ export class ItemComponent implements OnInit, OnDestroy {
 
   constructor(private shoppingCartService: ShoppingCartService,
               private shopService: ShopService) {
-    this.checkInCart()
   }
 
   ngOnInit(): void {
+    if (this.product != undefined) {
+      this.checkInCart()
+    }
   }
   ngOnDestroy():void {
 
@@ -30,7 +31,6 @@ export class ItemComponent implements OnInit, OnDestroy {
 
   alertOfItem() {
     this.shopService.giveAlertAboutItem(this.product);
-    this.checkInCart();
   }
 
   amountOfItemChange(isAdd: boolean) {
@@ -38,9 +38,11 @@ export class ItemComponent implements OnInit, OnDestroy {
   }
 
   checkInCart(){
-    if ( this.shoppingCartService.seeIfItemInCart(this.product)) {
-          this.cartItem = this.shoppingCartService.getItemOfCart(this.product);
-          // this.element.nativeElement.className = 'added';
+    if (this.shoppingCartService.seeIfItemInCart(this.product)) {
+      this.inCart = true;
+      this.cartItem = this.shoppingCartService.getItemOfCart(this.product);
+    } else {
+      this.inCart = false;
     }
   }
 }

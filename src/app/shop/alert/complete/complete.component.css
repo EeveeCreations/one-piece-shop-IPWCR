@@ -1,7 +1,10 @@
 .cssSelection{
+  min-height: 50VW;
   text-align: center;
+  color: var(--white);
 }
 .cssSelection > h2{
+  border: 5px solid var(--master_primairy_color);
   width: 100%;
   padding: 30px;
 }

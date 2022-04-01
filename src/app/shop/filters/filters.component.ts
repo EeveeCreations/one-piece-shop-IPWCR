@@ -1,26 +1,20 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from "../../shared/models/product.model";
 import {ProductService} from "../../shared/services/product.service";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.css']
 })
-export class FiltersComponent implements OnInit, OnDestroy {
+export class FiltersComponent implements OnInit{
   products: Product[];
-  productEvent: Subscription;
   productCategories: string[];
 
   constructor(private productService: ProductService) {
   }
 
   ngOnInit(): void {
-    this.productEvent = this.productService.productEvent.subscribe(updatedProducts => {
-      this.products = updatedProducts;
-      this.setAllCategories()
-    })
     this.products = this.productService.getProducts();
     this.setAllCategories()
 
@@ -38,8 +32,5 @@ export class FiltersComponent implements OnInit, OnDestroy {
     this.productCategories = categorise.sort();
   }
 
-  ngOnDestroy(): void {
-    this.productEvent.unsubscribe();
-  }
 
 }

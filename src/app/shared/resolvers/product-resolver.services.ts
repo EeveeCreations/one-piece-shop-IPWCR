@@ -14,7 +14,8 @@ export class ProductResolver implements Resolve<Product[]>{
     : Observable<Product[]> | Promise<Product[]> | Product[] {
     const products = this.productService.getProducts();
     if (products.length === 0) {
-      return this.requestService.requestOfProduct("all","get",null);
+      const newProducts = this.requestService.requestOfProduct("all","get",null);
+      return newProducts
     }
     return products
   }

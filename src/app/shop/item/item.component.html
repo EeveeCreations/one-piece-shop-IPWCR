@@ -1,8 +1,7 @@
-<li #element class="col-md-3 col-sm-4 col-lg-2 itemOfShop"
-    (click)="alertOfItem()">
-    <figure >
+<li #element class="col-md-2 col-sm-3 col-lg-2 itemOfShop">
+    <figure (click)="alertOfItem()">
       <img [src]="product.imagePath" alt="{{product.description}}">
       <figcaption class="desc">{{product.description}} &#8364; {{product.price}}</figcaption>
     </figure>
-  <app-detail *ngIf="cartItem" [amount]="cartItem.amount" (itemAmountEvent)="amountOfItemChange($event)"></app-detail>
+  <app-detail *ngIf="inCart" [amount]="cartItem._amount" (itemAmountEvent)="amountOfItemChange($event)"></app-detail>
 </li>

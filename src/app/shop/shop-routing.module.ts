@@ -8,13 +8,15 @@ import {CartPageComponent} from "./cart-page/cart-page.component";
 
 const routes = [
   {
-    path: '', component: ShopComponent, children: [
-      {path: 'products', component: ShopPageComponent ,resolve: [ProductResolver]},
+    path: '', component: ShopComponent , children: [
+      {path: 'products', component: ShopPageComponent , resolve: [ProductResolver]},
       {path: 'myCart', component: CartPageComponent}, //, canActivate:[UserGuard]
-      {path: '**', redirectTo: 'products'}
+      {path: 'paid/:id', component: CompleteComponent},
+      {path: '/**', redirectTo: 'products'}
     ]
-  },
-  {path: 'paid', component: CompleteComponent}]
+  }
+]
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
