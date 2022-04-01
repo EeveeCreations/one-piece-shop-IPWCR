@@ -20,7 +20,7 @@ export class AuthService {
               private localStorageService: LocalStorageService) {
     this.user.subscribe(() => {
       if(this.user != null) {
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/admin/home']);
       }
     });
   }
@@ -76,7 +76,6 @@ export class AuthService {
 
   signUp(newUser: NewUser) {
     this.prepareURL('register');
-    console.log(newUser.roles);
     return this.http.post<{name: string, roles: string, accessToken: string, refreshToken: string}>(
       this.url, {
         id: null,
@@ -109,6 +108,7 @@ export class AuthService {
     const newRoles: UserRole[] =this.createRoles(roles)
     const user = new User(1, name, null, newRoles, token, refreshToken)
     this.localStorageService.storeUser(user);
+    console.log(this.localStorageService.getUserFromLocalStorage())
     this.user.next(user);
     this.autoLogOut();
     return user;

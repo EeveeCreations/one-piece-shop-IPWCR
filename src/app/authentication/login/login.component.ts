@@ -42,9 +42,8 @@ export class LoginComponent implements OnInit {
     const name = this.userForm.get('name').value;
     const pass = this.userForm.get('password').value;
     let authObs: Observable<User>;
-      authObs = this.authService.logIn(name, pass)
+    authObs = this.authService.logIn(name, pass);
     authObs.subscribe(answer => {
-      console.log(answer);
       }, errorMes => {
         this.error = errorMes;
       });
