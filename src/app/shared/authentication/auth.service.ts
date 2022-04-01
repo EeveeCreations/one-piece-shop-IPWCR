@@ -111,7 +111,7 @@ export class AuthService {
     console.log(this.localStorageService.getUserFromLocalStorage())
     this.user.next(user);
     this.autoLogOut();
-    return user;
+    return this.user;
 
   }
 
