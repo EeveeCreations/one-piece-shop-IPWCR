@@ -23,7 +23,7 @@ export class RequestService {
   }
 
   prepareURL(model: string, specific: string) {
-    this.url = "https://localhost:7004/" + model;
+    this.url = "https://server-ipwcr-eevee.herokuapp.com/" + model;
     if (specific !== "") {
       this.url = (this.url + "/" + specific);
     }

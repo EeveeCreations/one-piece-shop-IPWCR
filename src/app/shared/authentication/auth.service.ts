@@ -26,9 +26,8 @@ export class AuthService {
   }
 
   prepareURL(authentication: string) {
-    this.url = "https://localhost:7004/" + authentication;
-    //178.62.233.221/
-    return this.url;
+    this.url = "https://server-ipwcr-eevee.herokuapp.com/" + authentication;
+     return this.url;
   }
 
   prepareHeader() {
