@@ -20,7 +20,7 @@ export class AuthService {
               private localStorageService: LocalStorageService) {
     this.user.subscribe(() => {
       if(this.user != null) {
-        this.router.navigate(['/admin/home']);
+        this.router.navigate(['/admin']);
       }
     });
   }
@@ -63,15 +63,16 @@ export class AuthService {
         }
       }
     ).pipe(
+      map(dataRes => {
+        return this.handleAuth(
+          dataRes.name,
+          dataRes.roles,
+          dataRes.accessToken,
+          dataRes.refreshToken);
+      }
+    ),
       catchError(this.handleError)
-      , map(dataRes => {
-          return this.handleAuth(
-            dataRes.name,
-            dataRes.roles,
-            dataRes.accessToken,
-            dataRes.refreshToken);
-        }
-      ));
+  )
   }
 
   signUp(newUser: NewUser) {
@@ -88,7 +89,6 @@ export class AuthService {
       }
     ).pipe(
       map(dataRes => {
-          console.log(dataRes)
           return this.handleAuth(
             dataRes.name,
             dataRes.roles,
@@ -108,10 +108,9 @@ export class AuthService {
     const newRoles: UserRole[] =this.createRoles(roles)
     const user = new User(1, name, null, newRoles, token, refreshToken)
     this.localStorageService.storeUser(user);
-    console.log(this.localStorageService.getUserFromLocalStorage())
     this.user.next(user);
     this.autoLogOut();
-    return this.user;
+    return user;
 
   }
 
@@ -157,7 +156,7 @@ export class AuthService {
   }
 
   autoLogOut() {
-    const MAX_MINUTES = 10 * 1000// miliseconds
+    const MAX_MINUTES = 10 * 10000// miliseconds
     this.tokenExpirationTimer = setTimeout(() => {
       this.logOut();
     }, MAX_MINUTES)
