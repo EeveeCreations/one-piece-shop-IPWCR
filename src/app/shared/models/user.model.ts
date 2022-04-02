@@ -43,7 +43,7 @@ export class User {
   }
 
   get token(): string {
-    return this.token;
+    return this._token;
   }
 
   get refreshToken(): string {

@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnInit} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../models/user.model";
 import {ShoppingCart} from "../models/shopping-cart.model";
@@ -8,24 +8,22 @@ import {tap} from "rxjs";
 import {ProductService} from "../services/product.service";
 import {OrderService} from "../services/order.service";
 import {AuthService} from "../authentication/auth.service";
+import {LocalStorageService} from "../services/local-storage.service";
 
 @Injectable({providedIn: 'root'})
 export class RequestService {
   private url: string = "";
-  private subscription;
   private user: User;
 
   constructor(private http: HttpClient,
               private productService:ProductService,
               private orderService:OrderService,
-              private authService: AuthService) {
-    this.subscription = authService.user.subscribe( user =>{
-      this.user = user;
-    })
+              private localStorageService: LocalStorageService) {
+    this.user = this.localStorageService.getUserFromLocalStorage();
   }
 
   prepareURL(model: string, specific: string) {
-    this.url = "https://localhost:7004/" + model;
+    this.url = "https://server-ipwcr-eevee.herokuapp.com/" + model;
     if (specific !== "") {
       this.url = (this.url + "/" + specific);
     }
@@ -33,11 +31,12 @@ export class RequestService {
   }
 
   prepareHeader() {
-    const headerOfRequest: HttpHeaders = new HttpHeaders();
+    let headerOfRequest: HttpHeaders = new HttpHeaders();
     if (this.user != null) {
-      headerOfRequest.set("Authorization", "Bearer " + this.user.token);
-      console.log(this.user.token)
-    }
+      headerOfRequest = new HttpHeaders({
+          "Authorization":"Bearer " + this.user.token
+        }
+      ); }
     return headerOfRequest;
   }
 
@@ -58,9 +57,9 @@ export class RequestService {
     return this.http.request<Order[]>(
       duty, this.url,
       {
-        body: order,
-        headers: this.prepareHeader()
-      })
+        headers: this.prepareHeader(),
+        body: order
+      },)
       .pipe(
         tap(orders => {
           if (specific == 'all') {

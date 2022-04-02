@@ -7,6 +7,7 @@ import {CartItem} from "../models/cart-item.model";
 @Injectable({providedIn: 'root'})
 export class LocalStorageService implements OnInit{
   private USER :string = 'currentUser';
+  private backUp: User;
   private SHOPPING_CART: string = 'shoppingCart';
 
   ngOnInit(): void {
@@ -18,6 +19,7 @@ export class LocalStorageService implements OnInit{
   }
 
   storeUser(currentUser: User) {
+    this.backUp = currentUser;
     localStorage.setItem(this.USER, JSON.stringify(currentUser));
   }
 
@@ -67,8 +69,8 @@ export class LocalStorageService implements OnInit{
   }
 
   onChangeOfStorage(){
-    this.removeUser();
-    this.removeCart();
+      this.removeUser();
+      this.removeCart();
   }
 
 }

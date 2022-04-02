@@ -6,7 +6,6 @@ import {OrderComponent} from "./orders/order/order.component";
 import {EditItemsComponent} from "./edit-items/edit-items.component";
 import {OrdersComponent} from "./orders/orders.component";
 import {AdminRoutingModule} from "./admin-routing.module";
-import {ShopModule} from "../shop/shop.module";
 import {EditItemComponent} from "./edit-items/edit-item/edit-item.component";
 import {AdminNavComponent} from './admin-nav/admin-nav.component';
 
@@ -14,7 +13,6 @@ import {AdminNavComponent} from './admin-nav/admin-nav.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ShopModule,
     AdminRoutingModule
   ],
   declarations: [

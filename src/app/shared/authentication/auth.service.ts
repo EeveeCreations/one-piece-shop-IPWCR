@@ -20,22 +20,20 @@ export class AuthService {
               private localStorageService: LocalStorageService) {
     this.user.subscribe(() => {
       if(this.user != null) {
-        // this.router.navigate(['/']);
+        this.router.navigate(['/admin']);
       }
     });
   }
 
   prepareURL(authentication: string) {
-    this.url = "https://localhost:7004/" + authentication;
-    //178.62.233.221/
-    return this.url;
+    this.url = "https://server-ipwcr-eevee.herokuapp.com/" + authentication;
+     return this.url;
   }
 
   prepareHeader() {
     return new HttpHeaders(
       {
-        ContentType: 'application/json',
-        Accept: 'application/json',
+        accept: 'application/json',
       });
   }
 
@@ -64,21 +62,20 @@ export class AuthService {
         }
       }
     ).pipe(
+      map(dataRes => {
+        return this.handleAuth(
+          dataRes.name,
+          dataRes.roles,
+          dataRes.accessToken,
+          dataRes.refreshToken);
+      }
+    ),
       catchError(this.handleError)
-      , map(dataRes => {
-          console.log(dataRes);
-          return this.handleAuth(
-            dataRes.name,
-            dataRes.roles,
-            dataRes.accessToken,
-            dataRes.refreshToken);
-        }
-      ));
+  )
   }
 
   signUp(newUser: NewUser) {
     this.prepareURL('register');
-    console.log(newUser.roles);
     return this.http.post<{name: string, roles: string, accessToken: string, refreshToken: string}>(
       this.url, {
         id: null,
@@ -91,7 +88,6 @@ export class AuthService {
       }
     ).pipe(
       map(dataRes => {
-          console.log(dataRes)
           return this.handleAuth(
             dataRes.name,
             dataRes.roles,
@@ -159,7 +155,7 @@ export class AuthService {
   }
 
   autoLogOut() {
-    const MAX_MINUTES = 10 * 1000// miliseconds
+    const MAX_MINUTES = 10 * 10000// miliseconds
     this.tokenExpirationTimer = setTimeout(() => {
       this.logOut();
     }, MAX_MINUTES)

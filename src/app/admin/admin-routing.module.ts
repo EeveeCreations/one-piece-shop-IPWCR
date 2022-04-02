@@ -9,7 +9,7 @@ import {RouterModule} from "@angular/router";
 import {AuthAdminGuard} from "../shared/authentication/guards/auth-admin.guard";
 
 const routes = [
-  {path: 'home',component: AdminComponent, /*canActivate: [AuthGuard],*/children: [
+  {path: '',component: AdminComponent, /*canActivate: [AuthGuard],*/children: [
       {path: '', component: OrdersComponent, resolve: [OrdersResolver]},
       {path: 'orders', component: OrdersComponent, resolve: [OrdersResolver]},
       {path: 'products', component: EditItemsComponent, /*canActivate: [AuthAdminGuard],*/ resolve: [ProductResolver] , children: [
