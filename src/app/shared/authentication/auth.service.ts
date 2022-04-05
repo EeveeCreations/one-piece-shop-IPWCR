@@ -7,11 +7,12 @@ import {Router} from "@angular/router";
 import {UserRole} from "../models/user-role.model";
 import {LocalStorageService} from "../services/local-storage.service";
 import * as shajs from 'sha.js';
+import {environment} from "../../../environments/environment";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
   public url: string = "";
-  user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+  user: BehaviorSubject<User> = new BehaviorSubject<User>(this.localStorageService.getUserFromLocalStorage());
 
   private tokenExpirationTimer;
 
@@ -26,7 +27,7 @@ export class AuthService {
   }
 
   prepareURL(authentication: string) {
-    this.url = "https://server-ipwcr-eevee.herokuapp.com/" + authentication;
+    this.url = environment.serverURL + authentication;
      return this.url;
   }
 
@@ -116,7 +117,6 @@ export class AuthService {
   private createRoles(roles: string): UserRole[] {
     let  newRoles: UserRole[] = []
     const id: bigint = null;
-    console.log(roles)
     for(const rol of roles.replace('[','').replace(']','').replace(' ','').split(",")){
       if(rol.startsWith("ADMIN")){
       }

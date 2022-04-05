@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs";
-import {Order} from "../../admin/orders/order.model";
+import {Order} from "../models/order.model";
 import {ShoppingCart} from "../models/shopping-cart.model";
 
 @Injectable({providedIn: 'root'})
 export class OrderService {
   private orders: Order[] = [];
-  orderEvent: Subject<Order[]>;
+  orderEvent: Subject<Order[]> = new Subject<Order[]>();
 
   constructor() {
   }
@@ -18,7 +18,8 @@ export class OrderService {
   }
 
   addOrder(shoppingCart: ShoppingCart) {
-    const newOrder: Order = new Order(shoppingCart, false);
+    console.log(shoppingCart)
+    const newOrder: Order = new Order(null, shoppingCart, false);
     this.orders.push(newOrder);
     this.orderEvent.next(this.orders.slice());
   }

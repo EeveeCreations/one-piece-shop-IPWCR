@@ -1,14 +1,15 @@
-import {Order} from "../../admin/orders/order.model";
+import {Order} from "../models/order.model";
 import {Injectable, OnInit} from "@angular/core";
 import {Subject} from "rxjs";
 import {OrderService} from "./order.service";
 import {RequestService} from "../requests/request.service";
 import {Product} from "../models/product.model";
 import {ShoppingCart} from "../models/shopping-cart.model";
+
 @Injectable({providedIn: 'root'})
 export class OrderHandlingService implements OnInit{
   activeOrders:Order[] = [];
-  orderEvent: Subject<Order[]>;
+  orderEvent: Subject<Order[]> = new Subject<Order[]>();
 
   ranCart: ShoppingCart;
   ranProduct: Product;
@@ -23,7 +24,7 @@ export class OrderHandlingService implements OnInit{
   }
 
   addNewOrder(shoppingCart: ShoppingCart){
-    const newOrder = new Order(shoppingCart, false);
+    const newOrder = new Order(null,shoppingCart, false);
     this.requestService.requestOfOrder('new','post',newOrder).subscribe((order)=>{
       this.activeOrders.push(order[0]);
       }

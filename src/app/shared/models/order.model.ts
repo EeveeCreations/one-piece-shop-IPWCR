@@ -1,16 +1,25 @@
-import {ShoppingCart} from "../../shared/models/shopping-cart.model";
+import {ShoppingCart} from "./shopping-cart.model";
 
 export class Order {
+
+  private _id: number;
   private _cart: ShoppingCart;
   private _completed:boolean;
 
 
-  constructor( cart: ShoppingCart, completed) {
+  constructor(id:number, cart: ShoppingCart, completed) {
+    this._id = id;
     this._cart = cart;
     this._completed = completed;
   }
 
+  get id(): number {
+    return this._id;
+  }
 
+  set id(value: number) {
+    this._id = value;
+  }
   get cart(): ShoppingCart {
     return this._cart;
   }

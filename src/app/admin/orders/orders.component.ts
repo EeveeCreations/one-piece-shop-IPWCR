@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Order} from './order.model'
+import {Order} from '../../shared/models/order.model'
 import {OrderHandlingService} from "../../shared/services/order-handling.service";
 import {Subscription} from "rxjs";
 
@@ -9,7 +9,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  ordersSubscription: Subscription;
+  ordersSubscription: Subscription = new Subscription();
   orders: Order[];
 
   constructor(

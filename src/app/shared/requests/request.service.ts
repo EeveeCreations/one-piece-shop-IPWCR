@@ -2,12 +2,12 @@ import {Injectable, OnInit} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../models/user.model";
 import {ShoppingCart} from "../models/shopping-cart.model";
-import {Order} from "../../admin/orders/order.model";
+import {Order} from "../models/order.model";
 import {Product} from "../models/product.model";
 import {tap} from "rxjs";
 import {ProductService} from "../services/product.service";
 import {OrderService} from "../services/order.service";
-import {AuthService} from "../authentication/auth.service";
+import { environment } from '../../../environments/environment';
 import {LocalStorageService} from "../services/local-storage.service";
 
 @Injectable({providedIn: 'root'})
@@ -23,7 +23,7 @@ export class RequestService {
   }
 
   prepareURL(model: string, specific: string) {
-    this.url = "https://server-ipwcr-eevee.herokuapp.com/" + model;
+    this.url = environment.serverURL + model;
     if (specific !== "") {
       this.url = (this.url + "/" + specific);
     }
@@ -31,12 +31,13 @@ export class RequestService {
   }
 
   prepareHeader() {
-    let headerOfRequest: HttpHeaders = new HttpHeaders();
+    let headerOfRequest : HttpHeaders  = new HttpHeaders();
     if (this.user != null) {
-      headerOfRequest = new HttpHeaders({
-          "Authorization":"Bearer " + this.user.token
-        }
-      ); }
+     headerOfRequest = new HttpHeaders({
+      "authorization":"Bearer " + this.user.token
+    });
+
+       }
     return headerOfRequest;
   }
 
@@ -63,6 +64,7 @@ export class RequestService {
       .pipe(
         tap(orders => {
           if (specific == 'all') {
+             orders = orders == null ? []: orders;
             this.orderService.setOrders(orders);
           }
         }));

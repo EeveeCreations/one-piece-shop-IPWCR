@@ -8,6 +8,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../shared/authentication/auth.service";
 import {UserRole} from "../../shared/models/user-role.model";
 import {NewUser} from "../../shared/models/new-user.model";
+import {PaymentService} from "../../shared/services/payment.service";
 
 @Component({
   selector: 'app-payment',
@@ -16,15 +17,13 @@ import {NewUser} from "../../shared/models/new-user.model";
 })
 export class PaymentComponent implements OnInit{
   public cart: ShoppingCart;
-  private paymentSubscription: Subscription;
   public clientForm: FormGroup;
   public cartItems: CartItem[];
 
   constructor(
-    private router: Router,
-    private activeRoute: ActivatedRoute,
     private cartService: ShoppingCartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private paymentService: PaymentService
   ) {}
 
 
@@ -49,10 +48,8 @@ export class PaymentComponent implements OnInit{
       const newUser = new NewUser(name,mail,"",[new UserRole(null,"UN_REG_CLIENT")])
       this.authService.signUp(newUser);
     }
-
-    this.router.navigate(['/paid'+name],{relativeTo:this.activeRoute});
-    this.cartService.buyTheCart(false);
-  }
+    this.paymentService.turnPaymentIntoOrder()
+    }
 
   onCancelPayment(){
     this.cartService.buyTheCart(false);
