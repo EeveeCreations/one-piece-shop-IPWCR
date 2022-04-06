@@ -20,11 +20,11 @@ export class LocalStorageService implements OnInit{
 
   storeUser(currentUser: User) {
     this.backUp = currentUser;
-    localStorage.setItem(this.USER, JSON.stringify(currentUser));
+    sessionStorage.setItem(this.USER, JSON.stringify(currentUser));
   }
 
   removeUser() {
-    localStorage.removeItem(this.USER);
+    sessionStorage.removeItem(this.USER);
   }
 
   getUserFromLocalStorage(): User {
@@ -35,7 +35,7 @@ export class LocalStorageService implements OnInit{
       _roles: UserRole[]
       _token: string,
       _refreshToken: string
-    } = JSON.parse(localStorage.getItem('currentUser'));
+    } = JSON.parse(sessionStorage.getItem(this.USER));
     if (!currentUser) {
       return;
     }
@@ -53,10 +53,6 @@ export class LocalStorageService implements OnInit{
     if (!newCart) {
       return;
     }
-    // let cartItems: CartItem[] = []
-    // for (let item of newCart.cartItems){
-    //   cartItems.push(item);
-    // }
     return new ShoppingCart(newCart._amountOfProducts, newCart._cartItems, newCart._totalPrice, newCart._isOrdered);
   }
 

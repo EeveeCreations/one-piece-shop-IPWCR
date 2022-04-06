@@ -17,15 +17,15 @@ export class PaymentService implements OnInit{
   ngOnInit(): void {
   }
 
-  turnPaymentIntoOrder(){
+  turnPaymentIntoOrder(id?: number){
     let shoppingCart = this.shoppingCartService.returnCart();
     this.orderService.addOrder(shoppingCart);
-    this.FinnishPayment();
+    this.FinnishPayment(id);
   }
 
 
-  private FinnishPayment() {
+  private FinnishPayment(id?:number) {
     this.shoppingCartService.buyTheCart(false);
-    this.router.navigate(['/paid/'+ name],{relativeTo:this.activeRoute});
+    this.router.navigate(['shop/paid/'+ id],{relativeTo: this.activeRoute});
   }
 }

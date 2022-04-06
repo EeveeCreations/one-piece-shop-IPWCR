@@ -45,10 +45,10 @@ export class PaymentComponent implements OnInit{
     const name = this.clientForm.get('name').value;
 
     if(this.authService.user == null){
-      const newUser = new NewUser(name,mail,"",[new UserRole(null,"UN_REG_CLIENT")])
+      const newUser = new NewUser(name,mail,"none",[new UserRole(null,"CLIENT")])
       this.authService.signUp(newUser);
     }
-    this.paymentService.turnPaymentIntoOrder()
+    this.paymentService.turnPaymentIntoOrder(Math.floor(Math.random() *1000));
     }
 
   onCancelPayment(){

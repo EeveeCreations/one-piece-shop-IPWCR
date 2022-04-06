@@ -5,6 +5,7 @@ import {ShoppingCart} from "../../shared/models/shopping-cart.model";
 import {Subscription} from "rxjs";
 import {LocalStorageService} from "../../shared/services/local-storage.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {PaymentService} from "../../shared/services/payment.service";
 
 @Component({
   selector: 'app-cart-page',
@@ -19,6 +20,7 @@ export class CartPageComponent implements OnInit {
     private router: Router,
     private activeRoute: ActivatedRoute,
     private shopService: ShopService,
+    private paymentService: PaymentService,
     private shoppingCartService: ShoppingCartService,
     private localStorageService: LocalStorageService
   ) {}
@@ -38,10 +40,9 @@ export class CartPageComponent implements OnInit {
 
   onPayCart(){
     const user = this.localStorageService.getUserFromLocalStorage();
-    console.log(user)
     if(user){
-      this.router.navigate(['/shop/paid/'+ user.name],{relativeTo:this.activeRoute});
-      return;
+     this.paymentService.turnPaymentIntoOrder(user.id);
+     return;
     }
     this.router.navigate(['../register']);
     this.shoppingCartService.buyTheCart(true);
