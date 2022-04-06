@@ -1,0 +1,8 @@
+.btn-out{
+  border: 2px solid var(--master_third_color_darker);
+  background: var(--master_third_color) !important;
+}
+.logout{
+  height: 70px;
+  justify-content: space-between;
+}

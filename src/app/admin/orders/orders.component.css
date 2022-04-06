@@ -1,7 +1,7 @@
 h1,h3{
-  color: var(--master_primairy_color);
+  color: var(--master_third_color);
 }
 
 p{
-  color: var(--master_color);
+  color: var(--white);
 }

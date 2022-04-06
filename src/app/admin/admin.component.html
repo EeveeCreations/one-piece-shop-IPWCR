@@ -1,5 +1,8 @@
 <app-admin-nav></app-admin-nav>
-<h1>ADMIN PAGE</h1>
 <article class="cssSelections">
+    <section class="cssSelection logout background">
+      <p class="col-xs-9">You can log out when ever you would need.</p>
+      <button (click)="logOut()" class="col-xs-3 btn btn-out btn-danger">Log Out</button>
+    </section>
     <router-outlet></router-outlet>
 </article>

@@ -27,14 +27,19 @@ export class EditItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initForm();
+    this.startSubscribe();
+
+  }
+
+  private startSubscribe() {
     this.editSubscription = this.activeRoute.params.subscribe(
       (params: Params) => {
+        console.log(params)
         this.currentId = params['id'];
         this.isEditing = !isNaN(+params['id']);
-        console.log(this.isEditing)
         this.initForm();
       }
-    )
+    );
   }
   initForm() {
     let name = '';
@@ -86,7 +91,7 @@ export class EditItemComponent implements OnInit, OnDestroy {
   redirect() {
     this.editItemForm.reset();
     this.isEditing = false;
-    this.route.navigate(['../editshop'], {relativeTo: this.activeRoute});
+    this.route.navigate(['../'], {relativeTo: this.activeRoute});
   }
 
   ngOnDestroy(): void {

@@ -30,17 +30,17 @@ export class LocalStorageService implements OnInit{
   getUserFromLocalStorage(): User {
     const currentUser: {
       id: number,
-      name: string,
-      email: string,
-      roles: UserRole[]
+      _name: string,
+      _email: string,
+      _roles: UserRole[]
       _token: string,
       _refreshToken: string
     } = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser) {
       return;
     }
-    return new User(currentUser.id, currentUser.name, currentUser.email,
-      currentUser.roles, currentUser._token, currentUser._refreshToken);
+    return new User(null, currentUser._name, currentUser._email,
+      currentUser._roles, currentUser._token, currentUser._refreshToken);
   }
 
   getCartFromLocalStorage(): ShoppingCart {

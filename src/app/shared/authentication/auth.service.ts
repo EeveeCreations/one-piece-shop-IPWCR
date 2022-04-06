@@ -105,7 +105,7 @@ export class AuthService {
     roles: string,
     token: string,
     refreshToken: string) {
-    const newRoles: UserRole[] =this.createRoles(roles)
+    const newRoles: UserRole[] = this.createRoles(roles)
     const user = new User(1, name, null, newRoles, token, refreshToken)
     this.localStorageService.storeUser(user);
     this.user.next(user);
@@ -115,13 +115,19 @@ export class AuthService {
   }
 
   private createRoles(roles: string): UserRole[] {
-    let  newRoles: UserRole[] = []
-    const id: bigint = null;
-    for(const rol of roles.replace('[','').replace(']','').replace(' ','').split(",")){
-      if(rol.startsWith("ADMIN")){
+    let newRoles: UserRole[] = [];
+    if(typeof roles == "string") {
+      const id: number = null;
+      for (const rol of
+        roles.replace('[', '')
+          .replace(']', '')
+          .replace(' ', '')
+          .split(",")) {
+        newRoles.push(new UserRole(id, rol))
       }
-      newRoles.push(new UserRole(id,rol))
+      return newRoles;
     }
+    newRoles = roles;
     return newRoles;
   }
 
@@ -146,7 +152,7 @@ export class AuthService {
   }
 
   logOut() {
-    this.router.navigate(['./']);
+    this.router.navigate(['../']);
     this.user.next(null);
     if (this.tokenExpirationTimer) {
       clearTimeout();

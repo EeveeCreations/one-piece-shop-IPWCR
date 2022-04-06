@@ -12,7 +12,8 @@ const routes = [
       {path: 'products', component: ShopPageComponent , resolve: [ProductResolver]},
       {path: 'myCart', component: CartPageComponent}, //, canActivate:[UserGuard]
       {path: 'paid/:id', component: CompleteComponent},
-      {path: '/**', redirectTo: 'products'}
+      {path: '/**', redirectTo: 'products'},
+      {path: '', redirectTo: 'products'}
     ]
   }
 ]

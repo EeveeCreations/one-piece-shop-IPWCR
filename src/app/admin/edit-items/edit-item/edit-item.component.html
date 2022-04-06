@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xs-12">
         <button [disabled]="!editItemForm.valid"  type="submit" class="btn btn-success">{{isEditing? 'Save':'Add'}}</button>
-        <button  (click)="onDelete()" type="button" class="btn btn-danger">{{isEditing? 'Remove':'Clear'}}</button>
+        <button (click)="onDelete()" type="button" class="btn btn-danger">{{isEditing? 'Remove':'Clear'}}</button>
       </div>
       <div class=" row">
         <div class="col-xs-12">
@@ -38,7 +38,7 @@
         </div>
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="category">Category's (split by ,)</label>
+            <label for="category">Category's (split by ',' )</label>
             <input
               formControlName="category"
               type="text"
@@ -60,11 +60,6 @@
               id="description"
               rows="6"
               class="form-control"></textarea>
-          </div>
-          <div class="row">
-            <div class="col-xs-12"
-                 formControlName="category">
-            </div>
           </div>
         </div>
       </div>

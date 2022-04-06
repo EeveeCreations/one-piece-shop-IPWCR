@@ -13,7 +13,6 @@ export class OrdersResolver implements Resolve<Order[]>{
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Order[]> | Promise<Order[]> | Order[] {
     const Orders = this.orderService.getOrders();
-    console.log(Orders)
     if (Orders.length === undefined || Orders.length === 0) {
       return this.requestService.requestOfOrder("all","get",null);
     }

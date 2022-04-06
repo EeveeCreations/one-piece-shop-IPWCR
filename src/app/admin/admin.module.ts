@@ -8,6 +8,7 @@ import {OrdersComponent} from "./orders/orders.component";
 import {AdminRoutingModule} from "./admin-routing.module";
 import {EditItemComponent} from "./edit-items/edit-item/edit-item.component";
 import {AdminNavComponent} from './admin-nav/admin-nav.component';
+import {ProductComponent} from "./edit-items/product/product.component";
 
 @NgModule({
   imports: [
@@ -22,12 +23,14 @@ import {AdminNavComponent} from './admin-nav/admin-nav.component';
     EditItemComponent,
     OrdersComponent,
     OrderComponent,
+    ProductComponent,
     AdminNavComponent,
   ],
   exports:[
     AdminComponent,
     OrderComponent,
     EditItemsComponent,
+    ProductComponent,
     EditItemComponent,
     OrdersComponent,
     OrderComponent,

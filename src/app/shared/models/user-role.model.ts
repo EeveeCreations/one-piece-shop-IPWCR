@@ -1,17 +1,17 @@
 export class UserRole {
-  private _id: bigint;
+  private _id: number;
   private _role: string;
 
-  constructor(id: bigint, roleName: string) {
+  constructor(id: number, roleName: string) {
     this._id = id;
     this._role = roleName;
   }
 
-  get id(): bigint {
+  get id(): number {
     return this._id;
   }
 
-  set id(value: bigint) {
+  set id(value: number) {
     this._id = value;
   }
 

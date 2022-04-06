@@ -2,6 +2,7 @@ figcaption.desc{
   background: var(--master_primairy_color);
   color: var(--white);
   width: max-content;
+  max-width: 100%;
   padding: 2px 5px;
   top: -45px;
   position: relative;

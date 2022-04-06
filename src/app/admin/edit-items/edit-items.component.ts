@@ -9,7 +9,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./edit-items.component.css']
 })
 export class EditItemsComponent implements OnInit {
-  shopItems: Product[];
+  shopItems: Product[] = [];
   productSubscription: Subscription;
   isEditing: boolean = false;
 

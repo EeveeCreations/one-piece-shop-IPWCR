@@ -20,6 +20,7 @@ export class OrdersComponent implements OnInit {
   ngOnInit(): void {
     this.orders = this.orderHandlingService.getAllOrders();
     this.ordersSubscription = this.orderHandlingService.orderEvent.subscribe(newOrders => {
+      console.log(this.orders)
         this.orders = newOrders;
       }
     );

@@ -36,9 +36,7 @@ export class RegisterComponent implements OnInit {
           [Validators.required]),
         'email': new FormControl(null,
           [Validators.required, Validators.email]),
-        'password': new FormControl(null,
-          [Validators.required, Validators.min(6)]),
-        'admin': new FormControl(null,)
+        'password': new FormControl(null)
       });
   }
 
@@ -47,21 +45,12 @@ export class RegisterComponent implements OnInit {
     const pass = this.userForm.get('password').value;
     let authObs: Observable<User>;
       const email = this.userForm.get('email').value;
-      const isAdmin = this.userForm.get('admin').touched;
-      let roles : UserRole[] = [new UserRole(null,"CLIENT")];
-      if(isAdmin){
-        roles.push(new UserRole(null,"ADMIN"));
-      }
+      let roles : UserRole[] = [new UserRole(1,"CLIENT")];
       let newUser = new NewUser(name,email,pass,roles);
       authObs = this.authService.signUp(newUser);
       authObs.subscribe(answer =>{
       console.log(answer)
-    })
-    //   .subscribe(answer => {
-    //   console.log(answer)
-    // }, errorMes=> {
-    //   this.error = errorMes;
-    // });
+    });
     this.userForm.reset();
   }
 }
