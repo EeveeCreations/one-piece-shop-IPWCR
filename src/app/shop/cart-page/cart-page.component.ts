@@ -41,7 +41,7 @@ export class CartPageComponent implements OnInit {
   onPayCart(){
     const user = this.localStorageService.getUserFromLocalStorage();
     if(user){
-     this.paymentService.turnPaymentIntoOrder(user.id);
+     this.paymentService.turnPaymentIntoOrder(user.name);
      return;
     }
     this.router.navigate(['../register']);

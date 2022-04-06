@@ -48,7 +48,7 @@ export class PaymentComponent implements OnInit{
       const newUser = new NewUser(name,mail,"none",[new UserRole(null,"CLIENT")])
       this.authService.signUp(newUser);
     }
-    this.paymentService.turnPaymentIntoOrder(Math.floor(Math.random() *1000));
+    this.paymentService.turnPaymentIntoOrder(name);
     }
 
   onCancelPayment(){
