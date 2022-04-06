@@ -24,10 +24,8 @@ export class HeaderComponent implements OnInit {
   }
 
   checkUser(): void {
-    // this.isUser = (this.localStorageService.getUserFromLocalStorage() != undefined);
     this.userSubscription = this.authService.user.subscribe(
       (user) => {
-        console.log(this.isUser)
         this.isUser = (user != undefined);
       }
     )
