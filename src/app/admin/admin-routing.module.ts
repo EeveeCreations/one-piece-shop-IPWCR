@@ -10,7 +10,7 @@ import {AuthAdminGuard} from "../shared/authentication/guards/auth-admin.guard";
 
 const routes = [
   {path: '',component: AdminComponent,canActivate: [AuthGuard], children: [
-      {path: '', component: OrdersComponent, resolve: [OrdersResolver]},
+      {path: '',redirectTo: 'orders'},
       {path: 'orders', component: OrdersComponent, resolve: [OrdersResolver]},
       {path: 'products', component: EditItemsComponent ,canActivate: [AuthAdminGuard],  resolve: [ProductResolver] , children: [
           {path: ':id', component: EditItemsComponent, canActivate: [AuthAdminGuard], resolve: [ProductResolver]}

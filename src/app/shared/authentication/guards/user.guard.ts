@@ -2,7 +2,6 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {map, Observable, take} from "rxjs";
 import {AuthService} from "../auth.service";
 import {Injectable} from "@angular/core";
-import {UserRole} from "../../models/user-role.model";
 
 @Injectable({providedIn:"root"})
 export class UserGuard implements CanActivate {
@@ -22,7 +21,7 @@ export class UserGuard implements CanActivate {
           if (isNotAUser) {
             return true;
           }
-          return this.router.createUrlTree(['/auth']);
+          return this.router.createUrlTree(['../admin']);
         }));
 
   }

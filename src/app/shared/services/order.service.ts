@@ -18,7 +18,6 @@ export class OrderService {
   }
 
   addOrder(shoppingCart: ShoppingCart) {
-    console.log(shoppingCart)
     const newOrder: Order = new Order(null, shoppingCart, false);
     this.orders.push(newOrder);
     this.orderEvent.next(this.orders.slice());

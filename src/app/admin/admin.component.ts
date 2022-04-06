@@ -11,20 +11,20 @@ import {AuthService} from "../shared/authentication/auth.service";
 export class AdminComponent implements OnInit , OnDestroy{
   shopItems: Product[];
   isAdminMethod: Subscription;
-  isAdmin: boolean;
+  isAdmin: boolean = false;
 
   constructor(
     private authService:AuthService
   ) {
   }
   ngOnInit(): void {
-  //   this.isAdminMethod = this.authService.user.subscribe((user) =>{
-  //     this.isAdmin = user.roles.indexOf(new UserRole(1,"ADMIN")) != -1;
-  //  })
+    this.isAdminMethod = this.authService.user.subscribe((user) =>{
+      this.isAdmin = user.roles[0].role == "ADMIN";
+   });
   }
-  //
+
   ngOnDestroy(): void {
-  //   this.isAdminMethod.unsubscribe()
+    this.isAdminMethod.unsubscribe()
   }
 
   logOut() {
