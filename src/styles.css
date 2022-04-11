@@ -135,7 +135,7 @@ figcaption {
   width: 100%;
   position: relative;
 }
-.cssSelections h2, .background h2 {
+.cssSelections > h2, .background > h2 {
   animation: slideIn 900ms ease-in forwards;
   width: 120%;
   height: max-content;

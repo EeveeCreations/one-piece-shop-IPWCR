@@ -12,9 +12,10 @@ import {ProductService} from "../../shared/services/product.service";
 export class ShopPageComponent implements OnInit, OnDestroy {
   private subscriptionPayMode: Subscription;
   private subscriptionOfProducts: Subscription;
+  private subscriptionOfAlert: Subscription;
   shopProducts: Product[];
   public isInPayMode: boolean = false;
-  public shopAlert: boolean = false;
+  public shopAlert: boolean;
 
   constructor(
     private shoppingCartService: ShoppingCartService,
@@ -26,15 +27,15 @@ export class ShopPageComponent implements OnInit, OnDestroy {
     this.shopProducts = this.productService.getProducts();
     this.subscriptionOfProducts = this.productService.productEvent.subscribe(
       (products: Product[]) => {
-        console.log("updated")
         this.setShopProducts(products);
       }
     );
     this.subscriptionPayMode = this.shoppingCartService.paymentEvent.subscribe( mode =>{
       this.isInPayMode = mode;
-    }
-
-    );
+    });
+    this.subscriptionOfAlert = this.shoppingCartService.alertShowing.subscribe( mode =>{
+        this.shopAlert = mode;
+      }    );
   }
 
   private setShopProducts(products: Product[]) {

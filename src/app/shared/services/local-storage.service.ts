@@ -11,7 +11,9 @@ export class LocalStorageService implements OnInit{
   private SHOPPING_CART: string = 'shoppingCart';
 
   ngOnInit(): void {
-    window.onstorage = () => this.onChangeOfStorage();
+    window.addEventListener('storage', () => {
+      this.onChangeOfStorage();
+    });
   }
 
   removeItemFromLocalStorage(itemName: string) {

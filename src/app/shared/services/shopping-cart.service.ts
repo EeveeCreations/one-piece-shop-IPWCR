@@ -13,6 +13,8 @@ export class ShoppingCartService implements OnInit {
   private shoppingCart: ShoppingCart;
   public shoppingCartEvent: Subject<ShoppingCart> = new Subject<ShoppingCart>();
   public paymentEvent: Subject<boolean> = new Subject<boolean>();
+  public alertShowing: Subject<boolean> = new Subject<boolean>();
+
 
   constructor(
     private productService: ProductService,
@@ -91,6 +93,7 @@ export class ShoppingCartService implements OnInit {
   }
 
   buyTheCart(isPaying: boolean) {
+    this.closeAlert();
     this.paymentEvent.next(isPaying);
   }
 
@@ -126,6 +129,13 @@ export class ShoppingCartService implements OnInit {
     this.shoppingCart.amountOfProducts = this.shoppingCart.cartItems.length;
     this.shoppingCart.totalPrice = this.calculatePrice();
     this.updateShoppingCart();
+  }
+  openAlert(){
+    this.alertShowing.next(true);
+    this.paymentEvent.next(false)
+  }
+  closeAlert(){
+    this.alertShowing.next(false);
   }
 
   ngOnInit(): void {

@@ -10,15 +10,17 @@
         <label for="cName">Name :</label><br>
         <input formControlName="name"
                type="text"
-               id="cName">
+               id="cName"
+        required="">
         <br>
         <label for="cMail">E-mail *: </label><br>
-        <input formControlName="name"
-               type="email"
-               id="cMail">
+        <input formControlName="mail"
+               type="mail"
+               id="cMail"
+              required="">
       </form>
       <section class="btn-group">
-        <button [disabled]="clientForm.valid" (click)="onPaymentSucceed()" class="premBut btn col-xs-12">Pay</button>
+        <button [disabled]="!clientForm.valid" (click)="onPaymentSucceed()" class="premBut btn col-xs-12">Pay</button>
         <br>
         <p (click)="onCancelPayment()" class="no col-xs-6">Don't pay yet</p>
       </section>

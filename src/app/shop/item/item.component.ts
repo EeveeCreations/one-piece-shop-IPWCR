@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Product} from "../../shared/models/product.model";
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {ShopService} from "../../shared/services/shop.service";
@@ -31,6 +31,7 @@ export class ItemComponent implements OnInit, OnDestroy {
 
   alertOfItem() {
     this.shopService.giveAlertAboutItem(this.product);
+    this.shoppingCartService.openAlert();
   }
 
   amountOfItemChange(isAdd: boolean) {
