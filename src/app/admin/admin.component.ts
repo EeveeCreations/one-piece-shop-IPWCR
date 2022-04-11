@@ -18,7 +18,9 @@ export class AdminComponent implements OnInit , OnDestroy{
   ) {
   }
   ngOnInit(): void {
-    this.isAdminMethod = this.authService.user.subscribe((user) =>{
+    this.isAdminMethod = this.authService.user.subscribe(
+      (user) =>{
+      console.log(user)
       this.isAdmin = user.roles[0].role == "ADMIN";
    });
   }

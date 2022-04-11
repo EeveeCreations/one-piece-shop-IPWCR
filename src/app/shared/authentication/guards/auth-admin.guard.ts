@@ -17,7 +17,7 @@ export class AuthAdminGuard implements CanActivate {
       take(1)
       , map(
         user => {
-             if(user.roles.length == 1){
+             if(user.roles[0].role == "ADMIN"){
                return true;
              }
           return this.router.createUrlTree(['/admin']);
