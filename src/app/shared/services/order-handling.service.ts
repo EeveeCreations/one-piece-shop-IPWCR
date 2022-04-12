@@ -1,6 +1,6 @@
 import {Order} from "../models/order.model";
 import {Injectable, OnInit} from "@angular/core";
-import {Subject} from "rxjs";
+import {Subject, Subscription} from "rxjs";
 import {OrderService} from "./order.service";
 import {RequestService} from "../requests/request.service";
 import {Product} from "../models/product.model";
@@ -8,6 +8,7 @@ import {ShoppingCart} from "../models/shopping-cart.model";
 
 @Injectable({providedIn: 'root'})
 export class OrderHandlingService implements OnInit{
+  orderSubscription: Subscription;
   activeOrders:Order[] = [];
   orderEvent: Subject<Order[]> = new Subject<Order[]>();
 
@@ -18,6 +19,16 @@ export class OrderHandlingService implements OnInit{
 
   ngOnInit(): void {
    this.activeOrders = this.getAllOrdersOfDB();
+   this.setSubscription();
+  }
+
+  private setSubscription() {
+    this.orderSubscription = this.orderService.orderEvent.subscribe(
+      (orders:Order[]) =>{
+        this.orderEvent.next(orders);
+      }
+    );
+
   }
 
   ngOnDestroy(): void {
@@ -27,10 +38,9 @@ export class OrderHandlingService implements OnInit{
     const newOrder = new Order(null,shoppingCart, false);
     this.requestService.requestOfOrder('new','post',newOrder).subscribe(
       (order)=>{
-        console.log(order)
-      this.activeOrders.push(newOrder);
+        this.activeOrders.push(newOrder);
       }
-    )
+    );
   }
 
   updateOrder(index: number, order: Order) {

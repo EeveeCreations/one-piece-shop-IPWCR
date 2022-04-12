@@ -34,7 +34,11 @@ export class CircusPictureComponent implements OnInit, OnDestroy {
   }
 
   private startSwitching() {
+    this.interval = setTimeout(() => {
+      this.currentProduct = this.listOfProducts[this.listOfProducts.indexOf(this.currentProduct) + 1];
+    }, 100);
     this.interval = setInterval(() => this.switchPicture(), 3000);
+
   }
 
   private switchPicture() {

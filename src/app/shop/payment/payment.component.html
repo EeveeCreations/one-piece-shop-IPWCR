@@ -13,7 +13,7 @@
                id="cName"
         required="">
         <br>
-        <label for="cMail">E-mail *: </label><br>
+        <label *ngIf="!userIsRegistered" for="cMail">E-mail *: </label><br>
         <input formControlName="mail"
                type="mail"
                id="cMail"

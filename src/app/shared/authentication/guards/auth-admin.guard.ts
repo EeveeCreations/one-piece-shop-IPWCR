@@ -20,7 +20,7 @@ export class AuthAdminGuard implements CanActivate {
              if(user.roles[0].role == "ADMIN"){
                return true;
              }
-          return this.router.createUrlTree(['/admin']);
+          return this.router.createUrlTree(['/admin/client']);
         }));
 
   }

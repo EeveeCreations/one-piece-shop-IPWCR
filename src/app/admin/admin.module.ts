@@ -9,6 +9,7 @@ import {AdminRoutingModule} from "./admin-routing.module";
 import {EditItemComponent} from "./edit-items/edit-item/edit-item.component";
 import {AdminNavComponent} from './admin-nav/admin-nav.component';
 import {ProductComponent} from "./edit-items/product/product.component";
+import { ClientComponent } from './client/client.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import {ProductComponent} from "./edit-items/product/product.component";
     OrderComponent,
     ProductComponent,
     AdminNavComponent,
+    ClientComponent,
   ],
   exports:[
     AdminComponent,

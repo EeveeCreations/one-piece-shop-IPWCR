@@ -17,6 +17,7 @@ export class PaymentComponent implements OnInit{
   public cart: ShoppingCart;
   public clientForm: FormGroup;
   public cartItems: CartItem[];
+  public userIsRegistered: boolean;
 
   constructor(
     private cartService: ShoppingCartService,
@@ -29,6 +30,7 @@ export class PaymentComponent implements OnInit{
         this.cart = this.cartService.returnCart();
         this.cartItems = this.cart.cartItems;
         this.initForm();
+        this.userIsRegistered = this.authService.user == null;
   }
 
   initForm(){
@@ -46,7 +48,7 @@ export class PaymentComponent implements OnInit{
 
   onPaymentSucceed(){
     const name = this.clientForm.get('name').value;
-    if(this.authService.user == null){
+    if(!this.userIsRegistered){
       const mail = this.clientForm.get('mail').value;
       const newUser = new NewUser(name,mail,"none",[new UserRole(null,"CLIENT")])
       this.authService.signUp(newUser);

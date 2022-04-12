@@ -1,9 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from "../../../shared/models/product.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Params, Router, UrlSegment} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ProductService} from "../../../shared/services/product.service";
-import {Subscription} from "rxjs";
 import {RequestService} from "../../../shared/requests/request.service";
 
 @Component({
@@ -11,9 +10,8 @@ import {RequestService} from "../../../shared/requests/request.service";
   templateUrl: './edit-item.component.html',
   styleUrls: ['./edit-item.component.css']
 })
-export class EditItemComponent implements OnInit, OnDestroy {
+export class EditItemComponent implements OnInit {
   editItemForm: FormGroup;
-  editSubscription: Subscription;
   isEditing: boolean = false;
   index: number;
   currentId: number;
@@ -95,9 +93,5 @@ export class EditItemComponent implements OnInit, OnDestroy {
     this.editItemForm.reset();
     this.isEditing = false;
     this.route.navigate(['../products'],{relativeTo: this.activeRoute, queryParams:[null]});
-  }
-
-  ngOnDestroy(): void {
-    this.editSubscription.unsubscribe();
   }
 }

@@ -1,0 +1,32 @@
+.client{
+  padding: 10%;
+  align-content: center;
+  text-align: center;
+  color:var(--white);
+}
+.client > h2{
+  color: var(--master_secundairy_color);
+  width: 100%!important;
+  font-size: 48px;
+}
+.client >h1 {
+  color: var(--master_third_color);
+  width: 100%!important;
+  font-size: 55px;
+
+}
+.client > button{
+  position: relative;
+  margin: var(--margin_center_vertical);
+}
+figure >img{
+  height: 100%;
+  border-radius: 40%;
+}
+.construction{
+  top:0;
+  margin: 0 10%;
+  position: fixed;
+  z-index: -1;
+  height: 100%;
+}

@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../models/user.model";
 import {ShoppingCart} from "../models/shopping-cart.model";
@@ -7,7 +7,7 @@ import {Product} from "../models/product.model";
 import {tap} from "rxjs";
 import {ProductService} from "../services/product.service";
 import {OrderService} from "../services/order.service";
-import { environment } from '../../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {LocalStorageService} from "../services/local-storage.service";
 
 @Injectable({providedIn: 'root'})
@@ -64,15 +64,14 @@ export class RequestService {
       .pipe(
         tap(orders => {
           if (specific == 'all') {
-             orders = orders == null ? []: orders;
             this.orderService.setOrders(orders);
           }
-        }));
+        })
+      );
   }
 
   requestOfProduct(specific: string, duty: string, product: Product) {
     this.url = this.prepareURL("product", specific);
-    this.prepareHeader();
     return this.http.request<Product[]>(
       duty, this.url,
       {

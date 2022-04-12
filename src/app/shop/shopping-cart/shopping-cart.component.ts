@@ -10,7 +10,6 @@ import {LocalStorageService} from "../../shared/services/local-storage.service";
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit, OnDestroy {
-  // @Output('Pay') pay : EventEmitter<boolean> = new EventEmitter<boolean>();
   cartSubscription: Subscription;
   cart: ShoppingCart;
 

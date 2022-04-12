@@ -14,7 +14,8 @@ export class OrdersResolver implements Resolve<Order[]>{
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Order[]> | Promise<Order[]> | Order[] {
     const Orders = this.orderService.getOrders();
     if (Orders.length === undefined || Orders.length === 0) {
-      return this.requestService.requestOfOrder("all","get",null);
+      const Orders = this.requestService.requestOfOrder("all","get",null);
+      return Orders
     }
     return Orders
   }

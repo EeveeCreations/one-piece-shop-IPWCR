@@ -13,7 +13,7 @@ export class OrderService {
 
   updateOrder(order: Order) {
     const index = this.orders.indexOf(order);
-    this.orders[index] = order[0];
+    this.orders[index] = order;
     this.orderEvent.next(this.orders.slice());
   }
 
@@ -34,6 +34,7 @@ export class OrderService {
 
   setOrders(newOrders: Order[]) {
     this.orders = newOrders;
+    console.log(newOrders)
     this.orderEvent.next(this.orders.slice());
   }
 

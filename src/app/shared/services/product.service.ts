@@ -31,7 +31,7 @@ export class ProductService {
 
   setProducts(newProducts: Product[]): void {
     this.products = newProducts;
-    this.productEvent.next(this.products);
+    this.productEvent.next(this.products.slice());
   }
 
   getProduct(id: number): Product {

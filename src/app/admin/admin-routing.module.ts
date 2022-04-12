@@ -8,11 +8,13 @@ import {ProductResolver} from "../shared/resolvers/product-resolver.services";
 import {RouterModule} from "@angular/router";
 import {AuthAdminGuard} from "../shared/authentication/guards/auth-admin.guard";
 import {EditItemComponent} from "./edit-items/edit-item/edit-item.component";
+import {ClientComponent} from "./client/client.component";
 
 const routes = [
   {path: '',component: AdminComponent,canActivate: [AuthGuard], children: [
+      {path: 'client', component: ClientComponent},
       {path: '', redirectTo: 'orders'},
-      {path: 'orders', component: OrdersComponent, resolve: [OrdersResolver]},
+      {path: 'orders', component: OrdersComponent,canActivate: [AuthAdminGuard], resolve: [OrdersResolver]},
       {path: 'products', component: EditItemsComponent ,canActivate: [AuthAdminGuard],  resolve: [ProductResolver] , children: [
           {path: ':id', component: EditItemComponent}
         ]},
