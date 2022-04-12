@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from "../../../shared/models/product.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router, UrlSegment} from "@angular/router";
 import {ProductService} from "../../../shared/services/product.service";
 import {Subscription} from "rxjs";
 import {RequestService} from "../../../shared/requests/request.service";
@@ -15,6 +15,7 @@ export class EditItemComponent implements OnInit, OnDestroy {
   editItemForm: FormGroup;
   editSubscription: Subscription;
   isEditing: boolean = false;
+  index: number;
   currentId: number;
   product: Product;
 
@@ -32,11 +33,11 @@ export class EditItemComponent implements OnInit, OnDestroy {
   }
 
   private startSubscribe() {
-    this.editSubscription = this.activeRoute.params.subscribe(
+    this.activeRoute.queryParams.subscribe(
       (params: Params) => {
-        console.log(params)
-        this.currentId = params['id'];
-        this.isEditing = !isNaN(+params['id']);
+        this.currentId = +params[0];
+        this.index= +params[1];
+        this.isEditing = !isNaN(+params[0]);
         this.initForm();
       }
     );
@@ -48,12 +49,16 @@ export class EditItemComponent implements OnInit, OnDestroy {
     let category = '';
     let imagePath = '';
     if (this.isEditing) {
-      this.product = this.productService.getProduct(this.currentId);
+      this.product = this.productService.getProduct(this.index);
       name = this.product.name;
       description = this.product.description;
       price = this.product.price;
       category = this.product.category;
       imagePath = this.product.imagePath;
+    }
+    if(name== null){
+      this.isEditing == false;
+      this.initForm();
     }
     this.editItemForm = new FormGroup({
       'name': new FormControl(name, Validators.required),
@@ -69,29 +74,27 @@ export class EditItemComponent implements OnInit, OnDestroy {
       this.productService.addProduct(this.product = this.editItemForm.value);
       this.saveChanges('put','new')
     } else {
-      this.productService.updateProduct(Number(this.currentId), this.editItemForm.value);
-      const id = Number(this.product.productNumber).toString();
-      console.log(id)
-      this.saveChanges('put',id)
+      this.productService.updateProduct(this.index, this.editItemForm.value);
+      this.product = this.editItemForm.value;
+      this.saveChanges('put',this.currentId.toString())
     }
     this.redirect();
   }
 
-  private saveChanges(duty:string,id: string) {
+  private saveChanges(duty:string, id: string) {
     this.requestService.requestOfProduct(id, duty, this.product).subscribe();
   }
 
   onDelete() {
     this.productService.deleteProduct(this.currentId);
-    const id = Number(this.product.productNumber).toString();
-    this.saveChanges('delete',id);
+    this.saveChanges('delete',this.currentId.toString());
     this.redirect();
   }
 
   redirect() {
     this.editItemForm.reset();
     this.isEditing = false;
-    this.route.navigate(['../'], {relativeTo: this.activeRoute});
+    this.route.navigate(['../products'],{relativeTo: this.activeRoute, queryParams:[null]});
   }
 
   ngOnDestroy(): void {

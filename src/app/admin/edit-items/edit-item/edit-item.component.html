@@ -2,8 +2,9 @@
   <form class="editItemForm" [formGroup]="editItemForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-xs-12">
-        <button [disabled]="!editItemForm.valid"  type="submit" class="btn btn-success">{{isEditing? 'Save':'Add'}}</button>
+        <button [disabled]="!editItemForm.valid"  type="submit" class="btn btn-prem">{{isEditing? 'Save':'Add'}}</button>
         <button (click)="onDelete()" type="button" class="btn btn-danger">{{isEditing? 'Remove':'Clear'}}</button>
+        <button (click)="redirect()"  type="button" class="btn btn-prem">New</button>
       </div>
       <div class=" row">
         <div class="col-xs-12">

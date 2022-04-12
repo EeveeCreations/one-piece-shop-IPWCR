@@ -7,13 +7,14 @@ import {EditItemsComponent} from "./edit-items/edit-items.component";
 import {ProductResolver} from "../shared/resolvers/product-resolver.services";
 import {RouterModule} from "@angular/router";
 import {AuthAdminGuard} from "../shared/authentication/guards/auth-admin.guard";
+import {EditItemComponent} from "./edit-items/edit-item/edit-item.component";
 
 const routes = [
   {path: '',component: AdminComponent,canActivate: [AuthGuard], children: [
-      {path: '',redirectTo: 'orders'},
+      {path: '', redirectTo: 'orders'},
       {path: 'orders', component: OrdersComponent, resolve: [OrdersResolver]},
       {path: 'products', component: EditItemsComponent ,canActivate: [AuthAdminGuard],  resolve: [ProductResolver] , children: [
-          {path: ':id', component: EditItemsComponent, canActivate: [AuthAdminGuard], resolve: [ProductResolver]}
+          {path: ':id', component: EditItemComponent}
         ]},
     ]},
 ]

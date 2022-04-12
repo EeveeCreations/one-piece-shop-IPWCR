@@ -1,3 +1,7 @@
 .editItemForm{
   color: var(--master_third_color_darker);
+  font-weight: 600;
+}
+selection {
+  top: 10px;
 }

@@ -2,7 +2,7 @@
   <header>
     <h2>{{isInCart? 'Add item to cart' : 'Delete item from Cart'}}</h2>
   </header>
-  <button (click)="updateShoppingCart()" class="col-xs-5 premBut btn">{{isInCart? 'Add':'Delete'}}</button>
+  <button (click)="updateShoppingCart()" class="col-xs-5 btn-prem btn">{{isInCart? 'Add':'Delete'}}</button>
   <p class="col-xs-2"></p>
   <button (click)="closeAlert()" class="col-xs-5 btn btn-danger">{{isInCart? 'Dont add':'Don\'t delete'}}</button>
 </section>

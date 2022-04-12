@@ -152,7 +152,7 @@ export class AuthService {
   }
 
   logOut() {
-    this.router.navigate(['../']);
+    this.router.navigate(['home']);
     this.user.next(null);
     if (this.tokenExpirationTimer) {
       clearTimeout();
@@ -161,7 +161,7 @@ export class AuthService {
   }
 
   autoLogOut() {
-    const MAX_MINUTES = 10 * 10000// miliseconds
+    const MAX_MINUTES = 10 * 60 * 1000// miliseconds
     this.tokenExpirationTimer = setTimeout(() => {
       this.logOut();
     }, MAX_MINUTES)
