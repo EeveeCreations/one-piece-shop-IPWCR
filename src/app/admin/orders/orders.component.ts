@@ -29,7 +29,6 @@ export class OrdersComponent implements OnInit ,OnDestroy{
   private setSubscription() {
     this.ordersSubscription = this.orderService.orderEvent.subscribe(
       (newOrders: Order[]) => {
-        console.log(newOrders)
         this.orders = newOrders;
       }
     );

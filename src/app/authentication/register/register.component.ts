@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
       let newUser = new NewUser(name,email,pass,roles);
       authObs = this.authService.signUp(newUser);
       authObs.subscribe(answer =>{
-      console.log(answer)
+       const signed = answer;
     });
     this.userForm.reset();
   }

@@ -34,7 +34,6 @@ export class OrderService {
 
   setOrders(newOrders: Order[]) {
     this.orders = newOrders;
-    console.log(newOrders)
     this.orderEvent.next(this.orders.slice());
   }
 
