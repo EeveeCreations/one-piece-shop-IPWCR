@@ -10,9 +10,12 @@
   grid-template-rows: auto;
   grid-column-gap: var(--grid-gap);
 }
+header{
+  min-height: 100px;
+}
 
 .newItemsDisplay{
-  height: 40vw;
+  min-height: 40vw;
   font-size: 22px;
   position: relative;
   text-align: center;

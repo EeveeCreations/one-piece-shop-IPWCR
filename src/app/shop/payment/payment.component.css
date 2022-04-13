@@ -1,5 +1,6 @@
 .window{
   z-index: 99;
+  top: 10vw;
   position: fixed;
   margin: 0 30vw;
   text-align: center;
@@ -35,6 +36,7 @@ input.ng-invalid .ng-touched {
 
 @media only screen and (min-width: 350px) and (max-width: 1200px) {
   .window{
+    top:40vw;
     margin: 0;
     min-width: 95vw;
 
