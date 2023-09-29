@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:14
+FROM node:14 as build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -22,11 +22,14 @@ RUN ng build --prod
 # Stage 2: Create a lightweight server container
 FROM nginx:alpine
 
-# Copy the built Angular app from the build stage to the nginx container
-COPY --from=build /app/dist /usr/share/nginx/html
 
+# Copy the built Angular app from the build stage to the nginx container
+COPY --from=build ./app/docs /usr/share/nginx/html
 # Expose the port that the application will run on
 EXPOSE 4007
 
 # Define the command to start your Angular application
 CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "4007"]
+
+
+# docker build -t ipsenh-fe:1 --no-cache --progress=plain .
